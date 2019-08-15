@@ -11,7 +11,7 @@ export default class Header extends React.Component {
           <img src="assets/images/headshot-03.jpg" className="headshot third" />
         </div>
 
-        <h2>Paul Mederos</h2>
+        <h2>Brittany Mederos</h2>
         <p>
           Makes meaningful products &amp; services<br />
           centered around human experiences.
