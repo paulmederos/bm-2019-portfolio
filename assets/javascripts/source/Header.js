@@ -19,20 +19,20 @@ export default class Header extends React.Component {
 
         <ol className="brief-resume">
           <li>
-            <span className="time-space-continuum">2018 - Present</span>
-            <span className="the-gig">Founder at <a href="https://www.circleofmana.com" target="_blank">Circle of Mana</a> 🌿</span>
+            <span className="time-space-continuum">2015 - Present</span>
+            <span className="the-gig">Senior Designer at <a href="https://www.microsoft.com" target="_blank">Microsoft</a> 💻</span>
           </li>
           <li>
-            <span className="time-space-continuum">2014 - 2017</span>
-            <span className="the-gig">Led product design at <a href="https://www.territoryfoods.com" target="_blank">Territory</a> (formerly <a href="https://technical.ly/dc/2017/05/09/power-supply-now-territory-foods/" target="_blank">Power Supply</a>) 🥗</span>
+            <span className="time-space-continuum">2013 - 2015</span>
+            <span className="the-gig">Product design lead at <a href="https://www.elementum.com" target="_blank">Elementum</a> 🚚</span>
           </li>
           <li>
-            <span className="time-space-continuum">2013 ~ 2014</span>
-            <span className="the-gig">Led user experience crew at <a href="http://www.americanparkour.com" target="_blank">American Parkour</a> 🤸‍♀️</span>
+            <span className="time-space-continuum">2012 ~ 2013</span>
+            <span className="the-gig">UX/UI designer at <a href="https://u.group" target="_blank">Rock Creek Strategic Marketing</a> 🏛</span>
           </li>
           <li>
-            <span className="time-space-continuum">2006 ~ 2014</span>
-            <span className="the-gig">Ran <a href="http://enchant.co" taget="_blank">Enchant Design</a> &mdash; a product + design studio 🎨</span>
+            <span className="time-space-continuum">2010 ~ 2012</span>
+            <span className="the-gig">User experience at <a href="http://writing.enchant.co" taget="_blank">Enchant Design</a> &mdash; a product + design studio 🎨</span>
           </li>
         </ol>
       </header>
