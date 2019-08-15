@@ -1,0 +1,28 @@
+{
+  "name": "pm15",
+  "version": "1.0.0",
+  "description": "Personal design protfolio.",
+  "main": "index.js",
+  "repository": "https://github.com/paulmederos/pm15.git",
+  "author": "Paul Mederos <pvm@enchant.co>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "proptypes": "^1.1.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "webpack": "^3.6.0"
+  },
+  "scripts": {
+    "clean": "rm -rf assets/javascripts/bundled",
+    "build": "yarn clean && webpack --display-error-details",
+    "watch": "yarn clean && webpack --watch",
+    "start": "yarn watch",
+    "sass": "sass assets/sass/core.scss:assets/css/styles.css --watch"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0"
+  }
+}

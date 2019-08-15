@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Inter UI';
+  src: font-url('./assets/webfonts/Inter-UI-Regular.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  src: font-url('./assets/webfonts/Inter-UI-RegularItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  src: font-url('./assets/webfonts/Inter-UI-Medium.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  src: font-url('./assets/webfonts/Inter-UI-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
