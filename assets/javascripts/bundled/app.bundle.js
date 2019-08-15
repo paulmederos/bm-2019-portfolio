@@ -21517,7 +21517,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
               { href: 'https://www.microsoft.com', target: '_blank' },
               'Microsoft'
             ),
-            ' \uD83D\uDCBB'
+            ' \u2014 O365 (Outlook, Powerpoint) \uD83D\uDCBB'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21537,7 +21537,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
               { href: 'https://www.elementum.com', target: '_blank' },
               'Elementum'
             ),
-            ' \uD83D\uDE9A'
+            ' \u2014 Transport \uD83D\uDE9A'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21824,7 +21824,7 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "h2",
             null,
-            "Let's build together \u2728"
+            "Let's design together \u2728"
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "p",
@@ -21832,19 +21832,19 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             "Send me a note via ",
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
-              { href: "mailto:pvm@enchant.co", target: "_blank" },
+              { href: "mailto:bm@enchant.co", target: "_blank" },
               "email"
             ),
             " or ",
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
-              { href: "https://www.linkedin.com/in/pmederos/", target: "_blank" },
+              { href: "https://www.linkedin.com/in/brittanymederos/", target: "_blank" },
               "LinkedIn"
             ),
             ", or say hi over on ",
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
-              { href: "https://www.twitter.com/pvm", target: "_blank" },
+              { href: "https://www.twitter.com/brim", target: "_blank" },
               "Twitter"
             ),
             ". I'll normally respond back within a few days!"
@@ -21857,13 +21857,7 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "p",
           null,
-          "Made with \u2665 in California. Check out ",
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "a",
-            { href: "http://v14.paulmederos.com/", target: "_blank" },
-            "V14"
-          ),
-          "."
+          "Made with \u2665 in California."
         )
       )
     );
