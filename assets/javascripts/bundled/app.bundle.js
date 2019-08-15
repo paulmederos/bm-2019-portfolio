@@ -21506,18 +21506,18 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2018 - Present'
+            '2015 - Present'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Founder at ',
+            'Senior Designer at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: 'https://www.circleofmana.com', target: '_blank' },
-              'Circle of Mana'
+              { href: 'https://www.microsoft.com', target: '_blank' },
+              'Microsoft'
             ),
-            ' \uD83C\uDF3F'
+            ' \uD83D\uDCBB'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21526,24 +21526,18 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2014 - 2017'
+            '2013 - 2015'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Led product design at ',
+            'Product design lead at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: 'https://www.territoryfoods.com', target: '_blank' },
-              'Territory'
+              { href: 'https://www.elementum.com', target: '_blank' },
+              'Elementum'
             ),
-            ' (formerly ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://technical.ly/dc/2017/05/09/power-supply-now-territory-foods/', target: '_blank' },
-              'Power Supply'
-            ),
-            ') \uD83E\uDD57'
+            ' \uD83D\uDE9A'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21552,18 +21546,18 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2013 ~ 2014'
+            '2012 ~ 2013'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Led user experience crew at ',
+            'UX/UI designer at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: 'http://www.americanparkour.com', target: '_blank' },
-              'American Parkour'
+              { href: 'https://u.group', target: '_blank' },
+              'Rock Creek Strategic Marketing'
             ),
-            ' \uD83E\uDD38\u200D\u2640\uFE0F'
+            ' \uD83C\uDFDB'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21572,15 +21566,15 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2006 ~ 2014'
+            '2010 ~ 2012'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Ran ',
+            'User experience at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: 'http://enchant.co', taget: '_blank' },
+              { href: 'http://writing.enchant.co', taget: '_blank' },
               'Enchant Design'
             ),
             ' \u2014 a product + design studio \uD83C\uDFA8'
