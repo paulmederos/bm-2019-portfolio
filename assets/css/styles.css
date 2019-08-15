@@ -1792,11 +1792,11 @@ figure {
   padding: 0;
   margin-left: 6.4rem;
   min-width: 100%;
-  width: 1200px; }
+  width: 1600px; }
   @media (max-width: 30em) {
     .stack-of-work {
       margin-left: 1.4rem;
-      width: 930px; } }
+      width: 1240px; } }
 
 .case-study-preview {
   background-color: white;
@@ -1825,18 +1825,18 @@ figure {
   @media (max-width: 30em) {
     .case-study-image {
       height: 16rem; } }
-  .case-study-image.territory {
+  .case-study-image.elementum-transport {
     background-color: #FAF6ED;
-    background-image: url("../images/territory-preview.png"); }
-  .case-study-image.ps-expansion {
+    background-image: url("../images/preview-elementum-transport.png"); }
+  .case-study-image.elementum-situation {
     background-color: #0C8AA5;
-    background-image: url("../images/preview-ps-expansion.png"); }
-  .case-study-image.ps-food {
+    background-image: url("../images/preview-elementum-situation.png"); }
+  .case-study-image.cfpb-college {
     background-color: #0C8AA5;
-    background-image: url("../images/preview-ps-food.png"); }
-  .case-study-image.apk {
+    background-image: url("../images/preview-cfpb-college.png"); }
+  .case-study-image.cfpb-report {
     background-color: #2F80ED;
-    background-image: url("../images/apk-preview.png"); }
+    background-image: url("../images/preview-cfpb-report.png"); }
 
 .case-study-content {
   padding: 3rem; }
@@ -1880,11 +1880,11 @@ figure {
   padding: 0;
   margin-left: 6.4rem;
   min-width: 100%;
-  width: 4860px; }
+  width: 2160px; }
   @media (max-width: 30em) {
     .stack-of-adventures {
       margin-left: 2.4rem;
-      width: 2520px; } }
+      width: 1120px; } }
 
 .adventure-card {
   display: flex;

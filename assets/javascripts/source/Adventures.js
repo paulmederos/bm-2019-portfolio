@@ -19,45 +19,15 @@ const listOfAdventures = [
   },{
     class: "kale",
     title: "Kale: Celebrate Your Food",
-    description: "I designed and built a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
+    description: "I helped design a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
     linkText: "Start tracking your food",
     linkURL: "http://app.getkale.com"
-  },{
-    class: "seishin",
-    title: "Seishin for iOS",
-    description: "I designed and built a digital version of my favorite book of sayings—the Tao Te Ching—to reclaim a moment of mindfulness in each day.",
-    linkText: "Get it on the App Store",
-    linkURL: "https://itunes.apple.com/us/app/seishin/id1251924334?mt=8"
-  },{
-    class: "frc-talent",
-    title: "First Round Capital: Jobs",
-    description: "I helped prototype an early iteration of FRC's Talent network, that helped connect talented folks with incredible startups.",
-    linkText: "See how it's shaped up",
-    linkURL: "http://firstround.com/talent/"
-  },{
-    class: "sohelpful",
-    title: "SoHelpful.me",
-    description: "I helped build the 2nd iteration of SoHelpful's mentorship and advice network.",
-    linkText: "Read about the joruney",
-    linkURL: "https://blog.prolego.io/im-shutting-down-sohelpful-what-i-learned-from-helping-10-000-entrepreneurs-b3f3e3853c37"
-  },{
+  },,{
     class: "chef-club",
     title: "Chef Club",
     description: "I helped build a community of amateur cooks, who wanted to learn cooking skills at their own pace with delcious paleo-inspired recipes.",
     linkText: "Get cookin' today",
     linkURL: "http://www.cookchefclub.com/"
-  },{
-    class: "cor",
-    title: "Cor: Employee Wellness",
-    description: "I was an early employee at Cor. We helped organizations put their employees first, by helping companies measure the impact of their wellness programs.",
-    linkText: "Learn more on AngelList",
-    linkURL: "https://angel.co/cor"
-  },{
-    class: "culture-camp",
-    title: "Culture Camp DC",
-    description: "I helped organize the first culture-obssessed unconference in Washington, DC to help folks learn how to build better, more human companies.",
-    linkText: "Learn about the last conf",
-    linkURL: "https://www.culturecampdc.com/"
   }
 ]
 

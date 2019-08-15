@@ -21633,31 +21633,40 @@ class Portfolio extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
           'ul',
           { className: 'stack-of-work' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__["a" /* default */], {
-            date: "2017",
-            role: "Head of Product Design",
-            key: "territory-brand-launch",
-            projectHeaderClass: "territory",
-            projectTitle: "Launching the Territory brand to multiply growth",
-            description: "Could we re-position our brand closer to our north star of personalized nutrition to reach more customers in a deeper, more valuable way?",
-            onCardPressed: () => this.props.onCardPressed("territory-brand")
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__["a" /* default */], {
             date: "2015",
-            role: "Product Design Lead",
-            key: "ps-expansion",
-            projectHeaderClass: "ps-expansion",
-            projectTitle: "Scaling Power Supply to new markets",
-            description: "Would the business model and product experience we developed in one market work in other markets across the country?",
-            onCardPressed: () => this.props.onCardPressed("ps-expansion")
+            role: "Lead UX Designer",
+            key: "elementum-transport",
+            projectHeaderClass: "elementum-transport",
+            projectTitle: "Elementum: Transport app",
+            description: "Real time logistics visibility that helps Logistic managers be more proactive and spend less time tracking down spreadsheets.",
+            onCardPressed: () => this.props.onCardPressed("elementum-transport")
           }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__["a" /* default */], {
             date: "2014",
-            role: "Sr. Product Designer / Eng",
-            key: "ps-food",
-            projectHeaderClass: "ps-food",
-            projectTitle: "Helping folks find meals they love",
-            description: "If we gave folks more control over their meals, would we keep them around longer? Or would decision fatigue prove too frustrating?",
-            onCardPressed: () => this.props.onCardPressed("ps-food")
+            role: "Lead UX Designer",
+            key: "elementum-situation",
+            projectHeaderClass: "elementum-situation",
+            projectTitle: "Elementum: Situation Room",
+            description: "Designing a control room to inspire collaboration between operational teams.",
+            onCardPressed: () => this.props.onCardPressed("elementum-situation")
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__["a" /* default */], {
+            date: "2013",
+            role: "UX/UI Designer",
+            key: "cfpb-college",
+            projectHeaderClass: "cfpb-college",
+            projectTitle: "CFPB: Paying for college",
+            description: "Helping Students make smarter financial decisions about college.",
+            onCardPressed: () => this.props.onCardPressed("cfpb-college")
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__["a" /* default */], {
+            date: "2012",
+            role: "UX/UI Designer",
+            key: "cfpb-report",
+            projectHeaderClass: "cfpb-report",
+            projectTitle: "CFPB: Yearly strategic plan",
+            description: "A new type of government report—a living document, an online interactive report—for the CFPB to send to Congress",
+            onCardPressed: () => this.props.onCardPressed("cfpb-report")
           })
         )
       ),
@@ -21702,45 +21711,15 @@ const listOfAdventures = [{
 }, {
   class: "kale",
   title: "Kale: Celebrate Your Food",
-  description: "I designed and built a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
+  description: "I helped design a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
   linkText: "Start tracking your food",
   linkURL: "http://app.getkale.com"
-}, {
-  class: "seishin",
-  title: "Seishin for iOS",
-  description: "I designed and built a digital version of my favorite book of sayings—the Tao Te Ching—to reclaim a moment of mindfulness in each day.",
-  linkText: "Get it on the App Store",
-  linkURL: "https://itunes.apple.com/us/app/seishin/id1251924334?mt=8"
-}, {
-  class: "frc-talent",
-  title: "First Round Capital: Jobs",
-  description: "I helped prototype an early iteration of FRC's Talent network, that helped connect talented folks with incredible startups.",
-  linkText: "See how it's shaped up",
-  linkURL: "http://firstround.com/talent/"
-}, {
-  class: "sohelpful",
-  title: "SoHelpful.me",
-  description: "I helped build the 2nd iteration of SoHelpful's mentorship and advice network.",
-  linkText: "Read about the joruney",
-  linkURL: "https://blog.prolego.io/im-shutting-down-sohelpful-what-i-learned-from-helping-10-000-entrepreneurs-b3f3e3853c37"
-}, {
+},, {
   class: "chef-club",
   title: "Chef Club",
   description: "I helped build a community of amateur cooks, who wanted to learn cooking skills at their own pace with delcious paleo-inspired recipes.",
   linkText: "Get cookin' today",
   linkURL: "http://www.cookchefclub.com/"
-}, {
-  class: "cor",
-  title: "Cor: Employee Wellness",
-  description: "I was an early employee at Cor. We helped organizations put their employees first, by helping companies measure the impact of their wellness programs.",
-  linkText: "Learn more on AngelList",
-  linkURL: "https://angel.co/cor"
-}, {
-  class: "culture-camp",
-  title: "Culture Camp DC",
-  description: "I helped organize the first culture-obssessed unconference in Washington, DC to help folks learn how to build better, more human companies.",
-  linkText: "Learn about the last conf",
-  linkURL: "https://www.culturecampdc.com/"
 }];
 
 class Adventures extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {

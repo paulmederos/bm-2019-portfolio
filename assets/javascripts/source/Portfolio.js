@@ -20,33 +20,42 @@ export default class Portfolio extends React.Component {
         <div className="stack-container">
           <ul className="stack-of-work">
             <CaseStudyCard
-              date={"2017"}
-              role={"Head of Product Design"}
-              key={"territory-brand-launch"}
-              projectHeaderClass={"territory"}
-              projectTitle={"Launching the Territory brand to multiply growth"}
-              description={"Could we re-position our brand closer to our north star of personalized nutrition to reach more customers in a deeper, more valuable way?"}
-              onCardPressed={() => this.props.onCardPressed("territory-brand")}
-            />
-
-            <CaseStudyCard
               date={"2015"}
-              role={"Product Design Lead"}
-              key={"ps-expansion"}
-              projectHeaderClass={"ps-expansion"}
-              projectTitle={"Scaling Power Supply to new markets"}
-              description={"Would the business model and product experience we developed in one market work in other markets across the country?"}
-              onCardPressed={() => this.props.onCardPressed("ps-expansion")}
+              role={"Lead UX Designer"}
+              key={"elementum-transport"}
+              projectHeaderClass={"elementum-transport"}
+              projectTitle={"Elementum: Transport app"}
+              description={"Real time logistics visibility that helps Logistic managers be more proactive and spend less time tracking down spreadsheets."}
+              onCardPressed={() => this.props.onCardPressed("elementum-transport")}
             />
 
             <CaseStudyCard
               date={"2014"}
-              role={"Sr. Product Designer / Eng"}
-              key={"ps-food"}
-              projectHeaderClass={"ps-food"}
-              projectTitle={"Helping folks find meals they love"}
-              description={"If we gave folks more control over their meals, would we keep them around longer? Or would decision fatigue prove too frustrating?"}
-              onCardPressed={() => this.props.onCardPressed("ps-food")}
+              role={"Lead UX Designer"}
+              key={"elementum-situation"}
+              projectHeaderClass={"elementum-situation"}
+              projectTitle={"Elementum: Situation Room"}
+              description={"Designing a control room to inspire collaboration between operational teams."}
+              onCardPressed={() => this.props.onCardPressed("elementum-situation")}
+            />
+
+            <CaseStudyCard
+              date={"2013"}
+              role={"UX/UI Designer"}
+              key={"cfpb-college"}
+              projectHeaderClass={"cfpb-college"}
+              projectTitle={"CFPB: Paying for college"}
+              description={"Helping Students make smarter financial decisions about college."}
+              onCardPressed={() => this.props.onCardPressed("cfpb-college")}
+            />
+            <CaseStudyCard
+              date={"2012"}
+              role={"UX/UI Designer"}
+              key={"cfpb-report"}
+              projectHeaderClass={"cfpb-report"}
+              projectTitle={"CFPB: Yearly strategic plan"}
+              description={"A new type of government report—a living document, an online interactive report—for the CFPB to send to Congress"}
+              onCardPressed={() => this.props.onCardPressed("cfpb-report")}
             />
           </ul>
         </div>

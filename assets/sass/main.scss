@@ -507,7 +507,7 @@ figure {
   }
 }
 
-$number_of_case_study_cards: 3;
+$number_of_case_study_cards: 4;
 
 .stack-of-work {
   z-index: 1;
@@ -561,24 +561,24 @@ $number_of_case_study_cards: 3;
     height: 16rem;
   }
 
-  &.territory {
+  &.elementum-transport {
     background-color: #FAF6ED;
-    background-image: url('../images/territory-preview.png');
+    background-image: url('../images/preview-elementum-transport.png');
   }
 
-  &.ps-expansion {
+  &.elementum-situation {
     background-color: #0C8AA5;
-    background-image: url('../images/preview-ps-expansion.png');
+    background-image: url('../images/preview-elementum-situation.png');
   }
 
-  &.ps-food {
+  &.cfpb-college {
     background-color: #0C8AA5;
-    background-image: url('../images/preview-ps-food.png');
+    background-image: url('../images/preview-cfpb-college.png');
   }
 
-  &.apk {
+  &.cfpb-report {
     background-color: #2F80ED;
-    background-image: url('../images/apk-preview.png');
+    background-image: url('../images/preview-cfpb-report.png');
   }
 }
 
@@ -622,7 +622,7 @@ $number_of_case_study_cards: 3;
   }
 }
 
-$number_of_adventure_cards: 9;
+$number_of_adventure_cards: 4;
 .stack-of-adventures {
   z-index: 1;
   display: flex;
