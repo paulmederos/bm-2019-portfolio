@@ -19,8 +19,13 @@ export default class Header extends React.Component {
 
         <ol className="brief-resume">
           <li>
-            <span className="time-space-continuum">2015 - Present</span>
-            <span className="the-gig">Senior Designer at <a href="https://www.microsoft.com" target="_blank">Microsoft</a> — O365 (Outlook, Powerpoint) 💻</span>
+            <span className="time-space-continuum">2019 - Present</span>
+            <span className="the-gig">Principal Designer at <a href="https://www.microsoft.com" target="_blank">Microsoft</a> — O365 (Powerpoint) 💻</span>
+          </li>
+
+          <li>
+            <span className="time-space-continuum">2015 - 2018</span>
+            <span className="the-gig">Senior Designer at <a href="https://www.microsoft.com" target="_blank">Microsoft</a> — O365 (Outlook, Staffhub) 💌</span>
           </li>
           <li>
             <span className="time-space-continuum">2013 - 2015</span>

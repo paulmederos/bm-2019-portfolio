@@ -450,6 +450,7 @@ figure {
   li:nth-child(2) { color: transparentize($primary_font_color, .35) }
   li:nth-child(3) { color: transparentize($primary_font_color, .45) }
   li:nth-child(4) { color: transparentize($primary_font_color, .6) }
+  li:nth-child(5) { color: transparentize($primary_font_color, .6) }
 
   li a { color: inherit; }
   li a:hover { color: $color_enchant; }

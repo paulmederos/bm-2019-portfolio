@@ -5,9 +5,8 @@ import Portfolio from './Portfolio'
 import Adventures from './Adventures'
 import Contact from './Contact'
 
-import TerritoryLaunch from './projects/TerritoryLaunch'
-import PSExpansion from './projects/PSExpansion'
-import PSFood from './projects/PSFood'
+import ElementumTransport from './projects/ElementumTransport'
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -49,15 +48,18 @@ export default class App extends React.Component {
 
   renderProject(project){
     switch(project) {
-      case 'territory-brand':
-        return <TerritoryLaunch onClosePressed={this.handleWorkPageClosed}/>
+      case 'elementum-transport':
+        return <ElementumTransport onClosePressed={this.handleWorkPageClosed}/>
         break;
-      case 'ps-expansion':
-        return <PSExpansion onClosePressed={this.handleWorkPageClosed}/>
-        break;
-      case 'ps-food':
-        return <PSFood onClosePressed={this.handleWorkPageClosed}/>
-        break;
+      // case 'elementum-situation':
+      //   return <ElementumSituation onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
+      // case 'cfpb-college':
+      //   return <CFPBCollege onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
+      // case 'cfpb-report':
+      //   return <CFPBReport onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
     }
   }
 

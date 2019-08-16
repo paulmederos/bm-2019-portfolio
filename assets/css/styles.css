@@ -1736,6 +1736,8 @@ figure {
     color: rgba(45, 35, 51, 0.55); }
   .brief-resume li:nth-child(4) {
     color: rgba(45, 35, 51, 0.4); }
+  .brief-resume li:nth-child(5) {
+    color: rgba(45, 35, 51, 0.4); }
   .brief-resume li a {
     color: inherit; }
   .brief-resume li a:hover {

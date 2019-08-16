@@ -816,7 +816,7 @@ class CaseStudyFigure extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Comp
     );
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyFigure;
+/* unused harmony export default */
 
 
 CaseStudyFigure.propTypes = {
@@ -844,7 +844,7 @@ class Shot extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     });
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Shot;
+/* unused harmony export default */
 
 
 /***/ }),
@@ -21375,11 +21375,7 @@ module.exports = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Portfolio__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Adventures__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__projects_TerritoryLaunch__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__projects_PSExpansion__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__projects_PSFood__ = __webpack_require__(43);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__projects_ElementumTransport__ = __webpack_require__(44);
 
 
 
@@ -21427,15 +21423,18 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
   renderProject(project) {
     switch (project) {
-      case 'territory-brand':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__projects_TerritoryLaunch__["a" /* default */], { onClosePressed: this.handleWorkPageClosed });
+      case 'elementum-transport':
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__projects_ElementumTransport__["a" /* default */], { onClosePressed: this.handleWorkPageClosed });
         break;
-      case 'ps-expansion':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__projects_PSExpansion__["a" /* default */], { onClosePressed: this.handleWorkPageClosed });
-        break;
-      case 'ps-food':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__projects_PSFood__["a" /* default */], { onClosePressed: this.handleWorkPageClosed });
-        break;
+      // case 'elementum-situation':
+      //   return <ElementumSituation onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
+      // case 'cfpb-college':
+      //   return <CFPBCollege onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
+      // case 'cfpb-report':
+      //   return <CFPBReport onClosePressed={this.handleWorkPageClosed}/>
+      //   break;
     }
   }
 
@@ -21506,7 +21505,27 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2015 - Present'
+            '2019 - Present'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'the-gig' },
+            'Principal Designer at ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: 'https://www.microsoft.com', target: '_blank' },
+              'Microsoft'
+            ),
+            ' \u2014 O365 (Powerpoint) \uD83D\uDCBB'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'li',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'time-space-continuum' },
+            '2015 - 2018'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
@@ -21517,7 +21536,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
               { href: 'https://www.microsoft.com', target: '_blank' },
               'Microsoft'
             ),
-            ' \u2014 O365 (Outlook, Powerpoint) \uD83D\uDCBB'
+            ' \u2014 O365 (Outlook, Staffhub) \uD83D\uDC8C'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21847,7 +21866,10 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 /***/ }),
-/* 41 */
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21865,22 +21887,22 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 
-class TerritoryLaunch extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+class ElementumTransport extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
       {
-        companyName: "Territory Foods",
-        projectTitle: "Product + Brand Launch",
+        companyName: "Elementum",
+        projectTitle: "Transport app",
         onClosePressed: this.props.onClosePressed
       },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'header',
-        { className: 'project-page-header territory' },
+        { className: 'project-page-header elementum' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'wrap', style: { marginBottom: "2em" } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'assets/images/header-territory-brand.png' })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'assets/images/header-elementum-transport.png' })
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21889,7 +21911,7 @@ class TerritoryLaunch extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Comp
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           { className: 'project-title' },
-          'Launching the Territory brand for continued, sustained growth'
+          'Real time logistics visibility that helps logistic managers be more proactive and spend less time tracking down spreadsheets.'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
@@ -21900,1391 +21922,35 @@ class TerritoryLaunch extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Comp
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h3',
           null,
-          'Background'
+          'The Problem'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          'Power Supply helped fuel active folks with tasty, good-for-them food by working with local chefs to prepare and deliver meal plans. We were the "easy button" for people who wanted to eat Paleo or Vegetarian, without the hassle of meal prepping, shopping, or cooking.'
+          'Shipment tracking and carrier management is hard, especially for large global manufacturing companies like Dyson. If the logistics manager is lucky, they only have one carrier relationship, like Fedex, that they have to manage. But usually, like in Dyson\u2019s case, they work with 3 or more carriers servicing all of their global markets.'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          'Through the life of Power Supply, we intentionally targeted performance eaters. We reached them through local communities\u2014e.g. CrossFit gyms\u2014where they spent their time at.'
+          'Keeping tabs on all their shipments (we\'re talking 1,000s of shipments in-transit on any given day) can be almost impossible.'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          'Our lexicon included words like "meal prep", "macros", "Paleo-friendly", etc. You\'d find our community builders at ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'the'
-          ),
-          ' CrossFit Games hanging with pro athletes; posting videos of themselves finishing deadlift reps; and using phrases like "fuel for an active life" or "nailing a PR" (a ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'personal record'
-          ),
-          ' for the not-yet-initiated.)'
+          'Monitoring their shipments means logging into each of the individual carrier\'s websites, tracking down the shipment\'s status and then reporting the findings and metrics back to their team. Lots of spreadsheets are passed around. These spreadsheets can become quickly outdated (almost the moment they are sent.) Lastly, confusion stems from the digging-through-email-to-track-who-said-what ritual.'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          'But these performance eaters ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'weren\'t the only folks who found our product appealing, useful, and irreplaceable.'
-          )
+          'What logistics managers need is one place to manage and monitor all their shipments and carriers, while keeping their team in the loop. The answers to these questions rely on real time up-to-date information, which is not always available or can be a painstaking process to hunt down. Enter Transport.'
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/tl-research-traits.png",
-          subText: `In-depth interviews, high-volume surveys, and summative feedback helped us learn deeply about our customers.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We were attracting other generally active, health-conscious achievers. These were folks who were constantly seeking adventure; folks who saw health as a holistic practice,',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            '\xA0each person with their own path to wellness.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Some were parents with no time to cook dinner, but still yearned for something that fit their health goals. Some were tired of the same crappy lunch they ate at the office every day. Some folks really enjoyed cooking, but couldn\'t find the time to do it all the time.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We uncovered a consistent thread running through ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'all\xA0'
-          ),
-          'of our customers: ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'we were an easy source of "personalized nutrition" for them.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'What\'s personalized nutrition? Well, when it comes to health, what\'s best for me most likely won\'t be what\'s best for you. That\'s because everyone has a different way of eating, with different goals, different likes and dislikes, things they may be allergic to, foods they eat based on a moral philosophy, or different foods they grew up eating based on their ethnic backgrounds.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The way we built our product made it easy for folks to tell us how they wanted to eat, and then get that sort of food in a convenient way. We had the basics in place to serve the growing needs of personalized nutrition really well.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Paleo, dairy-free, hold the tomatoes? \u2705'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Low-carb, Mediterranean, small portions? \u2705'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Vegetarian, without tree nuts, more than just salad? \u2705'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Folks were "hacking" at our offering, using some of the very basic tools we gave them to put together meal plans that uniquely fit them.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We believed that ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'if we spoke more directly to personalized nutrition, that we\'d be able to grow by leaps and bounds.'
-          ),
-          'It was time to chart our way through new territory, to set ourselves up for a future focused on personalized nutrition.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/tl-opportunity-chart.png",
-          subText: `Power Supply's brand was focused on the "performance-oriented + active"
-            crowd, but through user research, we learned we could serve
-            many other folks really well.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Objectives'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We kicked-off the project with a few goals:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'section',
-          { className: 'objectives' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            '1. Position ourselves for personalized nutrition.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'We believed that we could open ourselves to a broader audience by shifting from "performance eaters only" to "health-conscious achievers".'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            '2. Level-up our design system for faster, more consistent production so we can experiment more quickly.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'We were wrapping up an amazing 2016, and we had ambitious growth goals for 2017. We wanted to double-down on acquisition experiments, from cold-traffic online ads, to more targeted referral traffic from heavy-hitting influencers in our community.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'Having a stronger design system would help us 1) encourage more folks to prototype ideas, 2) produce work much more quickly, and 3) have a better UX through consistent application of the brand across the journey.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            '3. Launch quickly enough to take advantage of growth initiatives.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'Many of our growth hypotheses relied on us having a more inclusive product offering / brand, so we could fine-tune experiments to specific types of customers. That meant we needed a crazy fast turnaround time:\xA0',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'i',
-              null,
-              '3-to-6 months'
-            ),
-            ', so that we\'d be better positioned to find growth opportunities through the second half of 2017.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            '4. Elevate the perception of quality with the brand'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'Even though customers consistently raved about the food, they were less enthusiastic about the surrounding parts of the experience.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'For example: we bundled our meal packs in saran wrap because it was cost-effective, it got the job done, and it felt raw/real... \u2190 all feelings we wanted to evoke from our earliest customers. But new customers would get their meals and wonder "what in the world is this? why so much plastic? Ew."'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'We wanted to take this opportunity to level-up the way people perceived us, to reflect the incredibly high-quality nature of our food.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Team & my role'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Our customer journey spans so many different touch-points, both physical and digital. Bringing a product experience to life around personalized nutrition meant considering the customer experience across that entire journey. That meant we needed to pull together teammates from every discipline:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Our CMO Robert lead the charge, supported by our CEO Patrick, COO Jeff, and myself acting as head of product design.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Our in-house design team (Trisha, Susie, Erin, Chris) spanning brand experience, print, copywriting, and UX.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Our product + engineering team'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'A special team (the "Branditos") of cross-functional folks: culinary, logistics, sales, customer support, people ops, etc. to make sure we\u2019ve covered all touch-points, for both customers and our partners (e.g. chefs, gyms)'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We also worked with external stakeholders throughout the initiative:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'http://www.brandintersection.com/', target: '_blank' },
-              'Brand Intersection Group'
-            ),
-            ' conducted the earlier customer + brand research. We worked with a small team of 2\u20134 folks.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://redantler.com/', target: '_blank' },
-              'Red Antler'
-            ),
-            ' helped us piece together our brand strategy based on the research, then execute on the rebrand (from naming to style guides.) We worked with a mid-sized team of 6\u20138 folks.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/tl-ra-team.jpg",
-          subText: `We worked with Red Antler's NYC studio through brand exercises like mood boarding to set the stage for brand explorations.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Oh, and did I mention ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'we\'re a fully remote company'
-          ),
-          '? Yup. \uD83D\uDD2E'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'As ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'Head of Product Design'
-          ),
-          ', I worked closely with our exec team, brand partners, and our product teams to help define the brand strategy, and then bring the brand to life by executing details. I brought my deep understanding of customer needs, product vision, and technical constraints to make sure we built something great for our customers, that met our objectives and delivered on-time.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Process'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'At the start of the project, I spent most of my time working with our stakeholders and partners to define the brand and coordinate the execution.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'One of my important contributions here was ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'streamlining the feedback/synthesis cycle so we could move super fast on multiple fronts, while keeping important folks in the loop'
-          ),
-          '. I was involved in ideation, feedback, and critique with the Red Antler team. We worked together in a nice ping-pong fashion: we\u2019d come together, identify the next piece, they\u2019d go away to execute, then they\u2019d come back for a presentation. I\u2019d take the presentation to our teams, collect and synthesize feedback, then bring it back to the RA team for consideration.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/tl-feedback-loop.png",
-          subText: `Nailing a rapid feedback cadence was crucial to our relationship. It helped us hit our aggressive timeline and coordination goals.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Once we had the brand principles and style guide in place, I was ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'responsible for making sure all our teams were aligned'
-          ),
-          '. That meant sharing design principles and style guides with folks across the org. I fielded questions, and encouraged folks to solve their problems within the new brand guidelines. I directed many moving parts, from the look + feel of social campaigns, to the physical packaging production, to the architecture of our digital component library.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'As the project peaked, I spent most of my time in-the-trenches, ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'iterating on designs and shipping code'
-          ),
-          '. One of my important contributions here was making decisions about the difficult trade-offs on what we needed for launch, vs the bits we could iron out later.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/tl-timeline-tradeoffs.png",
-          subText: `Prioritizing trade-offs and coordinating execution between teammates. Spreadsheets can be designer's best friend, sometimes 😉`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'One of the most challenging parts of the rebrand was ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'figuring out the balancing act of a "big bang" release vs pushing out incremental changes'
-          ),
-          '. Not only were we changing our brand, we also were shipping major product changes. We managed to test some of the product changes iteratively by releasing them under the old brand, while working on those features under the new brand behind-the-scenes.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The process had it\'s trade-offs. After launching, we learned that we missed a few key pieces that we should have caught sooner. But ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'because we had the right systems in place to listen intently, we were able to act quickly, and the mistakes weren\'t costly'
-          ),
-          '. We also used this post-launch time to polish and fine-tune the more rough parts of the experience, and to layer in parts that we intentionally left on the cutting room floor to ship on-time.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Key Results'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We achieved all of our primary goals: we positioned ourselves to as enablers of personalized nutrition, we supported future efforts by building a robust design system, we elevated perception of our quality, and we launched by the end of Q2 to set us up for our 2017 growth initiatives.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              'A successful coordinated rebrand launch'
-            ),
-            ', across our entire experience, from physical touch-points (meal label, pickup fridges, brochures) to digital experiences (landing pages, menus, ordering, lifecycle emails, newsletters, and ads.)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              'Strategic partnerships established'
-            ),
-            '\u2014e.g. ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://whole30.com/2017/05/whole30-approved-territory/', target: '_blank' },
-              'Whole30'
-            ),
-            ', ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.medstarhealth.org/mhs/healthy/', target: '_blank' },
-              'Medstar Healthy'
-            ),
-            '\u2014to highlight our emphasis on personalized nutrition.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              'A flexible, consistent design system'
-            ),
-            ', including brand style guide, component library, and interaction patterns, across shared tooling (Figma, React library) set us up for much faster + higher quality product development.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Positive impact to key metrics (conversion, referral, retention), inc. positive responses from customers about new inclusive menu offerings, and a huge bump in ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://twitter.com/round/status/864140838124879872', target: '_blank' },
-              'social'
-            ),
-            ' ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/BaW8pJTBZUa/', target: '_blank' },
-              'sharing'
-            ),
-            ' (finally, ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/Ba9-7igAwx8/', target: '_blank' },
-              'an'
-            ),
-            ' ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/BaMUzqpHM5b/', target: '_blank' },
-              'Instagram'
-            ),
-            '\xA0',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/Bacrix6nOya/', target: '_blank' },
-              'worthy'
-            ),
-            ' ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/BaFsC2cFmgD/', target: '_blank' },
-              'brand'
-            ),
-            '! -- you ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'i',
-              null,
-              'gotta'
-            ),
-            ' ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.instagram.com/p/Baf7P2slQKe/', target: '_blank' },
-              'watch this one'
-            ),
-            '.)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Check out the site live here: ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.territoryfoods.com?r=KALEYEAH', target: '_blank' },
-              'Territory Foods'
-            ),
-            ' (and get some free food on me via referral link!)'
-          )
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'h3',
-        { className: 'carousel-title' },
-        'Process / source shots'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'carousel-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { className: 'carousel-container wip-shots', style: { width: "2280px " } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-wip-01" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-wip-02" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-wip-03" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-wip-05" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-wip-06" })
-          )
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'h3',
-        { className: 'carousel-title' },
-        'Product shots'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'carousel-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { className: 'carousel-container product-shots', style: { width: "1780px " } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-01" }),
-            ' '
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-02" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-03" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-04" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-05" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "territory-product-06" })
-          )
-        )
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', { width: '100%', height: '360', src: 'https://www.youtube.com/embed/sK4S6klZvDU', frameborder: '0', allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen: true })
       )
     );
   }
 
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = TerritoryLaunch;
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(13);
-
-
-
-
-
-
-
-class PSExpansion extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
-      {
-        companyName: "Power Supply",
-        projectTitle: "National Expansion",
-        onClosePressed: this.props.onClosePressed
-      },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'header',
-        { className: 'project-page-header ps-expansion' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'wrap', style: { marginBottom: "2em" } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'assets/images/header-ps-expansion.png' })
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'wrap mid-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          { className: 'project-title' },
-          'Scaling Power Supply across the country'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Power Supply started with a hyper-focused product in a tiny niche (prepared meals + Paleo menu + Washington DC area.) We wanted to grow to fulfill our vision of easily accessible good-for-you food. To grow, we needed to learn if the model and product experience we developed in our first market would work around the country.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Background'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I joined Power Supply in January of 2014, when they were just starting to blossom in the DC Metropolitan area.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Power Supply helped fuel active folks with tasty, good-for-them food by working with local chefs to prepare and deliver meal plans. We were the "easy button" for people who wanted to eat Paleo or Vegetarian, without the hassle of meal prepping, shopping, or cooking.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'At the time, most of the product was manual-intensive. It consisted of a static Wordpress site, a few forms that sent emails to the right people, and LOTS of spreadsheets. They had just finished building a payment subscription system (before products like Stripe subscriptions), and the customer experience was pretty freaking bare.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I was brought on to build the foundational customer experience and the first stab at the complex machinery that made up the internal culinary and logistics software. Fast-forward a year\u2014and tons of hard work\u2014later and boom \uD83D\uDCA5, Power Supply was thriving in DC.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Challenge'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Since we\'d proven traction in DC, our eyes were already set on the next goal: testing out our growth hypotheses. We thought we\'d be able to replicate and scale our current model/experience in other cities.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'There were plenty of leap-of-faith assumptions to test out:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Would our product (prepared meals, paleo / vegetarian, subscription) resonate with the same customers in other markets?'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Could we find partners (from chefs to delivery crews) to work with us?'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'How would pricing change in different cities?'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Could we adapt our product experience and systems to operate multiple markets?'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'After considering various factors, and running a few experiments, the first city we decided to target for expansion was Los Angeles. \uD83C\uDFD6'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Setup (Goals & Objectives)'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We kicked-off the project with a few goals:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'section',
-          { className: 'objectives' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              '#1 The core product would stay the same, but we needed flexibility to scale our offerings.'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            'Our market in DC handled a pretty large volume of meals, with multiple menus, portion sizes, plans, and delivery methods (pickup + direct.) We wouldn\u2019t be able to offer it all on day one in LA, and we didn\u2019t want to\u2014it was important that we learned which offerings would work best in different cities.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'That meant we had to re-think every piece of the experience to account for flexibility in product offerings. We had to look at everything from how we talked about the plans and pricing, to how we showcased our network of independent chefs in each city. Oh, and the customer experience was just the tip of the iceberg: our culinary and logistics experiences also had to handle multiple cities with different offerings so they could share processes as we scaled.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-            imageUrl: "assets/images/studies/pse-ordering.gif",
-            altText: `Multiple product offerings across different cities - size, lines, delivery, types`,
-            subText: `We had many variables in our product offerings that we wanted to test across different markets: menus, sizes, delivery options, prices, etc.`
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              '#2 We needed brand guidelines to help us work more quickly and consistently as we grew.'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            'We didn\'t have brand guidelines, and our style guide was geared towards print. If we were going to grow the team and expand to multiple cities, we needed to have a system in place to support all the folks that would touch every point across our customer\'s experience.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              '#3 We wanted our customers to have a consistent, unified user experience across our platforms.'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            'At the time, Power Supply\'s systems were spread all over the place. There was a Wordpress site for marketing pages, one app for ordering, another app for managing your order, yet another app to keep track of meals, another one to ask for reviews of meals, and a bunch of manual pieces on the logistics end that used different systems. All this created a pretty rough break in experiences for a bunch of users (customers, internal ops), and it\u2019d only get worse as we started operating in multiple cities.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'We saw a path to integrating our systems so we could offer a much smoother user experience.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              '#4 We needed to launch by end of Q1 2015.'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            'We needed to prove city expansion as a growth model to prep us for our next round of funding. We started investigating city expansion at the end of 2014, and started moving in Q4 2014. We had roughly 8-weeks to execute, so that our crew on the ground in LA could start prepping menus, logistics partners, and distribution partners. Customer launch was in 12-weeks. Talk about tight schedules!'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Team & my role'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Our company was small at the time, only ~10 folks rowing the boat. \uD83D\uDEF6'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'On the product-side, we were tiny: excluding our founder/CEO and our CMO, it was just two of us. I was leading design and product experience; Kevin was heading up software engineering.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/pse-team-01.jpg",
-          altText: `Patrick (ceo), Kevin (eng lead), and me in LA planning it all`,
-          subText: `A tiny product team: Patrick (CEO), Kevin (Eng Lead), and me (Design Lead.) It was a bright day, and Kevin loves the Seahawks.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'In typical early startup fashion, I wore many hats:'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'product strategy (how do we get closer to our vision, given constraints from biz, customers, and team?)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'user research (why did people love us? What could we do better?)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'brand design (messaging, tone, copywriting)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'UX/IxD (flows, interactions, info architecture)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Front-end dev (HTML/CSS/JS systems; Rails architecture)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'QA (end-to-end testing; roll-out strategy)'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Comms design (timing, customer + partner heads up)'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'For this initiative, ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'we contracted two others to help strengthen our team in key areas'
-          ),
-          ': a brand designer for print & packaging touch-points, and a front-end developer to help us build the client-side.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Process'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'You\'re probably familiar with the usual design process ... identify goals & assumptions, explore potential paths, lean on constraints to help make decisions, refine down, test, iterate, listen, repeat, etc. etc.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We did all of that here, but I want to highlight some of the more exciting parts of the initiative, unique to this business.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'Working hand-in-hand with ops \u2699\uFE0F to coordinate launch timing.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          'We had to get the "back of the house" ready so that our ops teams could do what they needed to do: recruit chefs; test & iterate meals; prepare menus ahead of time to test assumptions about product demand in new market; and test runs through production cycles (checklists, labels, quantities, locations, etc) to train up new ops teammates.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I was responsible for the production and execution: identifying needs, ironing out a schedule that worked for all parties, designing + building the changes to handle multi-city ops, testing, training our staff, and iterating on the roughest spots. I had air cover from our CEO to smooth out the more gnarly timelines and requirements, and worked closely with our engineering lead to figure out how we were going to change the underlying production systems.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/pse-pick-and-pack.png",
-          altText: `Ops and logistics pieces - [Image of Garden + pick/pack room with checklists + label lists]`,
-          subText: `Customer UX is tip of the iceberg: most of our system revolves around logistics, like making sure each chef has all the info (what meals?) and supplies (label PDFs) they need. Coordinating with Ops to get them operating in multi-cities was our 1st phase.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'Coordinate branding & marketing across physical and digital mediums.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          'Until this point, we didn\'t mind that our physical/digital stuff was out of sync. But as we planned to scale, \u2728 having consistent design across our experience became more important \u2728 for the usual brand consistency stuff, but more important was the ability for us to pump out experiments more quickly across multiple cities to learn as much as we could about what worked and what didn\'t. \uD83D\uDD2C'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/pse-cross-media.png",
-          altText: `Designing across media - [Image of PS designs across mediums - fridge, meal, landing page, email]`,
-          subText: `A consistent experience across phyiscal and digital was key to establishing our brand.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'My focus was on the digital experience, where I spent most of my time thnking through information architecture, and breathing new life in the form of a digital style guide.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I was directly responsible for information architecture. It was a huge piece of the puzzle: how much could we keep generic across all cities? What had to be city-specific?. I spent my time sketching, wireframing, mapping flows, mocks (hand-in-hand with the digital brand work), and implementing the designs (I handled most of the front-end development.)'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I worked closely with our CMO and our brand designer to map out customer journey, so we could identify physical/digital cross-over, and plan for things like a consistent meal rating experience ("eat meal, see CTA on the label, easily punch in URL, visit site, rate meal they just ate") or referral code redemptions. We shared WIPs so we could call out similar identity markers (e.g. iconography, gradients, copy tone) and make our work stronger together. I set us up with voice, tone, colors, web typography, use of photography, and layouts for both marketing pages + product/app flows.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'Testing customer experiences with early partners.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          'Our core distribution channel was through local gym partners. In exchange for a commission of sales, they let us put a fridge in their gym where customers would pick up their meals. The gym community was a fantastic jumpstart for orders in a location (target audience + activated community == word of mouth referrals), so signing up location partners was an important part of expansion.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/pse-gym-owner.jpg",
-          altText: `A gym owner and a happy quote - [Image of gym owner + quote]`,
-          subText: `Partnering with early pickup partners played an important role in successful city launches.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'One of the ways we built a relationship with our "founding partners" was by letting them in on the building process. We asked them to be beta testers while we smoothed out the production process for the first few weeks. We took their feedback to heart, iterating quickly to nail down experiences until they felt it would be great for their gym members.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I worked directly with our "founding partners" to guide them through the process, listen to their feedback, and keep them updated as we improved.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Key Results'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We successfully launched our first city expansion (Los Angeles) on-time. ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'With each successive city launch, we layered on better ways to help us scale'
-          ),
-          ', to the point where our latest launch (in Dallas-Ft. Worth) was the smoothest, quickest, and most cost effective yet. We proved we could profitably expand our geographic footprint, which played a vital role in growth and future fundraising. Read more about city expansion.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We had our ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'first digital style guide at the company'
-          ),
-          ' (code name Rainbow Dash \uD83C\uDF08 \uD83D\uDC34) + it\u2019s front-end dev equivalent. The design system we built held strong for years (until our major rebrand to Territory.) It helped us build, launch, and iterate new features very quickly, with an incredibly small team. Customers were thrilled with the updates, and we raked in positive feedback across the board about our customer experience.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We achieved our ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'integrated system'
-          ),
-          ', which has played a pivotal role in building such a smooth experience for our customers. It\u2019s been the foundation that\u2019s made a lot of our future work around personalized nutrition possible.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'We\'ve since re-branded to Territory, so there\'s no live site you can play with Power Supply stuff. That said, you can see all of this work in it\'s latest form ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'https://www.territoryfood.com' },
-              'on the Territory site'
-            ),
-            '.'
-          )
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'h3',
-        { className: 'carousel-title' },
-        'Process / source shots'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'carousel-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { className: 'carousel-container wip-shots', style: { width: "3850px " } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-10" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-06" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-02" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-01" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-03" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-04" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-05" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-07" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-wip-08" })
-          )
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'h3',
-        { className: 'carousel-title' },
-        'Product shots'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'carousel-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { className: 'carousel-container product-shots', style: { width: "2100px" } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-01" }),
-            ' '
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-02" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-03" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-04" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-05" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-06" })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Shot__["a" /* default */], { fileName: "pse-product-07" })
-          )
-        )
-      )
-    );
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PSExpansion;
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(13);
-
-
-
-
-
-
-
-class PSFood extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
-      {
-        companyName: "Power Supply",
-        projectTitle: "Menu Personalization",
-        onClosePressed: this.props.onClosePressed
-      },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'header',
-        { className: 'project-page-header ps-food' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'wrap', style: { marginBottom: "2em" } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'assets/images/header-ps-food.png' })
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'wrap mid-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          { className: 'project-title' },
-          'Helping folks find meals they love for serious retention'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          { className: 'mini-study-notice' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'This is a ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'b',
-              null,
-              'mini-study\u2122\uFE0F.'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            'Longer write-up incoming, but use this to get a gist of my work.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Power Supply helped fuel active folks with tasty, good-for-them food by working with local chefs to prepare and deliver meal plans. We were the "easy button" for people who wanted to eat Paleo or Vegetarian, without the hassle of meal prepping, shopping, or cooking.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Setup'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Power Supply started with minimal choice. You picked a plan and a drop-off point, and your food box was delivered. No customizing, no picking prefs, no letting us know what you like, no changing sizes, zip zero zilch.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Part of this was intentional: no choice = less stress, less thinking, more getting. It was also infinitely easier on the culinary production and logistics side. But we heard over and over again that customers wanted more control.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I joined Power Supply in January of 2014, about 2 years into the life of the company. They were starting to blossom in Washington DC. They had a bunch of assumptions around how they could better serve their customers, and ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            'top of the list was a better customer experience'
-          ),
-          ' around getting food they\'ll love. I was brought on to find that better CX \u26F5\uFE0F \uD83D\uDD2D'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-early-whiteboard.jpg",
-          altText: ``,
-          subText: `One of our early whiteboard sketches, where we mapped out the various users of our system, including the pushes + pulls between ops product and customer experiences.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Challenge'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We couldn\'t afford to roll out a bunch of stuff that didn\'t work: we didn\'t have the money, the people, or the time to do that. We needed to learn what customers ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'really'
-          ),
-          ' wanted, as quickly as possible.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Our goal was to introduce tiny, incremental amounts of choice, over time, to learn what really resonated with customers (growth!), and to help our logistics team stay as lean as possible.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Team'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We were in tiny startup mode. The company was less than 8 folks. It was me and an engineer on the product side. I was responsible for the customer UX and full-stack engineering.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-team.jpg",
-          altText: ``,
-          subText: `Our tiny company, at ~8 folks large, planning the future in DC.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Process'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I started with listening.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I worked closely with the co-founders to learn what they thought the most vital pain points were for customers, and the constraints we had around food ops. I parsed hundreds of messages from customers to get a sense for their needs. I interviewed a few via email and phone to learn about their situations, motiations, and desired outcomes. I spent quality time with our software engineer to learn about technical constraints.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I heard that one of their biggest fears was that introducing more choice would add too much complexity, too much thinking, too much stress for our customers.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I synthesized and structured the challenges.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I echoed back what I was hearing. I tried to understand the different pushes and pulls. I drew quick sketches, quick charts, quick summaries to make sure the concepts in my mind were the same concepts in others\' minds.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Keep it simple; fear of choice overload; enough customization but not too much; keep ops changes minimal. I heard a lot about the challenges of customer vs chef pushes and pulls, e.g. If we wanted to give a customer more variety, that meant chefs needed to produce more types of meals, and more types of meals could easily lead to lower quality production.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I communicated my plan with stakeholders.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I worked with teammates to put together the approach, the starting point, and what the next steps could be.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We broke the project into two phases: the first would be an ops-facing project, where we\'d build the system for managing meals, recipes, menus, and necessary logistics. The second phase would be customer-facing, surfacing things that would help customers find meals they\'d love, e.g. being fully transparent about ingredients, or identify which meals were spicy or not.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I brought the team along with me.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I started generating: mapping flows, sketching possible paths, exploring visual designs and interactions, and protoyping. I designed openly, posting often to Slack, and summarizing different decisions along the way, inviting others to collaborate with me. I showed early (embarrassing) work to customers to see if I was on the right path.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I made decisions quickly, and left space for learning.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We started building. I made design direction decisions quickly, and let folks know these decisions could (and should) be re-evaluated after testing. This helped us move very quickly, gaining momentum often.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-code.png",
-          altText: ``,
-          subText: `Being in the codebase, I was able to very quickly iterate and test changes. That helped me get feedback from real customers super fast.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'I shared findings\u2014and lessons learned\u2014often.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'As soon as designs were shipped, I\'d pay attention to feedback and analytics. Whatever I learned, I\'d share with the team. It helped us understand what was working and what wasn\'t, so we could keep pushing forward.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-sharing-feedback.png",
-          altText: ``,
-          subText: `At certain feedback checkpoints, I'd synthesize and share for the group so we could all stay on the same page about how customers were feeling.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'On the ops side, one of the most important things we learned early on (thanks to rapid prototyping) was that chefs didn\'t want to input ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'anything'
-          ),
-          '. That let our ops team shift very quickly to a "curator" model, where we\'d have a culinary manager act as the go-between from chef to system.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Key Results'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Surprise: \uD83D\uDCC8 conversion and retention went up. We learned that by making it easier for folks to find meals they loved (e.g. customizing their menu), we could increase the odds they\'d stick around longer. We were able to successfuly navigate the fine-line between too little and too much choice. Folks who wanted an "easy button" could set and forget. Folks who wanted more control could easily tweak their orders.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Product experience changes led to dramatic, foundational "back of the house" systems for our culinary ops, named "The Garden", where ops managed everything from meal recipes to deliveries logistics.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'We devised basic processes around product development, and a close working relationship between product, design, and engineering. This came in the form of shared tooling, shared language, and a collaborative process where we were all bought-in to the direction, so we could move quickly.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-beforeafter-menu.png",
-          altText: ``,
-          subText: `Prevoiusly, the menu was bare-bones: a title and brief description. Afterwards: the menu was easier to navigate, with plenty of helpers so folks could find meals they might love.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-beforeafter-modder.png",
-          altText: ``,
-          subText: `Previously, customizing your meals was an ordeal and difficult to navigate. Afterwards: an easily scannable list, easy to know what you had and how to change it.`
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "assets/images/studies/psf-beforeafter-timeline.png",
-          altText: ``,
-          subText: `Previously, it was terribly confusing to find out what meals you were getting. You had to cross-reference your receipt for a plan, and find the menu blog post to see what you'd get. Afterwards: a convenient timeline should you upcoming deliveries.`
-        })
-      )
-    );
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PSFood;
+/* harmony export (immutable) */ __webpack_exports__["a"] = ElementumTransport;
 
 
 /***/ })
