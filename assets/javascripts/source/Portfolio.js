@@ -9,11 +9,11 @@ export default class Portfolio extends React.Component {
       <section className={`portfolio ${this.props.shouldAnimate && "animated animated-mid fadeInUp"}`}>
         <a id="portfolio"></a>
         <div className="wrap">
-          <h2>Work Portfolio</h2>
+          <h2>Case Studies</h2>
           <p>
-            I’ve applied my design, software, and entrepreneurship backgrounds
-            to solving legit problems for people and businesses.
-            Take a look at recent case studies:
+            I've worked in a variety of settings (government, big tech, enterprise startup,
+            tiny bootstraped product), on a wide range of design challenges,
+            on products that have been used by hundreds of millions around the world 🌎
           </p>
         </div>
 

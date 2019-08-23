@@ -2,11 +2,13 @@ import React from 'react'
 
 import Header from './Header'
 import Portfolio from './Portfolio'
-import Adventures from './Adventures'
+import Projects from './Projects'
 import Contact from './Contact'
 
+import CFPBCollege from './projects/CFPBCollege'
+import CFPBReport from './projects/CFPBReport'
 import ElementumTransport from './projects/ElementumTransport'
-
+import ElementumSituation from './projects/ElementumSituation'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -40,7 +42,7 @@ export default class App extends React.Component {
       <div>
         <Header shouldAnimate={this.state.shouldAnimateHome} />
         <Portfolio shouldAnimate={this.state.shouldAnimateHome} onCardPressed={this.handleCardPressed}/>
-        <Adventures shouldAnimate={this.state.shouldAnimateHome} />
+        <Projects shouldAnimate={this.state.shouldAnimateHome} />
         <Contact shouldAnimate={this.state.shouldAnimateHome} />
       </div>
     )
@@ -51,15 +53,15 @@ export default class App extends React.Component {
       case 'elementum-transport':
         return <ElementumTransport onClosePressed={this.handleWorkPageClosed}/>
         break;
-      // case 'elementum-situation':
-      //   return <ElementumSituation onClosePressed={this.handleWorkPageClosed}/>
-      //   break;
-      // case 'cfpb-college':
-      //   return <CFPBCollege onClosePressed={this.handleWorkPageClosed}/>
-      //   break;
-      // case 'cfpb-report':
-      //   return <CFPBReport onClosePressed={this.handleWorkPageClosed}/>
-      //   break;
+      case 'elementum-situation':
+        return <ElementumSituation onClosePressed={this.handleWorkPageClosed}/>
+        break;
+      case 'cfpb-college':
+        return <CFPBCollege onClosePressed={this.handleWorkPageClosed}/>
+        break;
+      case 'cfpb-report':
+        return <CFPBReport onClosePressed={this.handleWorkPageClosed}/>
+        break;
     }
   }
 

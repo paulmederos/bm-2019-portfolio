@@ -1428,7 +1428,7 @@ a {
   font-weight: 600; }
 
 a:hover {
-  color: #E91F64;
+  color: #1cdabd;
   text-decoration: underline; }
 
 p, ul, ol, dl {
@@ -1675,7 +1675,7 @@ figure {
     left: -1em;
     top: -1rem;
     width: 4px;
-    height: 12rem;
+    height: 19rem;
     background-color: #E91F64;
     border-radius: 2px; }
 
@@ -1785,28 +1785,26 @@ figure {
     display: none; }
 
 .stack-of-work {
-  z-index: 1;
   display: flex;
-  flex-direction: row;
   position: relative;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  z-index: 1;
+  width: 100%;
   list-style: none;
   margin-top: 6.4rem;
-  padding: 0;
-  margin-left: 6.4rem;
-  min-width: 100%;
-  width: 1600px; }
+  padding: 0 6.4rem; }
   @media (max-width: 30em) {
     .stack-of-work {
-      margin-left: 1.4rem;
-      width: 1240px; } }
+      padding: 0 1.4rem; } }
 
 .case-study-preview {
+  flex: 0 0 auto;
   background-color: white;
   border-radius: 8px;
-  max-width: 360px;
+  width: 360px;
   margin-right: 3.6rem;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
-  display: inline-block;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
@@ -1964,7 +1962,7 @@ figure {
     margin-bottom: 0; }
 
 .contact {
-  background-color: #95C82E;
+  background-color: #1cdabd;
   padding: 18rem 0;
   position: relative; }
 
@@ -1997,9 +1995,9 @@ figure {
   position: absolute;
   bottom: 1em;
   width: 100%;
-  color: #5B7A1C; }
+  color: #0a5146; }
   .footer-footer-footer a {
-    color: #5B7A1C; }
+    color: #0a5146; }
   .footer-footer-footer a:hover {
     color: rgba(45, 35, 51, 0.8); }
 
@@ -2051,6 +2049,10 @@ figure {
   font-size: 2.8em;
   line-height: 1.2;
   text-align: center; }
+  @media (max-width: 54em) {
+    .project-title {
+      font-size: 2.1em;
+      text-align: left; } }
 
 .project-page h4 {
   font-size: 1em;
@@ -2087,30 +2089,31 @@ figure {
 
 .project-page-header {
   position: relative;
-  top: -108px;
   width: 100%;
-  height: 360px;
-  margin-bottom: 10em; }
-  @media (max-width: 30em) {
+  margin-bottom: 2em;
+  height: 480px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  @media (max-width: 54em) {
     .project-page-header {
-      margin-bottom: 0;
-      height: inherit; } }
-  .project-page-header.territory {
-    background-color: #FAF6ED; }
-  .project-page-header.ps-expansion {
-    background-color: #1598B3;
-    background-image: -webkit-linear-gradient(45deg, rgba(65, 220, 220, 0.8) 0%, rgba(30, 135, 169, 0.4) 100%);
-    background-image: linear-gradient(45deg, rgba(65, 220, 220, 0.8) 0%, rgba(30, 135, 169, 0.4) 100%); }
-  .project-page-header.ps-food {
-    background-color: #1598B3;
-    background-image: -webkit-linear-gradient(45deg, rgba(65, 220, 220, 0.8) 0%, rgba(30, 135, 169, 0.4) 100%);
-    background-image: linear-gradient(45deg, rgba(65, 220, 220, 0.8) 0%, rgba(30, 135, 169, 0.4) 100%); }
-  .project-page-header img {
-    position: relative;
-    top: 108px; }
+      height: inherit;
+      height: 360px; } }
+  .project-page-header.elementum-transport {
+    background-color: #1b9ebc;
+    background-image: url("http://cl.ly/image/1y1s1Y1w1N1C/Elementum%20image.png"); }
+  .project-page-header.elementum-situation {
+    background-color: #1b9ebc;
+    background-image: url("http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room.png"); }
+  .project-page-header.cfpb-college {
+    background-color: #1b9ebc;
+    background-image: url("https://images.unsplash.com/photo-1503676382389-4809596d5290?ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80"); }
+  .project-page-header.cfpb-report {
+    background-color: #1b9ebc;
+    background-image: url("https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); }
 
 .project-content {
-  padding-top: 108px;
+  padding-top: 54px;
   min-height: 1000px; }
   .project-content h3 {
     margin-top: 3em; }

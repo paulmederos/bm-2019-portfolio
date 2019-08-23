@@ -12,9 +12,12 @@ export default class Header extends React.Component {
         </div>
 
         <h2>Brittany Mederos</h2>
-        <p>
-          Makes meaningful products &amp; services<br />
-          centered around human experiences.
+        <p style={{maxWidth: "400px"}}>
+          Spirited product design leader known for
+          crafting human-centered digital experiences,
+          obsessed with building inclusive cultures,
+           and improving people’s lives through
+           creation and collaboration ✨
         </p>
 
         <ol className="brief-resume">
