@@ -2101,13 +2101,17 @@ figure {
     color: rgba(45, 35, 51, 0.8); }
 
 .fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 56px;
   height: 56px;
   border: none;
   border-radius: 50%;
   background-color: #E91F64;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
+  transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99);
+  text-decoration: none; }
   .fab:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
     background-color: #ec3b77;
@@ -2137,7 +2141,6 @@ figure {
   background-position: center center;
   background-repeat: no-repeat; }
   .icon.icon-back {
-    left: 7px;
     background-size: 15px 24px;
     background-image: url("../images/icon-back.png"); }
 
