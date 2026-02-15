@@ -641,8 +641,8 @@
         </div>
         <div class="col-xs-12 col-md-7">
           <figure class="mb-6">
-            <div class="hero-ocean" role="img" aria-label="Aerial ocean photograph with teal water and white foam"></div>
-            <figcaption>
+            <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&q=80" alt="Aerial ocean photograph with teal water and white foam" />
+            <figcaption id="hero-quote">
               <em>The cure for anything is salt water: sweat, tears, or the sea.</em> — Isak Dinesen
             </figcaption>
           </figure>
@@ -974,6 +974,32 @@
       </div>
     </div>
   </section>
+
+  <!-- Random hero quote on page load -->
+  <script>
+    (function() {
+      var quotes = [
+        { text: "The cure for anything is salt water: sweat, tears, or the sea.", author: "Isak Dinesen" },
+        { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" },
+        { text: "Have no fear of perfection — you'll never reach it.", author: "Salvador Dal\u00ed" },
+        { text: "The details are not the details. They make the design.", author: "Charles Eames" },
+        { text: "Creativity is allowing yourself to make mistakes. Design is knowing which ones to keep.", author: "Scott Adams" },
+        { text: "Good design is as little design as possible.", author: "Dieter Rams" },
+        { text: "Everything is designed. Few things are designed well.", author: "Brian Reed" },
+        { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
+        { text: "Design is thinking made visual.", author: "Saul Bass" },
+        { text: "The best way to predict the future is to design it.", author: "Buckminster Fuller" },
+        { text: "White space is to be regarded as an active element, not a passive background.", author: "Jan Tschichold" },
+        { text: "A design isn't finished until somebody is using it.", author: "Brenda Laurel" }
+      ];
+
+      var pick = quotes[Math.floor(Math.random() * quotes.length)];
+      var el = document.getElementById('hero-quote');
+      if (el) {
+        el.innerHTML = '<em>' + pick.text + '</em> \u2014 ' + pick.author;
+      }
+    })();
+  </script>
 
 </body>
 </html>
