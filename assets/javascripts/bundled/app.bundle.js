@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(18);
+  module.exports = __webpack_require__(20);
 } else {
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(21);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -272,6 +272,41 @@ process.umask = function() { return 0; };
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(33)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(34)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -309,41 +344,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(31)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(32)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -541,7 +541,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -597,6 +597,133 @@ module.exports = warning;
 
 /***/ }),
 /* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+
+
+
+class CaseStudyPage extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+  render() {
+    const { companyName, projectTitle } = this.props;
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'main',
+      { className: 'project-page' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'nav',
+        { className: 'project-nav' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { className: 'fab fab-back', onClick: this.props.onClosePressed },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'icon icon-back' })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          { className: 'project-meta' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'b',
+            null,
+            companyName
+          ),
+          ' - ',
+          projectTitle
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'section',
+        { className: 'project-content animated animated-short fadeIn' },
+        this.props.children
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'footer',
+        { className: 'wrap mid-wrap project-footer' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { onClick: this.props.onClosePressed },
+          '\u2190 Back to the rest of the work'
+        )
+      )
+    );
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyPage;
+
+
+CaseStudyPage.propTypes = {
+  companyName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  projectTitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  onClosePressed: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+
+
+
+class CaseStudyFigure extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'figure',
+      { className: 'image-container' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', {
+        src: this.props.imageUrl,
+        alt: this.props.altText
+      }),
+      this.props.subText && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'p',
+        { className: 'image-subtext' },
+        this.props.subText
+      )
+    );
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyFigure;
+
+
+CaseStudyFigure.propTypes = {
+  imageUrl: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  altText: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  subText: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class Shot extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    const { fileName } = this.props;
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("figure", {
+      className: "source-shot",
+      style: { backgroundImage: `url(assets/images/shots/${fileName}.png)` }
+    });
+  }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -612,7 +739,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(4);
   var warning = __webpack_require__(7);
-  var ReactPropTypesSecret = __webpack_require__(9);
+  var ReactPropTypesSecret = __webpack_require__(12);
   var loggedTypeFailures = {};
 }
 
@@ -663,7 +790,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -682,7 +809,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -721,7 +848,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -736,7 +863,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -802,7 +929,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -873,7 +1000,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -888,7 +1015,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(22);
+var isTextNode = __webpack_require__(24);
 
 /*eslint-disable no-bitwise */
 
@@ -916,7 +1043,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -946,7 +1073,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -988,75 +1115,16 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-
-
-
-class CaseStudyCard extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'li',
-      { className: 'case-study-preview', onClick: this.props.onCardPressed },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('figure', { className: `case-study-image ${this.props.projectHeaderClass}` }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'section',
-        { className: 'case-study-content' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h5',
-          null,
-          this.props.date,
-          ' \xB7 ',
-          this.props.role
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          this.props.projectTitle
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          this.props.description
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { className: 'button-link', onClick: this.props.onCardPressed },
-          'Read the case study \u2192'
-        )
-      )
-    );
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyCard;
-
-
-CaseStudyCard.propTypes = {
-  date: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  description: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  role: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  projectHeaderClass: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  projectTitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  onCardPressed: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
-};
-
-/***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(35);
 
 
 
@@ -1074,7 +1142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1087,7 +1155,7 @@ document.addEventListener("DOMContentLoaded", () => {
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(5),p=__webpack_require__(6);__webpack_require__(4);var r=__webpack_require__(2);
+var f=__webpack_require__(5),p=__webpack_require__(6);__webpack_require__(4);var r=__webpack_require__(3);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -1104,7 +1172,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1128,8 +1196,8 @@ var objectAssign$1 = __webpack_require__(5);
 var require$$0 = __webpack_require__(7);
 var emptyObject = __webpack_require__(6);
 var invariant = __webpack_require__(4);
-var emptyFunction = __webpack_require__(2);
-var checkPropTypes = __webpack_require__(8);
+var emptyFunction = __webpack_require__(3);
+var checkPropTypes = __webpack_require__(11);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -2810,7 +2878,7 @@ module.exports = ReactEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2848,15 +2916,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(21);
+  module.exports = __webpack_require__(23);
 } else {
-  module.exports = __webpack_require__(24);
+  module.exports = __webpack_require__(26);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2870,7 +2938,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0);__webpack_require__(4);var l=__webpack_require__(10),n=__webpack_require__(5),ba=__webpack_require__(11),ca=__webpack_require__(2),da=__webpack_require__(6),ea=__webpack_require__(12),fa=__webpack_require__(13),ha=__webpack_require__(14),ia=__webpack_require__(15);
+var aa=__webpack_require__(0);__webpack_require__(4);var l=__webpack_require__(13),n=__webpack_require__(5),ba=__webpack_require__(14),ca=__webpack_require__(3),da=__webpack_require__(6),ea=__webpack_require__(15),fa=__webpack_require__(16),ha=__webpack_require__(17),ia=__webpack_require__(18);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -3119,7 +3187,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3134,7 +3202,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
  * @typechecks
  */
 
-var isNode = __webpack_require__(23);
+var isNode = __webpack_require__(25);
 
 /**
  * @param {*} object The object to check.
@@ -3147,7 +3215,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3175,7 +3243,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3197,21 +3265,21 @@ if (process.env.NODE_ENV !== "production") {
 
 var react = __webpack_require__(0);
 var invariant = __webpack_require__(4);
-var ExecutionEnvironment = __webpack_require__(10);
+var ExecutionEnvironment = __webpack_require__(13);
 var _assign = __webpack_require__(5);
-var EventListener = __webpack_require__(11);
+var EventListener = __webpack_require__(14);
 var require$$0 = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(25);
-var emptyFunction = __webpack_require__(2);
-var camelizeStyleName = __webpack_require__(27);
-var performanceNow = __webpack_require__(29);
-var propTypes = __webpack_require__(3);
+var hyphenateStyleName = __webpack_require__(27);
+var emptyFunction = __webpack_require__(3);
+var camelizeStyleName = __webpack_require__(29);
+var performanceNow = __webpack_require__(31);
+var propTypes = __webpack_require__(2);
 var emptyObject = __webpack_require__(6);
-var checkPropTypes = __webpack_require__(8);
-var shallowEqual = __webpack_require__(12);
-var containsNode = __webpack_require__(13);
-var focusNode = __webpack_require__(14);
-var getActiveElement = __webpack_require__(15);
+var checkPropTypes = __webpack_require__(11);
+var shallowEqual = __webpack_require__(15);
+var containsNode = __webpack_require__(16);
+var focusNode = __webpack_require__(17);
+var getActiveElement = __webpack_require__(18);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -20404,7 +20472,7 @@ module.exports = ReactDOMFiberEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20419,7 +20487,7 @@ module.exports = ReactDOMFiberEntry;
 
 
 
-var hyphenate = __webpack_require__(26);
+var hyphenate = __webpack_require__(28);
 
 var msPattern = /^ms-/;
 
@@ -20446,7 +20514,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20482,7 +20550,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20497,7 +20565,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(28);
+var camelize = __webpack_require__(30);
 
 var msPattern = /^-ms-/;
 
@@ -20525,7 +20593,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20560,7 +20628,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20575,7 +20643,7 @@ module.exports = camelize;
  * @typechecks
  */
 
-var performance = __webpack_require__(30);
+var performance = __webpack_require__(32);
 
 var performanceNow;
 
@@ -20597,7 +20665,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20612,7 +20680,7 @@ module.exports = performanceNow;
 
 
 
-var ExecutionEnvironment = __webpack_require__(10);
+var ExecutionEnvironment = __webpack_require__(13);
 
 var performance;
 
@@ -20623,7 +20691,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20636,13 +20704,13 @@ module.exports = performance || {};
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 var invariant = __webpack_require__(4);
 var warning = __webpack_require__(7);
 var assign = __webpack_require__(5);
 
-var ReactPropTypesSecret = __webpack_require__(9);
-var checkPropTypes = __webpack_require__(8);
+var ReactPropTypesSecret = __webpack_require__(12);
+var checkPropTypes = __webpack_require__(11);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -21173,7 +21241,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21186,9 +21254,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 var invariant = __webpack_require__(4);
-var ReactPropTypesSecret = __webpack_require__(9);
+var ReactPropTypesSecret = __webpack_require__(12);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -21238,20 +21306,20 @@ module.exports = function() {
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Portfolio__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Projects__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__projects_CFPBCollege__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__projects_CFPBReport__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__projects_ElementumTransport__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__projects_ElementumSituation__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Portfolio__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Projects__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__projects_CFPBCollege__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__projects_CFPBReport__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__projects_ElementumTransport__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__projects_ElementumSituation__ = __webpack_require__(44);
 
 
 
@@ -21340,13 +21408,13 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 
 
@@ -21370,8 +21438,8 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'p',
-        { style: { maxWidth: "400px" } },
-        'Spirited product design leader known for crafting human-centered digital experiences, obsessed with building inclusive cultures, and improving people\u2019s lives through creation and collaboration \u2728'
+        { style: { maxWidth: "440px" } },
+        'Principal Design & Research Manager at Microsoft, leading design strategy for generative AI-powered experiences. Passionate about building strong teams, championing user-centered design, and pushing the boundaries of what\'s possible with AI.'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'ol',
@@ -21382,18 +21450,18 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2019 - Present'
+            '2025 - Present'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Principal Designer at ',
+            'Principal Design & Research Manager at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
               { href: 'https://www.microsoft.com', target: '_blank' },
               'Microsoft'
             ),
-            ' \u2014 O365 (Powerpoint) \uD83D\uDCBB'
+            ' \u2014 AI Learning'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21402,18 +21470,58 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2015 - 2018'
+            '2021 - 2025'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Senior Designer at ',
+            'Principal Designer & Manager at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
               { href: 'https://www.microsoft.com', target: '_blank' },
               'Microsoft'
             ),
-            ' \u2014 O365 (Outlook, Staffhub) \uD83D\uDC8C'
+            ' \u2014 Designer, Copilot'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'li',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'time-space-continuum' },
+            '2019 - 2021'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'the-gig' },
+            'Principal Design Lead at ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: 'https://www.microsoft.com', target: '_blank' },
+              'Microsoft'
+            ),
+            ' \u2014 PowerPoint AI'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'li',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'time-space-continuum' },
+            '2015 - 2019'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'the-gig' },
+            'Senior Designer & Manager at ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: 'https://www.microsoft.com', target: '_blank' },
+              'Microsoft'
+            ),
+            ' \u2014 Outlook, StaffHub'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21427,13 +21535,13 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'Product design lead at ',
+            'Product Design Lead at ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
               { href: 'https://www.elementum.com', target: '_blank' },
               'Elementum'
             ),
-            ' \u2014 Transport \uD83D\uDE9A'
+            ' \u2014 Supply Chain'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21442,38 +21550,18 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'time-space-continuum' },
-            '2012 ~ 2013'
+            '2010 - 2013'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'span',
             { className: 'the-gig' },
-            'UX/UI designer at ',
+            'UX Designer \u2014 ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: 'https://u.group', target: '_blank' },
-              'Rock Creek Strategic Marketing'
+              { href: 'http://writing.enchant.co', target: '_blank' },
+              'Enchant'
             ),
-            ' \uD83C\uDFDB'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'li',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'time-space-continuum' },
-            '2010 ~ 2012'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'the-gig' },
-            'User experience at ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'http://writing.enchant.co', taget: '_blank' },
-              'Enchant Design'
-            ),
-            ' \u2014 a product + design studio \uD83C\uDFA8'
+            ', Rock Creek, Foster.ly'
           )
         )
       )
@@ -21488,19 +21576,41 @@ Header.propTypes = {
 };
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__ = __webpack_require__(38);
 
 
 
 
+
+const highlights = [{
+  year: "2025",
+  title: "AI Learning Product",
+  description: "Leading design and research for a 0-to-1 product team launching a transformative learning experience powered by AI. Building a high-performing, inclusive team within an org shifting from service-oriented to product-driven."
+}, {
+  year: "2023",
+  title: "Designer in Copilot",
+  description: "Led the integration of Microsoft Designer's Editor canvas into Copilot chat for AI-driven image generation and editing. Featured in Microsoft's first Super Bowl campaign in years."
+}, {
+  year: "2021",
+  title: "Microsoft Designer",
+  description: "Co-led the pitch to Microsoft SLT and Satya Nadella, securing funding for a new M365 app to compete in the Creator Economy. Designed and shipped the core AI-powered Editor experience."
+}, {
+  year: "2020",
+  title: "PowerPoint + Teams",
+  description: "Spearheaded the integration of PowerPoint into Microsoft Teams and led development of remote presenting tools during the pandemic, keeping Microsoft relevant in hybrid work."
+}, {
+  year: "2019",
+  title: "PowerPoint AI",
+  description: "Pioneered AI solutions within PowerPoint — auto-magically designing slides, coaching speakers to improve their skills, and creating more inclusive presentation experiences."
+}];
 
 class Portfolio extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   render() {
@@ -21514,12 +21624,53 @@ class Portfolio extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
-          'Case Studies'
+          'Selected Work'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          'I\'ve worked in a variety of settings (government, big tech, enterprise startup, tiny bootstraped product), on a wide range of design challenges, on products that have been used by hundreds of millions around the world \uD83C\uDF0E'
+          'Over 10 years at Microsoft, I\'ve led design for products used by hundreds of millions \u2014 from AI-powered creativity tools to enterprise collaboration experiences.'
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'highlights-grid' },
+          highlights.map(item => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: item.year, className: 'highlight-card' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'highlight-year' },
+              item.year
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              { className: 'highlight-title' },
+              item.title
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              { className: 'highlight-description' },
+              item.description
+            )
+          ))
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap', style: { marginTop: "8rem" } },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          'Earlier Case Studies'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Detailed case studies from my earlier career \u2014 government, enterprise startup, and bootstrapped products used by millions.'
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -21578,8 +21729,251 @@ Portfolio.propTypes = {
 };
 
 /***/ }),
-/* 36 */,
-/* 37 */
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+
+
+
+class CaseStudyCard extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'li',
+      { className: 'case-study-preview', onClick: this.props.onCardPressed },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('figure', { className: `case-study-image ${this.props.projectHeaderClass}` }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'section',
+        { className: 'case-study-content' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h5',
+          null,
+          this.props.date,
+          ' \xB7 ',
+          this.props.role
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          this.props.projectTitle
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          this.props.description
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { className: 'button-link', onClick: this.props.onCardPressed },
+          'Read the case study \u2192'
+        )
+      )
+    );
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyCard;
+
+
+CaseStudyCard.propTypes = {
+  date: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  description: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  role: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  projectHeaderClass: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  projectTitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  onCardPressed: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
+};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+
+
+
+const publications = [{
+  title: "Crafting Your UX Portfolio",
+  description: "Co-authored a step-by-step guide to finding your next UX job. After reaching our sales goal, we opened it up publicly on Medium.",
+  linkText: "Read on Medium",
+  linkURL: "http://portfolio.enchant.co"
+}, {
+  title: "Microsoft StaffHub: Customer-centered design driven",
+  description: "A deep dive into the customer-centered design process behind Microsoft StaffHub, an Office 365 product for firstline workers.",
+  linkText: "Read on Medium",
+  linkURL: "https://medium.com/@brim/microsoft-staffhub-customer-centered-design-driven-bad9a4b5a38f"
+}, {
+  title: "Top prototyping tools for interaction designers",
+  description: "A survey of the best prototyping tools available for interaction designers to bring ideas to life quickly.",
+  linkText: "Read article",
+  linkURL: "https://medium.com/@brim"
+}];
+
+const patents = [{
+  title: "Improving Online Presentations Using Machine Learning",
+  description: "Systems and methods for analyzing presenter content and audience reactions in real-time using ML models, generating feedback to improve online presentations.",
+  assignee: "Microsoft",
+  coinventors: "K. Seleskerov, A. Srivastava, D. Johnson, P. Sinha, G. Wu, B. Mederos"
+}, {
+  title: "Method and System for Monitoring Shipments in a Supply and/or Logistics Chain",
+  description: "Graph-based data structures for tracking shipments and detecting delays across supply chain networks for Fortune 500 companies.",
+  assignee: "Elementum SCM",
+  coinventors: "S. Guruswamy, D. Martin, B. Mederos, et al."
+}];
+
+const ventures = [{
+  class: "ux-book",
+  title: "Enchant",
+  description: "Partner at a product and design studio since 2013. We build products, write about design, and help teams ship better experiences.",
+  linkText: "Visit Enchant",
+  linkURL: "http://writing.enchant.co"
+}, {
+  class: "designers-hearth",
+  title: "Florens",
+  description: "Co-founded and ran a venture from 2019 to 2025, exploring new ideas at the intersection of design, community, and technology.",
+  linkText: null,
+  linkURL: null
+}];
+
+class Projects extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'section',
+      { className: `adventures ${this.props.shouldAnimate && "animated animated-mid fadeInUp"}` },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          'Writing'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Thoughts on design, UX career development, and building products that people love.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'publications-list' },
+          publications.map(pub => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: pub.title, className: 'publication-item' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              null,
+              pub.title
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              pub.description
+            ),
+            pub.linkURL && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: pub.linkURL, target: '_blank' },
+              pub.linkText,
+              ' \u2192'
+            )
+          ))
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap', style: { marginTop: "8rem" } },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          'Patents'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Inventions I\'ve contributed to across supply chain technology and AI-powered productivity tools.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'patents-list' },
+          patents.map(patent => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: patent.title, className: 'patent-item' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              null,
+              patent.title
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              { className: 'patent-assignee' },
+              patent.assignee
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              patent.description
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              { className: 'patent-coinventors' },
+              'Co-inventors: ',
+              patent.coinventors
+            )
+          ))
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap', style: { marginTop: "8rem" } },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          'Ventures'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Side projects and studios I\'ve built alongside my full-time work.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'ventures-list' },
+          ventures.map(venture => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: venture.title, className: 'venture-item' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              null,
+              venture.title
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              venture.description
+            ),
+            venture.linkURL && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: venture.linkURL, target: '_blank' },
+              venture.linkText,
+              ' \u2192'
+            )
+          ))
+        )
+      )
+    );
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Projects;
+
+
+/***/ }),
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21601,7 +21995,7 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "h2",
             null,
-            "Let's design together \u2728"
+            "Let's connect"
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "p",
@@ -21612,19 +22006,13 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
               { href: "mailto:bm@enchant.co", target: "_blank" },
               "email"
             ),
-            " or ",
+            " or connect on ",
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
               { href: "https://www.linkedin.com/in/brittanymederos/", target: "_blank" },
               "LinkedIn"
             ),
-            ", or say hi over on ",
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: "https://www.twitter.com/brim", target: "_blank" },
-              "Twitter"
-            ),
-            ". I'll normally respond back within a few days!"
+            ". I'd love to chat about design, AI, leadership, or your next big idea."
           )
         )
       ),
@@ -21645,17 +22033,416 @@ class Contact extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(10);
+
+
+
+
+
+
+
+class CFPBCollege extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
+      {
+        companyName: "CFPB",
+        projectTitle: "Paying For College",
+        onClosePressed: this.props.onClosePressed
+      },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('header', { className: 'project-page-header cfpb-college' }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap mid-wrap' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          { className: 'project-title' },
+          'Helping Students make smarter financial decisions about college.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'The Problem'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Student debt is on the rise, last year the Consumer Financial Protection Bureau (CFPB) calculated that over one trillion dollars was owed in student debt. Education is a part of the American dream, but it is a great investment. For most students who have to take out a loan, this is the first big investment decision they have to make. It can be overwhelming to not know the cost or the sources of funding.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Users & audience'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'ol',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            '21 million students enrolling for college every year'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'Guidance councilors that want to help their high school seniors smartly prepare for taking on student loans.'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Team & stakeholders'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The core team consisted of a product manager, a front end developer, a visual designer and myself. We had a few stakeholders to work with. Inside the CFPB there was a \u201CStudents Team\u201D that was leading the project. Externally the CFPB was working with the Department of Education on this same project. '
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-home.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Design process'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The CFPB wants to create consumer experience platforms catered to the financial milestones in most American\u2019s lives. The first platform is \u201CPaying for College\u201D focused around a student\'s journey; applying at colleges, selecting a loan, managing their money at school, and how to pay back their debt after school. This life cycle is captured in the platform as individual steps.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Research Schools'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The CFPB partnered with the Department of Education to collaborate on this platform. The Department of Education created the College Navigator tool to help students find information about the colleges they want to attend.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Fill Out FAFSA'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The CFPB linked to an online resource, built by the Department of Education, for electronically submitting a Free Application for Federal Student Aid (FAFSA).'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Choose a Loan'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'For many students, searching for college funding will be their first experience shopping for loans. The CFPB wanted to create a list of action items and common loan definitions that help guide students through the selection process.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Compare Costs and Financial Aid'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Once a student receives their offer letters from their colleges, they must choose which school to attend. The CFPB built the Cost Comparison Calculator to help students compare the costs of attending each college.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Manage your Money'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'When a student is at college, they\'re faced with unprecedented financial responsibility. The CFPB created an action guide to support student\'s financial decisions while attending college.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Repay Student Debt'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'After graduation, students are tasked with repaying their debts. The CFPB created an actionable, step-by-step tool to help students answer their payment options questions.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-loan.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'What I Worked On'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'I started on this project during it\'s beta. The key tool in this platform for the CFPB was the Cost Comparison Tool. There were both functional and visual deficiencies in the "Paying for College" platform that needed much improvement before the tool could be launched from beta.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'ol',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'Usability tests uncovered that layout for the comparison tool was ineffective, and needed a redesigned layout to make it easier for students to compare college costs.'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'We received requests from the office of Veteran Affairs to include a GI Bill calculator for all military, and their dependents, to calculate their eligible benefits while attending school.'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'The Department of Education wanted to include the school indicators in the comparison tool so that students could compare schools more accurately; not just based upon the financial burden.'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'The CFPB believes in encouraging consumers to shop around for loans to see the best rates they qualify for. To encourage students to shop around, we included an interest rate picker to indicate that a student could find higher or lower rates elsewhere.'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'The Department of Education and the CFPB made a joint effort to standardize the offer letters sent to students from colleges, in both print and digital format. The tool detects if the student\'s school is participating in the program, thereby prepopulating the data into the comparison tool to simplify the entry process.'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-tool.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'i',
+            null,
+            'The tool was released on April 10, 2013 just in time for prospective college students to receive their offer letters. ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: 'http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/' },
+              'See it in action here'
+            ),
+            '.'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Awards'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'ul',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'Winner of a Best of the Web & Digital Government Achievement Award for 2013'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'Runner-up for the 2013 Core77 Design Award in Research and Strategy'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            'Finalist for the 2013 IDEA Award in Design Strategy'
+          )
+        )
+      )
+    );
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CFPBCollege;
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(10);
+
+
+
+
+
+
+
+class CFPBReport extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
+      {
+        companyName: "CFPB",
+        projectTitle: "Yearly Strategic Report",
+        onClosePressed: this.props.onClosePressed
+      },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('header', { className: 'project-page-header cfpb-report' }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'wrap mid-wrap' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          { className: 'project-title' },
+          'Modernizing the government report'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'The Problem'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The CFPB wanted to provide an interactive and data-rich experience to showcase their strategic plan. The CFPB wanted their plan to be more accessible to the public. By serving it online as a live HTML document, they would lead government reporting ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'em',
+            null,
+            'sound the trumpets'
+          ),
+          ' into the digital age.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Users & Audience'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'All members of congress, and the American public who want to know more about the CFPB\u2019s plans.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Team & Stakeholders'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'I reported directly to the design director for this role and worked with a front end developer to build it out and a project manager who made sure we met our deadlines :)'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Our main stakeholders was the Director of the CFPB and the approval committee, anything that was external facing had to be reviewed by the committee before pusblishing. '
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Constraints'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Orders from the Director'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The one kink in the plan came when the Director required that the document be print friendly. Initially we thought this could be taken care of by a separate print style sheet, but it turned out to be a little more complicated, and messier, than that. We found a service called PDF Reactor that could easily generate a PDF straight from HTML.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'Design Process'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'One of the biggest reports a federal agency has to produce is their strategic plan, as required by the Government Performance Rule and Act (GPRA). The CFPB prides itself in being forward thinking and understanding the value of a well-designed experience. They wanted to rethink the current format of their reports to the public. Currently, most of these reports are text-heavy documents that are difficult to digest.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'The answer seemed simple: design an interactive report meant for the web. But this was uncharted land for a government agency, and the CFPB hoped to lead the way forward by providing real-time data and interactive visualization of this report, and all reports moving forward.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'I dove into my research: how could I best bring this report into the 21st century, and make the information digestible and visually appealing? By moving the report online it provided the possibility of a richer experience. It helped make the report more concise because we could link to external content instead of directly including it in the report body.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Designing a report, traditionally in print, for consumption on the web, is an exercise in the importance of flexible content. It is important to know your audience and make sure that your content is formatted for how they wish to consume it.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h3',
+          null,
+          'The Result'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'See it in action here: ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'a',
+            { href: 'http://www.consumerfinance.gov/strategic-plan/' },
+            'http://www.consumerfinance.gov/strategic-plan/'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-head.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-budget.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-measure.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-population.png"
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
+          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-accordian.png"
+        })
+      )
+    );
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CFPBReport;
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(10);
 
 
 
@@ -21944,144 +22731,17 @@ class ElementumTransport extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.C
 
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-
-
-
-class CaseStudyPage extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  render() {
-    const { companyName, projectTitle } = this.props;
-
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'main',
-      { className: 'project-page' },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'nav',
-        { className: 'project-nav' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { className: 'fab fab-back', onClick: this.props.onClosePressed },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'icon icon-back' })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          { className: 'project-meta' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            companyName
-          ),
-          ' - ',
-          projectTitle
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'section',
-        { className: 'project-content animated animated-short fadeIn' },
-        this.props.children
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'footer',
-        { className: 'wrap mid-wrap project-footer' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { onClick: this.props.onClosePressed },
-          '\u2190 Back to the rest of the work'
-        )
-      )
-    );
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyPage;
-
-
-CaseStudyPage.propTypes = {
-  companyName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  projectTitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  onClosePressed: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
-};
-
-/***/ }),
-/* 40 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-
-
-
-class CaseStudyFigure extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'figure',
-      { className: 'image-container' },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', {
-        src: this.props.imageUrl,
-        alt: this.props.altText
-      }),
-      this.props.subText && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'p',
-        { className: 'image-subtext' },
-        this.props.subText
-      )
-    );
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CaseStudyFigure;
-
-
-CaseStudyFigure.propTypes = {
-  imageUrl: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
-  altText: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  subText: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
-};
-
-/***/ }),
-/* 41 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-
-
-class Shot extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    const { fileName } = this.props;
-
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("figure", {
-      className: "source-shot",
-      style: { backgroundImage: `url(assets/images/shots/${fileName}.png)` }
-    });
-  }
-}
-/* unused harmony export default */
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(10);
 
 
 
@@ -22296,504 +22956,6 @@ class ElementumSituation extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.C
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ElementumSituation;
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(41);
-
-
-
-
-
-
-
-class CFPBCollege extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
-      {
-        companyName: "CFPB",
-        projectTitle: "Paying For College",
-        onClosePressed: this.props.onClosePressed
-      },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('header', { className: 'project-page-header cfpb-college' }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'wrap mid-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          { className: 'project-title' },
-          'Helping Students make smarter financial decisions about college.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Problem'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Student debt is on the rise, last year the Consumer Financial Protection Bureau (CFPB) calculated that over one trillion dollars was owed in student debt. Education is a part of the American dream, but it is a great investment. For most students who have to take out a loan, this is the first big investment decision they have to make. It can be overwhelming to not know the cost or the sources of funding.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Users & audience'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ol',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            '21 million students enrolling for college every year'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Guidance councilors that want to help their high school seniors smartly prepare for taking on student loans.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Team & stakeholders'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The core team consisted of a product manager, a front end developer, a visual designer and myself. We had a few stakeholders to work with. Inside the CFPB there was a \u201CStudents Team\u201D that was leading the project. Externally the CFPB was working with the Department of Education on this same project. '
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-home.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Design process'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The CFPB wants to create consumer experience platforms catered to the financial milestones in most American\u2019s lives. The first platform is \u201CPaying for College\u201D focused around a student\'s journey; applying at colleges, selecting a loan, managing their money at school, and how to pay back their debt after school. This life cycle is captured in the platform as individual steps.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Research Schools'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The CFPB partnered with the Department of Education to collaborate on this platform. The Department of Education created the College Navigator tool to help students find information about the colleges they want to attend.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Fill Out FAFSA'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The CFPB linked to an online resource, built by the Department of Education, for electronically submitting a Free Application for Federal Student Aid (FAFSA).'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Choose a Loan'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'For many students, searching for college funding will be their first experience shopping for loans. The CFPB wanted to create a list of action items and common loan definitions that help guide students through the selection process.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Compare Costs and Financial Aid'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Once a student receives their offer letters from their colleges, they must choose which school to attend. The CFPB built the Cost Comparison Calculator to help students compare the costs of attending each college.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Manage your Money'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'When a student is at college, they\'re faced with unprecedented financial responsibility. The CFPB created an action guide to support student\'s financial decisions while attending college.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Repay Student Debt'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'After graduation, students are tasked with repaying their debts. The CFPB created an actionable, step-by-step tool to help students answer their payment options questions.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-loan.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'What I Worked On'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I started on this project during it\'s beta. The key tool in this platform for the CFPB was the Cost Comparison Tool. There were both functional and visual deficiencies in the "Paying for College" platform that needed much improvement before the tool could be launched from beta.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ol',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Usability tests uncovered that layout for the comparison tool was ineffective, and needed a redesigned layout to make it easier for students to compare college costs.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'We received requests from the office of Veteran Affairs to include a GI Bill calculator for all military, and their dependents, to calculate their eligible benefits while attending school.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'The Department of Education wanted to include the school indicators in the comparison tool so that students could compare schools more accurately; not just based upon the financial burden.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'The CFPB believes in encouraging consumers to shop around for loans to see the best rates they qualify for. To encourage students to shop around, we included an interest rate picker to indicate that a student could find higher or lower rates elsewhere.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'The Department of Education and the CFPB made a joint effort to standardize the offer letters sent to students from colleges, in both print and digital format. The tool detects if the student\'s school is participating in the program, thereby prepopulating the data into the comparison tool to simplify the entry process.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-tool.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            null,
-            'The tool was released on April 10, 2013 just in time for prospective college students to receive their offer letters. ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/' },
-              'See it in action here'
-            ),
-            '.'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Awards'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Winner of a Best of the Web & Digital Government Achievement Award for 2013'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Runner-up for the 2013 Core77 Design Award in Research and Strategy'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            'Finalist for the 2013 IDEA Award in Design Strategy'
-          )
-        )
-      )
-    );
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CFPBCollege;
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shot__ = __webpack_require__(41);
-
-
-
-
-
-
-
-class CFPBReport extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_2__CaseStudyPage__["a" /* default */],
-      {
-        companyName: "CFPB",
-        projectTitle: "Yearly Strategic Report",
-        onClosePressed: this.props.onClosePressed
-      },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('header', { className: 'project-page-header cfpb-report' }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'wrap mid-wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          { className: 'project-title' },
-          'Modernizing the government report'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Problem'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The CFPB wanted to provide an interactive and data-rich experience to showcase their strategic plan. The CFPB wanted their plan to be more accessible to the public. By serving it online as a live HTML document, they would lead government reporting ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'em',
-            null,
-            'sound the trumpets'
-          ),
-          ' into the digital age.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Users & Audience'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'All members of congress, and the American public who want to know more about the CFPB\u2019s plans.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Team & Stakeholders'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I reported directly to the design director for this role and worked with a front end developer to build it out and a project manager who made sure we met our deadlines :)'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Our main stakeholders was the Director of the CFPB and the approval committee, anything that was external facing had to be reviewed by the committee before pusblishing. '
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Constraints'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Orders from the Director'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The one kink in the plan came when the Director required that the document be print friendly. Initially we thought this could be taken care of by a separate print style sheet, but it turned out to be a little more complicated, and messier, than that. We found a service called PDF Reactor that could easily generate a PDF straight from HTML.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'Design Process'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'One of the biggest reports a federal agency has to produce is their strategic plan, as required by the Government Performance Rule and Act (GPRA). The CFPB prides itself in being forward thinking and understanding the value of a well-designed experience. They wanted to rethink the current format of their reports to the public. Currently, most of these reports are text-heavy documents that are difficult to digest.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'The answer seemed simple: design an interactive report meant for the web. But this was uncharted land for a government agency, and the CFPB hoped to lead the way forward by providing real-time data and interactive visualization of this report, and all reports moving forward.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'I dove into my research: how could I best bring this report into the 21st century, and make the information digestible and visually appealing? By moving the report online it provided the possibility of a richer experience. It helped make the report more concise because we could link to external content instead of directly including it in the report body.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Designing a report, traditionally in print, for consumption on the web, is an exercise in the importance of flexible content. It is important to know your audience and make sure that your content is formatted for how they wish to consume it.'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h3',
-          null,
-          'The Result'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'See it in action here: ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'a',
-            { href: 'http://www.consumerfinance.gov/strategic-plan/' },
-            'http://www.consumerfinance.gov/strategic-plan/'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-head.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-budget.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-measure.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-population.png"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__CaseStudyFigure__["a" /* default */], {
-          imageUrl: "http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-strategic-plan-accordian.png"
-        })
-      )
-    );
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CFPBReport;
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CaseStudyCard__ = __webpack_require__(16);
-
-
-
-
-
-const listOfProjects = [{
-  class: "ux-book",
-  title: "Crafting Your UX Portfolio",
-  description: "I co-authored and produced a step-by-step guide to finding your next UX job. After reaching our sales goal, we opened it up publicly on Medium.",
-  linkText: "Start reading online for free",
-  linkURL: "http://portfolio.enchant.co"
-}, {
-  class: "designers-hearth",
-  title: "Designer’s Hearth",
-  description: "I helped kick-off and co-organize a local meetup in Silicon Valley for designers to get together to share stories, make frindships, and grow professionally.",
-  linkText: "Come say hi over coffee",
-  linkURL: "http://mv.designershearth.com/"
-}, {
-  class: "chef-club",
-  title: "Chef Club",
-  description: "I helped build a community of amateur cooks, who wanted to learn cooking skills at their own pace with delcious paleo-inspired recipes.",
-  linkText: "Get cookin' today",
-  linkURL: "http://www.cookchefclub.com/"
-}, {
-  class: "kale",
-  title: "Kale: Celebrate Your Food",
-  description: "I helped design a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
-  linkText: "Start tracking your food",
-  linkURL: "http://app.getkale.com"
-}];
-
-class Projects extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'section',
-      { className: `adventures ${this.props.shouldAnimate && "animated animated-mid fadeInUp"}` },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'wrap' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          null,
-          'Projects'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'Things I\'ve worked on\u2014some projects I don\'t have studies for; some freelance clients; The rest are side projects, communities, resources, and startup concepts.'
-        )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'stack-container' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { className: 'stack-of-adventures' },
-          listOfProjects.map(project => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { key: project.class, className: 'adventure-card', onClick: () => window.open(project.linkURL, '_blank') },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: `adventure-image ${project.class}` }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'adventure-content' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h3',
-                { className: 'adventure-title' },
-                project.title
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'adventure-description' },
-                project.description
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'a',
-                { href: project.linkURL, target: '_blank' },
-                project.linkText,
-                ' \u2192'
-              )
-            )
-          ))
-        )
-      )
-    );
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Projects;
 
 
 /***/ })

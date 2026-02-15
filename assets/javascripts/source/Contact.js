@@ -6,10 +6,11 @@ export default class Contact extends React.Component {
       <section className={`contact ${this.props.shouldAnimate && "animated animated-mid fadeInUp"}`}>
         <div className="wrap">
           <div className="a-floating-card-maybe-what-do-you-think-this-is-omg">
-            <h2>Let's design together ✨</h2>
+            <h2>Let's connect</h2>
             <p style={{lineHeight: "1.6"}}>
-              Send me a note via <a href="mailto:bm@enchant.co" target="_blank">email</a> or <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>,
-              or say hi over on <a href="https://www.twitter.com/brim" target="_blank">Twitter</a>. I'll normally respond back within a few days!
+              Send me a note via <a href="mailto:bm@enchant.co" target="_blank">email</a> or
+              connect on <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>.
+              I'd love to chat about design, AI, leadership, or your next big idea.
             </p>
           </div>
         </div>

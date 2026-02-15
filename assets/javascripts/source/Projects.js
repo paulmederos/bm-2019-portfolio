@@ -1,64 +1,115 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import CaseStudyCard from './CaseStudyCard'
-
-const listOfProjects = [
+const publications = [
   {
-    class: "ux-book",
     title: "Crafting Your UX Portfolio",
-    description: "I co-authored and produced a step-by-step guide to finding your next UX job. After reaching our sales goal, we opened it up publicly on Medium.",
-    linkText: "Start reading online for free",
+    description: "Co-authored a step-by-step guide to finding your next UX job. After reaching our sales goal, we opened it up publicly on Medium.",
+    linkText: "Read on Medium",
     linkURL: "http://portfolio.enchant.co"
-  },{
-    class: "designers-hearth",
-    title: "Designer’s Hearth",
-    description: "I helped kick-off and co-organize a local meetup in Silicon Valley for designers to get together to share stories, make frindships, and grow professionally.",
-    linkText: "Come say hi over coffee",
-    linkURL: "http://mv.designershearth.com/"
-  },{
-    class: "chef-club",
-    title: "Chef Club",
-    description: "I helped build a community of amateur cooks, who wanted to learn cooking skills at their own pace with delcious paleo-inspired recipes.",
-    linkText: "Get cookin' today",
-    linkURL: "http://www.cookchefclub.com/"
-  },{
-    class: "kale",
-    title: "Kale: Celebrate Your Food",
-    description: "I helped design a food journal focused on discovering foods that work (and don't work) for your body, then helping you get pro help.",
-    linkText: "Start tracking your food",
-    linkURL: "http://app.getkale.com"
+  },
+  {
+    title: "Microsoft StaffHub: Customer-centered design driven",
+    description: "A deep dive into the customer-centered design process behind Microsoft StaffHub, an Office 365 product for firstline workers.",
+    linkText: "Read on Medium",
+    linkURL: "https://medium.com/@brim/microsoft-staffhub-customer-centered-design-driven-bad9a4b5a38f"
+  },
+  {
+    title: "Top prototyping tools for interaction designers",
+    description: "A survey of the best prototyping tools available for interaction designers to bring ideas to life quickly.",
+    linkText: "Read article",
+    linkURL: "https://medium.com/@brim"
   }
 ]
 
+const patents = [
+  {
+    title: "Improving Online Presentations Using Machine Learning",
+    description: "Systems and methods for analyzing presenter content and audience reactions in real-time using ML models, generating feedback to improve online presentations.",
+    assignee: "Microsoft",
+    coinventors: "K. Seleskerov, A. Srivastava, D. Johnson, P. Sinha, G. Wu, B. Mederos"
+  },
+  {
+    title: "Method and System for Monitoring Shipments in a Supply and/or Logistics Chain",
+    description: "Graph-based data structures for tracking shipments and detecting delays across supply chain networks for Fortune 500 companies.",
+    assignee: "Elementum SCM",
+    coinventors: "S. Guruswamy, D. Martin, B. Mederos, et al."
+  }
+]
+
+const ventures = [
+  {
+    class: "ux-book",
+    title: "Enchant",
+    description: "Partner at a product and design studio since 2013. We build products, write about design, and help teams ship better experiences.",
+    linkText: "Visit Enchant",
+    linkURL: "http://writing.enchant.co"
+  },
+  {
+    class: "designers-hearth",
+    title: "Florens",
+    description: "Co-founded and ran a venture from 2019 to 2025, exploring new ideas at the intersection of design, community, and technology.",
+    linkText: null,
+    linkURL: null
+  }
+]
 
 export default class Projects extends React.Component {
   render() {
     return (
       <section className={`adventures ${this.props.shouldAnimate && "animated animated-mid fadeInUp"}`}>
+
         <div className="wrap">
-          <h2>Projects</h2>
+          <h2>Writing</h2>
           <p>
-            Things I've worked on—some projects I don't have studies for; some freelance clients;
-            The rest are side projects, communities,
-            resources, and startup concepts.
+            Thoughts on design, UX career development, and building products
+            that people love.
           </p>
+          <div className="publications-list">
+            {publications.map(pub => (
+              <div key={pub.title} className="publication-item">
+                <h3>{pub.title}</h3>
+                <p>{pub.description}</p>
+                {pub.linkURL && <a href={pub.linkURL} target="_blank">{pub.linkText} &rarr;</a>}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="stack-container">
-          <ul className="stack-of-adventures">
-            { listOfProjects.map( project => (
-              <li key={project.class} className="adventure-card" onClick={() => window.open(project.linkURL, '_blank')}>
-                <div className={`adventure-image ${project.class}`}></div>
-                <div className="adventure-content">
-                  <h3 className="adventure-title">{project.title}</h3>
-                  <p className="adventure-description">{project.description}</p>
-                  <a href={project.linkURL} target="_blank">{project.linkText} &rarr;</a>
-                </div>
-              </li>
+        <div className="wrap" style={{marginTop: "8rem"}}>
+          <h2>Patents</h2>
+          <p>
+            Inventions I've contributed to across supply chain technology
+            and AI-powered productivity tools.
+          </p>
+          <div className="patents-list">
+            {patents.map(patent => (
+              <div key={patent.title} className="patent-item">
+                <h3>{patent.title}</h3>
+                <p className="patent-assignee">{patent.assignee}</p>
+                <p>{patent.description}</p>
+                <p className="patent-coinventors">Co-inventors: {patent.coinventors}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
+
+        <div className="wrap" style={{marginTop: "8rem"}}>
+          <h2>Ventures</h2>
+          <p>
+            Side projects and studios I've built alongside my full-time work.
+          </p>
+          <div className="ventures-list">
+            {ventures.map(venture => (
+              <div key={venture.title} className="venture-item">
+                <h3>{venture.title}</h3>
+                <p>{venture.description}</p>
+                {venture.linkURL && <a href={venture.linkURL} target="_blank">{venture.linkText} &rarr;</a>}
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
     )
   }
