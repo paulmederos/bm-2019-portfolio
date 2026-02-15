@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Elementum: Transport App — Brittany Mederos</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: Real-time logistics visibility and supply chain management at Elementum.">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap">
+
+  <!-- Dark Mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cookieValue = getCookie('bm_ocean_dark');
+      if (cookieValue === 'true') document.body.classList.add('dark');
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      setCookie('bm_ocean_dark', document.body.classList.contains('dark'), 7);
+    }
+
+    function toggleMenu() {
+      document.body.classList.toggle('menu-opened');
+    }
+
+    function setCookie(name, value, days) {
+      var d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/";
+    }
+
+    function getCookie(name) {
+      var c = document.cookie.split(';');
+      for (var i = 0; i < c.length; i++) {
+        var p = c[i].trim();
+        if (p.indexOf(name + "=") === 0) return p.substring(name.length + 1);
+      }
+      return null;
+    }
+  </script>
+
+  <style>
+    /* ===========================
+       Ocean System — BM portfolio
+       Mirrors pm17 "Forest" structure
+       =========================== */
+
+    /* --- Tokens --- */
+    :root {
+      --bg:             #FAFAF7;
+      --surface:        #F5F2EC;
+      --border:         #E5E0D8;
+      --text:           #2B2F33;
+      --text-secondary: #6B6560;
+      --text-muted:     #9A9189;
+      --accent:         #1B6B7A;
+      --accent-hover:   #14545F;
+      --accent-subtle:  #D5ECE8;
+      --radius:         6px;
+      --transition:     0.3s ease-in-out;
+    }
+
+    body.dark {
+      --bg:             #141618;
+      --surface:        #1C1F22;
+      --border:         #2A2D31;
+      --text:           #E8E4DF;
+      --text-secondary: #B0AAA2;
+      --text-muted:     #7A756E;
+      --accent:         #4DB8A4;
+      --accent-hover:   #6CD4BF;
+      --accent-subtle:  #1A302B;
+    }
+
+    /* --- Reset --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 62.5%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Base --- */
+    body {
+      font-family: "Inter var", "Inter", "SF Pro Text", Helvetica, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+      background-color: var(--bg);
+      transition: color var(--transition), background-color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, h4, h5, h6, p, li, button, input {
+      font-size: 1.7rem;
+      margin-bottom: 1.2em;
+      font-weight: 350;
+      transition: color var(--transition);
+    }
+
+    h1 { font-size: 3.2rem; font-weight: 500; color: var(--text); }
+    h2 { font-size: 2.4rem; font-weight: 500; color: var(--text); }
+    h3 { font-size: 2.1rem; font-weight: 400; color: var(--text); }
+    h4 { font-size: 1.8rem; font-weight: 400; }
+    h5 { font-size: 1.5rem; }
+
+    p, ul, ol, li { line-height: 1.58; }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-subtle);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      transition: color var(--transition), text-decoration-color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    strong, b { font-weight: 500; }
+    em, i { font-style: italic; }
+
+    figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    .font-meta {
+      font-family: "DM Mono", "Recursive", monospace;
+    }
+
+    .underlined {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* --- Flexbox Grid (simplified) --- */
+    .container-fluid {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1.2rem;
+      margin-right: -1.2rem;
+    }
+
+    .row.middle-xs { align-items: center; }
+
+    [class*="col-"] {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      width: 100%;
+    }
+
+    .col-xs-6  { width: 50%; }
+    .col-xs-12 { width: 100%; }
+
+    .start-xs { justify-content: flex-start; display: flex; }
+    .end-xs   { justify-content: flex-end; display: flex; }
+
+    @media only screen and (min-width: 64em) {
+      .col-md-2  { width: 16.6667%; }
+      .col-md-6  { width: 50%; }
+      .col-md-7  { width: 58.3333%; }
+      .col-md-8  { width: 66.6667%; }
+      .col-md-offset-2 { margin-left: 16.6667%; }
+    }
+
+    /* --- Spacing utilities --- */
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: 1.2rem; }
+    .mb-2 { margin-bottom: 1.8rem; }
+    .mb-3 { margin-bottom: 2.5rem; }
+    .mb-4 { margin-bottom: 3.6rem; }
+    .mb-5 { margin-bottom: 4.4rem; }
+    .mb-6 { margin-bottom: 6.4rem; }
+
+    /* --- Icon Button --- */
+    .IconButton {
+      display: block;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color var(--transition);
+      position: relative;
+    }
+
+    .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Theme toggle sun/moon icon via SVG data URI */
+    .IconButton.--theme::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 11px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'/%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'/%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--theme::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Hamburger icon */
+    .IconButton.--menu::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--menu::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* Close icon */
+    .IconButton.--close::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--close::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* --- Side Navigation (desktop) --- */
+    .SideNavigation {
+      display: none;
+      position: sticky;
+      top: 4rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .SideNavigation { display: block; }
+    }
+
+    .SideNavigation a {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2em;
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 1.5rem;
+    }
+
+    .SideNavigation a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .SideNavigation .IconButton {
+      position: relative;
+      left: -11px;
+      margin-bottom: 1.5em;
+    }
+
+    /* --- Mobile Navigation --- */
+    .MobileNavigation {
+      padding: 2.8rem 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .MobileNavigation { display: none; }
+    }
+
+    .MobileNavigation .IconButton.--theme {
+      margin: auto 0 auto auto;
+    }
+
+    /* --- Slide-out Menu --- */
+    .Menu {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70vw;
+      max-width: 32rem;
+      height: 100%;
+      padding: 2.8rem 2.4rem;
+      z-index: 3;
+      background-color: var(--surface);
+      box-shadow: 0 0 8px rgba(0,0,0,.08), 0 0 54px rgba(0,0,0,.15);
+      transform: translateX(-110%);
+      transition: transform var(--transition);
+      overflow-y: auto;
+    }
+
+    .Menu a {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .Menu a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .Menu .IconButton.--close {
+      margin-bottom: 2em;
+      position: relative;
+      left: -10px;
+    }
+
+    .Overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: rgba(0,0,0,0);
+      transition: background-color var(--transition);
+    }
+
+    body.menu-opened {
+      overflow: hidden;
+    }
+
+    body.menu-opened .Menu {
+      transform: translateX(0);
+    }
+
+    body.menu-opened .Overlay {
+      display: block;
+      z-index: 2;
+      background-color: rgba(0,0,0,.5);
+    }
+
+    /* --- Selection color --- */
+    ::selection {
+      background-color: var(--accent-subtle);
+      color: var(--text);
+    }
+
+    /* --- Responsive tweaks --- */
+    @media only screen and (max-width: 64em) {
+      .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    @media only screen and (min-width: 64em) {
+      .container-fluid {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+
+    /* ===========================
+       Project Page Styles
+       =========================== */
+
+    /* --- Project Header --- */
+    .Project__Header {
+      padding: 0 0 4rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .Project__Header {
+        padding: 2rem 0 6rem;
+      }
+    }
+
+    .project-meta {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .project-title {
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .project-title {
+        font-size: 3.2rem;
+      }
+    }
+
+    /* --- Project Content --- */
+    .Project__Content {
+      padding: 0 0 6rem;
+    }
+
+    .Project__Content h3 {
+      font-size: 2.1rem;
+      font-weight: 450;
+      color: var(--text);
+      margin-top: 4.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .Project__Content h3:first-child {
+      margin-top: 0;
+    }
+
+    .Project__Content p {
+      font-size: 1.7rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 1.8rem;
+    }
+
+    .Project__Content p b,
+    .Project__Content p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .Project__Content a {
+      color: var(--accent);
+      text-decoration-color: var(--accent-subtle);
+    }
+
+    .Project__Content a:hover {
+      text-decoration-color: var(--accent);
+    }
+
+    /* --- Horizontal Rules --- */
+    .Project__Content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3.6rem 0;
+      transition: border-color var(--transition);
+    }
+
+    /* --- Blockquotes --- */
+    .Project__Content blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 2rem;
+      margin: 2.4rem 0;
+      font-style: italic;
+    }
+
+    .Project__Content blockquote p {
+      color: var(--text);
+    }
+
+    /* --- Images --- */
+    .Project__Content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      display: block;
+    }
+
+    .Project__Content figure {
+      margin: 3.6rem 0;
+    }
+
+    .Project__Content figure figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* --- YouTube Embed --- */
+    .video-embed {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      margin: 3.6rem 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-color: var(--surface);
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* --- Back Link --- */
+    .back-link {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+      margin-bottom: 0;
+    }
+
+    .back-link:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    /* --- Footer --- */
+    .Project__Footer {
+      padding: 4rem 0 6rem;
+      border-top: 1px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .Project__Footer p {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile Navigation -->
+  <div class="MobileNavigation">
+    <div class="container-fluid">
+      <div class="row middle-xs">
+        <div class="col-xs-6 start-xs">
+          <button class="IconButton --menu" onclick="toggleMenu();" aria-label="Open menu"></button>
+        </div>
+        <div class="col-xs-6 end-xs">
+          <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Menu (mobile) -->
+  <nav class="Menu">
+    <button class="IconButton --close" onclick="toggleMenu();" aria-label="Close menu"></button>
+    <a href="../index-ocean.html">Home</a>
+    <a href="mailto:bm@enchant.co">Email</a>
+    <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+    <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+  </nav>
+  <div class="Overlay" onclick="toggleMenu();"></div>
+
+
+  <!-- ============================
+       PROJECT HEADER
+       ============================ -->
+  <section class="Project__Header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <nav class="SideNavigation">
+            <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+            <a href="../index-ocean.html">Home</a>
+            <a href="mailto:bm@enchant.co">Email</a>
+            <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+            <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+          </nav>
+        </div>
+        <div class="col-xs-12 col-md-7">
+          <p class="project-meta">Elementum &mdash; Transport app</p>
+          <h1 class="project-title">
+            Real-time logistics visibility and supply chain management.
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PROJECT CONTENT
+       ============================ -->
+  <section class="Project__Content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+
+          <hr />
+
+          <h3>The Problem</h3>
+
+          <p>
+            Shipment tracking and carrier management is hard, especially for
+            large global manufacturing companies like Dyson. If the logistics
+            manager is lucky, they only have one carrier relationship, like
+            Fedex, that they have to manage. But usually, like in Dyson's case,
+            they work with 3 or more carriers servicing all of their
+            global markets.
+          </p>
+          <p>
+            Keeping tabs on all their shipments (we're talking 1,000s
+            of shipments in-transit on any given day) can be almost impossible.
+          </p>
+          <p>
+            Monitoring their shipments means logging into each of the
+            individual carrier's websites, tracking down the shipment's
+            status and then reporting the findings and metrics back to
+            their team. Lots of spreadsheets are passed around. These
+            spreadsheets can become quickly outdated (almost the moment they
+            are sent.) Lastly, confusion stems from the
+            digging-through-email-to-track-who-said-what ritual.
+          </p>
+          <p>
+            What logistics managers need is one place to manage and
+            monitor all their shipments and carriers, while keeping their
+            team in the loop. The answers to these questions rely on real
+            time up-to-date information, which is not always available or
+            can be a painstaking process to hunt down. Enter Transport.
+          </p>
+
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/sK4S6klZvDU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+          <h3>Users &amp; Audience</h3>
+
+          <p>
+            The current target users of Transport are logistic managers or
+            inventory specialists for large global manufacturing companies
+            that work with multiple carriers.
+          </p>
+
+          <p>
+            The important thing to note about our users is that they are
+            not using these tools because they like them: they're using
+            it to get a job done. They have a goal defined by their position
+            that they need to accomplish, and they are given the tools
+            they use. Our users are considered "prepared users", in that
+            they can easily articulate what it is they do with their
+            current tools to get their job done and what they feel is
+            missing or could be improved upon.
+          </p>
+
+          <p>
+            The biggest complexity with these users is that
+            every supply chain or business process is defined and
+            carried out a little differently. The Transport application
+            had to work for multiple industries from consumer electronics,
+            to automotive, to pharmaceutical, to industrial and telecom.
+          </p>
+
+          <p>
+            Finding the common goals and solutions across logistics in
+            these different industries continues to be a fun and
+            invigorating challenge for Transport as a product.
+          </p>
+
+          <h3>Team &amp; Stakeholders</h3>
+
+          <p>
+            <b>Product Team</b><br />
+            I worked closely with my Product manager (PM), engineering
+            and design team. My PM and I work together to prioritize the
+            backlog of seemingly endless problem statements and features
+            to tackle those; we work with the engineering team to help
+            scope the potential features and brainstorm ideas for the
+            multiple ways to implement them.
+          </p>
+
+          <p>
+            <b>Design Team</b><br />
+            I worked with the cross-company design team (interaction and
+            visual designers) to ensure consistency across our platform
+            by using reusable components and style guide patterns when
+            possible. Elementum has 3 main applications: Transport,
+            Exposure, and Manufacture. All run on the same platform,
+            so it's important to keep in-sync with the design team.
+          </p>
+
+          <p>
+            <b>Customers</b><br />
+            I've gone out into the field to perform usability
+            research with our client's logistics and inventory teams
+            to gather feedback and validate concepts.
+          </p>
+
+          <h3>Constraints</h3>
+
+          <p>
+            <b>Partial data / data quality</b><br />
+            Transport relies on carriers and suppliers to seed data into
+            our platform. The perfect shipment contains a ton of detailed
+            information. Unfortunately, we don't always get 100% of that
+            information. This has been my biggest (and most rewarding)
+            challenge. We had to: 1) design an interface that is flexible
+            enough to accommodate the least amount of info we could
+            receive; 2.) intelligently tell the logistic manager why we
+            didn't receive certain pieces of information, 3.) provide
+            steps they can take to find the missing data.
+          </p>
+
+          <p>
+            <b>Balancing customer requests with what's best for the product</b><br />
+            When building for your first customers, you want to maintain a
+            great relationship. For enterprise software, that means
+            accommodating specific requests from your customers which
+            reshuffle other priorities. We had to peel the layers off a
+            request to get at the heart of a problem, all the while taking
+            the customer through the process with us.
+          </p>
+
+          <p>
+            <b>Keeping consistency across web and mobile</b><br />
+            Designing an application that has both web and mobile presence
+            is interesting when most of your users are desktop power users.
+            Defining the appropriate context (where and how the user was
+            trying to get their work done) and then designing for those
+            contexts are challenging.
+          </p>
+
+          <p>
+            For example: the shared "search or filter" component was a
+            balance between Elementum design (For the web) and native
+            components (for iOS and Android.) If I added a new filter category
+            to web I would have to make sure mobile was also updated
+            (iPhone and Android.) It was ~4x the work!
+          </p>
+
+          <h3>Design Process</h3>
+
+          <p>
+            The overarching process was pretty similar, plus or minus a couple of the following steps:
+          </p>
+
+          <figure>
+            <img src="http://cl.ly/image/123C1I3r3j0n/design%20framework.png" alt="Design framework" />
+          </figure>
+
+          <p>
+            First stop would be the kickoff: I'd get together with our PM
+            to go through the backlog of features and customer requests,
+            and re-prioritize them on a weekly basis. I would facilitate these
+            exploration sessions through whiteboard documentation or design
+            exercises (so many sticky notes.)
+          </p>
+
+          <p>
+            I'd take notes (and document photos) throughout our discussion
+            so that we could walk away with action items. Then I'd head back
+            to my computer to document the notes and begin sketching flow
+            diagrams or layout concepts.
+          </p>
+
+          <figure>
+            <img src="https://s3.amazonaws.com/f.cl.ly/items/033G0N2q0D2L3B203s0l/transport-process.jpg" alt="Transport design process" />
+            <figcaption>I &#9829; whiteboards for capturing ideas during exploration sessions.</figcaption>
+          </figure>
+
+          <p>
+            At certain checkpoints, it was time to review the various
+            iterations (and the new insights/problems/ideas) that I'd worked
+            through with my PM. After those were addressed, I may have
+            jumped into a prototype to get a better feel for the flow,
+            interactions, and general usability with our more refined
+            problem/goal in mind.
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-transport-iterations.jpg" alt="Design iterations" />
+            <figcaption>Iterations, iterations, and more iterations. You see that V9 there? That's only the start.</figcaption>
+          </figure>
+
+          <p>
+            Often, I'd socialize my thoughts with the design team.
+            We'd help each other identify if there is a common pattern
+            already in place that I could consider using to speed up the
+            implementation, or if this problem presented a new pattern.
+            If a new pattern was identified, we'd document it and add it
+            to the pattern library for the next time.
+          </p>
+
+          <p>
+            Once layouts, flows, and basic interactions were mocked, I
+            would work with my visual designer to get the full high-fidelity
+            comps ready for review with the product team.
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-transport-team.jpg" alt="Design team" />
+            <figcaption>The design team catching up on patterns.</figcaption>
+          </figure>
+
+          <p>
+            Elementum works with a variety of collaboration tools
+            (like Confluence, Google Docs, and Jira.) The design
+            team is fully integrated with the rest of the company.
+            We followed this process for all of the features that make
+            up Transport today.
+          </p>
+
+          <figure>
+            <img src="https://s3.amazonaws.com/f.cl.ly/items/0C1a3K1o3m11013O0m0O/multi-apps.jpg" alt="Multi-app designs" />
+            <figcaption>Posting our designs for the company was a great way to get feedback and keep people in the loop.</figcaption>
+          </figure>
+
+          <figure>
+            <img src="https://cl.ly/image/200G11301W0g/DSC_3514.JPG" alt="Inspiration mood board" />
+            <figcaption>I'd have an inspiration mood board that I'd constantly update with designs I'd want to meld into Elementum's style.</figcaption>
+          </figure>
+
+          <h3>The Result</h3>
+
+          <p>
+            Transport is now supporting large companies like Dyson and
+            Flextronics with a fully functioning web, iOS, and Android
+            app that provides a single place for logistics managers and
+            inventory specialists to check the latest up-to-date
+            shipment information.
+          </p>
+
+          <h3>Retrospective</h3>
+
+          <p>
+            <b>Make consistent user research a part of your process.</b><br />
+            There is only so much time in the day, but I always wish there was
+            more time for customer feedback and user research. We have
+            performed lightweight, guerrilla research at Starbucks coffee
+            shops, remote usability sessions, and even in-person
+            workshops with some of our current customers, but it wasn't
+            consistent. I'm always in awe at the gold mine of
+            information and clarity these sessions bring.
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-transport-dyson_research_trip.jpg" alt="Dyson research trip" />
+            <figcaption>Dyson research trip: card sorting activity to dive into the minds of our customers.</figcaption>
+          </figure>
+
+          <p>
+            <b>Quantitative analytics can clarify design decisions.</b><br />
+            The right combination of qualitative and quantitative data can
+            be a tremendous help in deciding design direction. There were
+            times when I wish I had more data, and there were times when
+            data made certain decisions dead simple.
+          </p>
+
+          <p>
+            <b>Be flexible with your tools</b><br />
+            Ever since the start of the project I have been experimenting
+            with multiple prototyping tools.
+            <a href="http://writing.enchant.co/2014/11/28/top-prototyping-tools-for-interaction-designers/">I wrote about it on my blog here</a>.
+            I've also been balancing my documentation between the collaborative
+            Google docs or the well organized Confluence. I'm always
+            striving for the same thing, get everyone on the same page
+            and keep the process well documented and up to date.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <section class="Project__Footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <a class="back-link" href="../index-ocean.html">&larr; Back to the rest of the work</a>
+          <p>Made with care in California.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Elementum: Situation Room &mdash; Brittany Mederos</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: Designing a control room to inspire collaboration between operational teams.">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap">
+
+  <!-- Dark Mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cookieValue = getCookie('bm_ocean_dark');
+      if (cookieValue === 'true') document.body.classList.add('dark');
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      setCookie('bm_ocean_dark', document.body.classList.contains('dark'), 7);
+    }
+
+    function toggleMenu() {
+      document.body.classList.toggle('menu-opened');
+    }
+
+    function setCookie(name, value, days) {
+      var d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/";
+    }
+
+    function getCookie(name) {
+      var c = document.cookie.split(';');
+      for (var i = 0; i < c.length; i++) {
+        var p = c[i].trim();
+        if (p.indexOf(name + "=") === 0) return p.substring(name.length + 1);
+      }
+      return null;
+    }
+  </script>
+
+  <style>
+    /* ===========================
+       Ocean System — BM portfolio
+       Mirrors pm17 "Forest" structure
+       =========================== */
+
+    /* --- Tokens --- */
+    :root {
+      --bg:             #FAFAF7;
+      --surface:        #F5F2EC;
+      --border:         #E5E0D8;
+      --text:           #2B2F33;
+      --text-secondary: #6B6560;
+      --text-muted:     #9A9189;
+      --accent:         #1B6B7A;
+      --accent-hover:   #14545F;
+      --accent-subtle:  #D5ECE8;
+      --radius:         6px;
+      --transition:     0.3s ease-in-out;
+    }
+
+    body.dark {
+      --bg:             #141618;
+      --surface:        #1C1F22;
+      --border:         #2A2D31;
+      --text:           #E8E4DF;
+      --text-secondary: #B0AAA2;
+      --text-muted:     #7A756E;
+      --accent:         #4DB8A4;
+      --accent-hover:   #6CD4BF;
+      --accent-subtle:  #1A302B;
+    }
+
+    /* --- Reset --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 62.5%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Base --- */
+    body {
+      font-family: "Inter var", "Inter", "SF Pro Text", Helvetica, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+      background-color: var(--bg);
+      transition: color var(--transition), background-color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, h4, h5, h6, p, li, button, input {
+      font-size: 1.7rem;
+      margin-bottom: 1.2em;
+      font-weight: 350;
+      transition: color var(--transition);
+    }
+
+    h1 { font-size: 3.2rem; font-weight: 500; color: var(--text); }
+    h2 { font-size: 2.4rem; font-weight: 500; color: var(--text); }
+    h3 { font-size: 2.1rem; font-weight: 400; color: var(--text); }
+    h4 { font-size: 1.8rem; font-weight: 400; }
+    h5 { font-size: 1.5rem; }
+
+    p, ul, ol, li { line-height: 1.58; }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-subtle);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      transition: color var(--transition), text-decoration-color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    strong, b { font-weight: 500; }
+    em, i { font-style: italic; }
+
+    figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    .font-meta {
+      font-family: "DM Mono", "Recursive", monospace;
+    }
+
+    .underlined {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* --- Flexbox Grid (simplified) --- */
+    .container-fluid {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1.2rem;
+      margin-right: -1.2rem;
+    }
+
+    .row.middle-xs { align-items: center; }
+
+    [class*="col-"] {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      width: 100%;
+    }
+
+    .col-xs-6  { width: 50%; }
+    .col-xs-12 { width: 100%; }
+
+    .start-xs { justify-content: flex-start; display: flex; }
+    .end-xs   { justify-content: flex-end; display: flex; }
+
+    @media only screen and (min-width: 64em) {
+      .col-md-2  { width: 16.6667%; }
+      .col-md-6  { width: 50%; }
+      .col-md-7  { width: 58.3333%; }
+      .col-md-8  { width: 66.6667%; }
+      .col-md-offset-2 { margin-left: 16.6667%; }
+    }
+
+    /* --- Spacing utilities --- */
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: 1.2rem; }
+    .mb-2 { margin-bottom: 1.8rem; }
+    .mb-3 { margin-bottom: 2.5rem; }
+    .mb-4 { margin-bottom: 3.6rem; }
+    .mb-5 { margin-bottom: 4.4rem; }
+    .mb-6 { margin-bottom: 6.4rem; }
+
+    /* --- Icon Button --- */
+    .IconButton {
+      display: block;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color var(--transition);
+      position: relative;
+    }
+
+    .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Theme toggle sun/moon icon via SVG data URI */
+    .IconButton.--theme::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 11px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'/%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'/%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--theme::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Hamburger icon */
+    .IconButton.--menu::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--menu::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* Close icon */
+    .IconButton.--close::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--close::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* --- Side Navigation (desktop) --- */
+    .SideNavigation {
+      display: none;
+      position: sticky;
+      top: 4rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .SideNavigation { display: block; }
+    }
+
+    .SideNavigation a {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2em;
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 1.5rem;
+    }
+
+    .SideNavigation a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .SideNavigation .IconButton {
+      position: relative;
+      left: -11px;
+      margin-bottom: 1.5em;
+    }
+
+    /* --- Mobile Navigation --- */
+    .MobileNavigation {
+      padding: 2.8rem 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .MobileNavigation { display: none; }
+    }
+
+    .MobileNavigation .IconButton.--theme {
+      margin: auto 0 auto auto;
+    }
+
+    /* --- Slide-out Menu --- */
+    .Menu {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70vw;
+      max-width: 32rem;
+      height: 100%;
+      padding: 2.8rem 2.4rem;
+      z-index: 3;
+      background-color: var(--surface);
+      box-shadow: 0 0 8px rgba(0,0,0,.08), 0 0 54px rgba(0,0,0,.15);
+      transform: translateX(-110%);
+      transition: transform var(--transition);
+      overflow-y: auto;
+    }
+
+    .Menu a {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .Menu a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .Menu .IconButton.--close {
+      margin-bottom: 2em;
+      position: relative;
+      left: -10px;
+    }
+
+    .Overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: rgba(0,0,0,0);
+      transition: background-color var(--transition);
+    }
+
+    body.menu-opened {
+      overflow: hidden;
+    }
+
+    body.menu-opened .Menu {
+      transform: translateX(0);
+    }
+
+    body.menu-opened .Overlay {
+      display: block;
+      z-index: 2;
+      background-color: rgba(0,0,0,.5);
+    }
+
+    /* --- Selection color --- */
+    ::selection {
+      background-color: var(--accent-subtle);
+      color: var(--text);
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 4rem 0 3rem;
+    }
+
+    footer p {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Responsive tweaks --- */
+    @media only screen and (max-width: 64em) {
+      .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    @media only screen and (min-width: 64em) {
+      .container-fluid {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+
+
+    /* ===================================
+       Project Page Specific Styles
+       =================================== */
+
+    /* --- Project Header --- */
+    .Project__Header {
+      padding: 0 0 2rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .Project__Header {
+        padding: 2rem 0 2rem;
+      }
+    }
+
+    .project-back-link {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 2.4rem;
+      transition: color var(--transition);
+    }
+
+    .project-back-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    .project-meta-label {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 1em;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .project-title {
+        font-size: 3.2rem;
+      }
+    }
+
+    /* --- Project Content --- */
+    .Project__Content {
+      padding: 0 0 6rem;
+    }
+
+    .Project__Content h3 {
+      font-size: 2.1rem;
+      font-weight: 450;
+      color: var(--text);
+      margin-top: 4rem;
+      margin-bottom: 1.2em;
+    }
+
+    .Project__Content p {
+      font-size: 1.7rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 1.6em;
+    }
+
+    .Project__Content b,
+    .Project__Content strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* --- HR --- */
+    .Project__Content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3.2rem 0;
+      transition: border-color var(--transition);
+    }
+
+    /* --- Blockquotes --- */
+    .Project__Content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 1.6rem 0 1.6rem 2.4rem;
+      margin: 3.2rem 0;
+      background: transparent;
+    }
+
+    .Project__Content blockquote p,
+    .Project__Content blockquote {
+      font-size: 1.8rem;
+      font-style: italic;
+      line-height: 1.72;
+      color: var(--text);
+      margin-bottom: 0;
+    }
+
+    .Project__Content blockquote cite {
+      display: block;
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-style: normal;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* --- Images --- */
+    .Project__Content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      display: block;
+    }
+
+    /* --- Figures --- */
+    .Project__Content figure {
+      margin: 3.2rem 0;
+    }
+
+    .Project__Content figure figcaption,
+    .Project__Content figure .image-subtext {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+      margin-bottom: 0;
+    }
+
+    /* --- YouTube embed --- */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      margin: 3.2rem 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* --- Project Footer --- */
+    .Project__Footer {
+      padding: 4rem 0 6rem;
+      border-top: 1px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .Project__Footer a {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .Project__Footer a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    footer.site-footer {
+      padding: 2rem 0 4rem;
+    }
+
+    footer.site-footer p {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile Navigation -->
+  <div class="MobileNavigation">
+    <div class="container-fluid">
+      <div class="row middle-xs">
+        <div class="col-xs-6 start-xs">
+          <button class="IconButton --menu" onclick="toggleMenu();" aria-label="Open menu"></button>
+        </div>
+        <div class="col-xs-6 end-xs">
+          <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Menu (mobile) -->
+  <nav class="Menu">
+    <button class="IconButton --close" onclick="toggleMenu();" aria-label="Close menu"></button>
+    <a href="../index-ocean.html">Home</a>
+    <a href="mailto:bm@enchant.co">Email</a>
+    <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+    <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+  </nav>
+  <div class="Overlay" onclick="toggleMenu();"></div>
+
+
+  <!-- ============================
+       PROJECT HEADER
+       ============================ -->
+  <section class="Project__Header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <nav class="SideNavigation">
+            <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+            <a href="../index-ocean.html">Home</a>
+            <a href="mailto:bm@enchant.co">Email</a>
+            <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+            <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+          </nav>
+        </div>
+        <div class="col-xs-12 col-md-7">
+          <a class="project-back-link" href="../index-ocean.html">&larr; Back to home</a>
+          <span class="project-meta-label">Elementum &mdash; Situation Room &mdash; 2014</span>
+          <h1 class="project-title">
+            Designing a control room to inspire collaboration between operational teams.
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PROJECT CONTENT
+       ============================ -->
+  <section class="Project__Content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+
+          <hr />
+
+          <h3>The Problem</h3>
+
+          <p>
+            Funny enough, the Situation Room started at an internal company hackathon.
+            Each participant was given free range to build whatever could be built on
+            Elementum's current platform using our supply chain graph data. I
+            joined a team with a mission to make a control tower experience,
+            think NASA's control room* but for supply chain data. The primary
+            (imagined) use-case was "a beautiful display of your supply chain,
+            fit to hang in the CEO's office."
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room-nasa.jpg" alt="NASA's control room" />
+            <figcaption>* NASA's control room: our inspiration.</figcaption>
+          </figure>
+
+          <p>
+            We quickly sketched out our ideas, with only 6 hours to hack
+            something together. We guessed at needing a large TV video wall
+            made up of 9 TV screens. We figured there should be a way for the
+            CEO to change the displays at will through a remote control
+            of sorts.
+          </p>
+          <p>
+            Ideas + sketches in-hand, my team (composed of three designers +
+            one marketer-turned-developer; we were the odd-duck out, where
+            every other team was engineer-focused), wireframed low fidelity
+            screens and prototyped the basic app flow in InVision.
+          </p>
+          <p>
+            My team was thrilled when our prototype nabbed us 1st prize
+            at the hackathon. Little did we know, this was the beginning
+            of a revolutionary product.
+          </p>
+
+          <h3>Users &amp; Audience</h3>
+
+          <p>
+            We knew that the C-suite users loved to watch the news in their
+            office, usually as a background noise, and they had dreams
+            of their own mission control room. But it wasn't until
+            our first Situation Room sold to a client that we found real use-cases.
+          </p>
+
+          <blockquote>
+            "If you have six people looking at these screens, providing
+            constant analysis, then magical things start happening in
+            terms of developing really creative solutions"
+            <cite>
+              - Jim Rowan, Dyson COO
+            </cite>
+          </blockquote>
+
+          <p>
+            This was a huge opportunity to change the dynamics of how operation teams functioned.
+          </p>
+
+          <h3>Team &amp; Stakeholders</h3>
+          <p>
+            There was no dedicated PM for this child-of-a-hackathon idea, so
+            it ended up becoming a 20% project for whoever had bandwidth
+            to work on it. Each app team (Transport, Exposure and Manufacture)
+            were responsible for coming up with their own
+            Situation Room "posters".
+          </p>
+          <p>
+            After a client expressed interest in buying and installing a
+            Situation Room, all of the sudden this hackathon idea briefly
+            became the center of Elementum's attention.
+          </p>
+
+          <h3>Constraints</h3>
+          <p>
+            At the hackathon, which was constrained to 6 hours,
+            we didn't think about the actual implementation or
+            technology requirements. We used inVision to put together a
+            click through prototype of the remote control for the
+            situation room and spoke to the idea of a Control Room set
+            up with 9 screens in a 3x3 configuration. In reality, it
+            took an insane amount of hacking to integrate with
+            the TV screens array.
+          </p>
+
+          <h3>Design Process</h3>
+          <p>
+            There were two experiences that needed designs for the
+            situation room: the viewers experience and the remote
+            control experience.
+          </p>
+
+          <p>
+            As a viewer, we had questions like "how long would we want
+            each poster to remain static on the screen before it rotated",
+            or "if they wanted to go through multiple routes or product lines
+            how would our designs accommodate this dynamic changing of screens?"
+          </p>
+
+          <p>
+            We designed an indicator that acted as a counter to visually
+            indicate the time left before the change, and the actual
+            transition needed to be smooth (no flickering) because 9 displays
+            changing could be irritatingly distracting. For each app, we
+            designed two posters that would reflect the overall status
+            that each app was responsible for.
+          </p>
+
+          <p>
+            For Transport (my primary app), the two posters were
+            "Bottlenecks" (which carousels through all the bottlenecks
+            impacting that users routes) and "Route Performance"
+            (which cycled though the overall health of the users'
+            routes and carrier performance.)
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room-bottleneck.png" alt="Bottleneck poster concept" />
+            <figcaption>Early concept for Bottleneck poster.</figcaption>
+          </figure>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room-routes.png" alt="Routes poster" />
+            <figcaption>Underperforming routes poster for Situation Room.</figcaption>
+          </figure>
+
+          <p>
+            For the Remote Control experience, we designed a view that
+            incorporated a thumbnail of the poster they were interacting
+            with, including the position of the TV to be used for that poster.
+            We also found that we needed a solid confirmation that
+            the user updated a poster.
+          </p>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room-remote_concept.jpg" alt="Remote control concept" />
+            <figcaption>Remote control for Situation Room.</figcaption>
+          </figure>
+
+          <p>
+            We did a lot of in-house testing with the remote to see how
+            people felt about the general responsiveness and process of
+            changing a TV screen. In the end, we found something that
+            feels solid, intuitive, and responsive.
+          </p>
+
+          <h3>The Results</h3>
+
+          <p>
+            We now have two customers who have bought Situation Rooms
+            and dozens of other companies that have expressed interest.
+          </p>
+
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/gLH8i7Uuhwg" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+          <figure>
+            <img src="http://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-sit_room-remote.jpg" alt="Situation Room remote" />
+          </figure>
+
+          <h3>Retrospective</h3>
+
+          <p>
+            <b>Ideas can come from anywhere.</b><br/>
+            It's amazing where ideas can come from.
+            A simple hackathon can create a viable product for a
+            company; that's amazing! I was impressed with the team
+            effort and hard work that went into bringing this
+            hackathon project to reality.
+          </p>
+
+          <p>
+            <b>Start narrow, and work out towards more support.</b><br/>
+            Currently, there's a separate remote control iPad app, but
+            we've found it annoying that the user can't access their
+            situation room remote from the primary app they're in. Perhaps
+            in the future, we'll explore integrating the Situation Room
+            experience into each of our primary apps, It'll just become
+            another way for the user to explore their supply chain data.
+          </p>
+
+          <p>
+            <b>Balancing 20% time is tough.</b><br />
+            There's no easy way to make custom posters, but we've
+            received multiple requests to design custom Situation Room
+            screens. But because it's still a 20% project, we just
+            don't have the bandwidth to take these on.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PROJECT FOOTER
+       ============================ -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-7 col-md-offset-2">
+        <div class="Project__Footer">
+          <a href="../index-ocean.html">&larr; Back to all work</a>
+        </div>
+
+        <footer class="site-footer">
+          <p>Made with care in California.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

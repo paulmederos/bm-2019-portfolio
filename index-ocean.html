@@ -437,6 +437,7 @@
 
     /* --- Work & Writing sections --- */
     .Home__Work,
+    .Home__CaseStudies,
     .Home__Writing,
     .Home__More {
       padding: 8rem 0;
@@ -497,6 +498,19 @@
       color: var(--accent);
     }
 
+    /* Work role titles (non-link) */
+    .role-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .role-company {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
     .entry-description {
       font-size: 1.7rem;
       color: var(--text-secondary);
@@ -532,12 +546,7 @@
       color: var(--text-muted);
     }
 
-    /* --- Section dividers --- */
-    .Home__Work,
-    .Home__Writing,
-    .Home__More {
-      border-top: 1px solid var(--border);
-    }
+    /* --- Section dividers (removed) --- */
 
     /* --- Intro bio --- */
     .bio p {
@@ -685,7 +694,7 @@
 
 
   <!-- ============================
-       WORK
+       WORK (roles timeline)
        ============================ -->
   <section class="Home__Work">
     <div class="container-fluid">
@@ -699,12 +708,11 @@
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
-              <time>2025</time>
-              <span class="entry-tag tag-case-study">Case Study</span>
+              <time>2025 &ndash; Present</time>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="#">AI Learning Product</a></p>
-              <p class="entry-description">Leading design and research for a 0-to-1 product team launching a transformative learning experience powered by AI. Building a high-performing, inclusive team within an org shifting from service-oriented to product-driven.</p>
+              <p class="entry-title"><span class="role-title">Principal Design &amp; Research Manager</span> <span class="role-company">at Microsoft</span></p>
+              <p class="entry-description">AI Learning &mdash; Leading design and research for a 0-to-1 product team launching a transformative learning experience powered by AI.</p>
             </div>
           </div>
         </li>
@@ -712,12 +720,11 @@
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
-              <time>2023</time>
-              <span class="entry-tag tag-case-study">Case Study</span>
+              <time>2021 &ndash; 2025</time>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="#">Designer in Copilot</a></p>
-              <p class="entry-description">Led the integration of Microsoft Designer's Editor canvas into Copilot chat for AI-driven image generation and editing. Featured in Microsoft's first Super Bowl campaign in years.</p>
+              <p class="entry-title"><span class="role-title">Principal Designer &amp; Manager</span> <span class="role-company">at Microsoft</span></p>
+              <p class="entry-description">Designer, Copilot &mdash; Co-led the pitch to Microsoft SLT and Satya Nadella, shipped Microsoft Designer and its integration into Copilot. Featured in Microsoft's first Super Bowl campaign in years.</p>
             </div>
           </div>
         </li>
@@ -725,12 +732,11 @@
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
-              <time>2021</time>
-              <span class="entry-tag tag-case-study">Case Study</span>
+              <time>2019 &ndash; 2021</time>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="#">Microsoft Designer</a></p>
-              <p class="entry-description">Co-led the pitch to Microsoft SLT and Satya Nadella, securing funding for a new M365 app to compete in the Creator Economy. Designed and shipped the core AI-powered Editor experience.</p>
+              <p class="entry-title"><span class="role-title">Principal Design Lead</span> <span class="role-company">at Microsoft</span></p>
+              <p class="entry-description">Microsoft PowerPoint AI &mdash; Pioneered AI solutions within PowerPoint and spearheaded the integration of PowerPoint into Microsoft Teams during the pandemic.</p>
             </div>
           </div>
         </li>
@@ -738,12 +744,11 @@
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
-              <time>2020</time>
-              <span class="entry-tag tag-case-study">Case Study</span>
+              <time>2015 &ndash; 2019</time>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="#">PowerPoint + Teams</a></p>
-              <p class="entry-description">Spearheaded the integration of PowerPoint into Microsoft Teams and led development of remote presenting tools during the pandemic, keeping Microsoft relevant in hybrid work.</p>
+              <p class="entry-title"><span class="role-title">Senior Designer &amp; Manager</span> <span class="role-company">at Microsoft</span></p>
+              <p class="entry-description">Outlook, StaffHub &mdash; Led design for Outlook and launched Microsoft StaffHub, an Office 365 product for firstline workers.</p>
             </div>
           </div>
         </li>
@@ -751,16 +756,43 @@
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
-              <time>2019</time>
-              <span class="entry-tag tag-case-study">Case Study</span>
+              <time>2013 &ndash; 2015</time>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="#">PowerPoint AI</a></p>
-              <p class="entry-description">Pioneered AI solutions within PowerPoint &mdash; auto-magically designing slides, coaching speakers to improve their skills, and creating more inclusive presentation experiences.</p>
+              <p class="entry-title"><span class="role-title">Product Design Lead</span> <span class="role-company">at Elementum</span></p>
+              <p class="entry-description">Supply Chain &mdash; Designed real-time logistics visibility tools and control room experiences for Fortune 500 companies.</p>
             </div>
           </div>
         </li>
 
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2010 &ndash; 2013</time>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><span class="role-title">UX Designer</span> <span class="role-company">at Enchant, Rock Creek, Foster.ly</span></p>
+              <p class="entry-description">Crafted experiences for government at the CFPB and built tools for families and communities.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       CASE STUDIES
+       ============================ -->
+  <section class="Home__CaseStudies">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2 class="underlined mb-6">Case Studies</h2>
+        </div>
+      </div>
+
+      <ul class="work-list">
         <li>
           <div class="row">
             <div class="col-xs-12 col-md-offset-2 col-md-2">
@@ -768,7 +800,7 @@
               <span class="entry-tag tag-case-study">Case Study</span>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="projects/elementum-transport.html">Elementum: Transport</a></p>
+              <p class="entry-title"><a href="projects/elementum-transport-ocean.html">Elementum: Transport</a></p>
               <p class="entry-description">Real-time logistics visibility helping logistics managers be more proactive and spend less time tracking down spreadsheets.</p>
             </div>
           </div>
@@ -781,7 +813,7 @@
               <span class="entry-tag tag-case-study">Case Study</span>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="projects/elementum-situation.html">Elementum: Situation Room</a></p>
+              <p class="entry-title"><a href="projects/elementum-situation-ocean.html">Elementum: Situation Room</a></p>
               <p class="entry-description">Designing a control room to inspire collaboration between operational teams across the global supply chain.</p>
             </div>
           </div>
@@ -794,7 +826,7 @@
               <span class="entry-tag tag-case-study">Case Study</span>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="projects/cfpb-college.html">CFPB: Paying for College</a></p>
+              <p class="entry-title"><a href="projects/cfpb-college-ocean.html">CFPB: Paying for College</a></p>
               <p class="entry-description">Helping students make smarter financial decisions about college with transparent, accessible tools.</p>
             </div>
           </div>
@@ -807,7 +839,7 @@
               <span class="entry-tag tag-case-study">Case Study</span>
             </div>
             <div class="col-xs-12 col-md-6">
-              <p class="entry-title"><a href="projects/cfpb-report.html">CFPB: Strategic Report</a></p>
+              <p class="entry-title"><a href="projects/cfpb-report-ocean.html">CFPB: Strategic Report</a></p>
               <p class="entry-description">A new type of government report &mdash; a living document, an online interactive experience &mdash; for the CFPB to send to Congress.</p>
             </div>
           </div>

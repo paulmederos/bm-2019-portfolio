@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CFPB: Paying For College — Brittany Mederos</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: Helping students make smarter financial decisions about college.">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap">
+
+  <!-- Dark Mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cookieValue = getCookie('bm_ocean_dark');
+      if (cookieValue === 'true') document.body.classList.add('dark');
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      setCookie('bm_ocean_dark', document.body.classList.contains('dark'), 7);
+    }
+
+    function toggleMenu() {
+      document.body.classList.toggle('menu-opened');
+    }
+
+    function setCookie(name, value, days) {
+      var d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/";
+    }
+
+    function getCookie(name) {
+      var c = document.cookie.split(';');
+      for (var i = 0; i < c.length; i++) {
+        var p = c[i].trim();
+        if (p.indexOf(name + "=") === 0) return p.substring(name.length + 1);
+      }
+      return null;
+    }
+  </script>
+
+  <style>
+    /* ===========================
+       Ocean System — BM portfolio
+       Mirrors pm17 "Forest" structure
+       =========================== */
+
+    /* --- Tokens --- */
+    :root {
+      --bg:             #FAFAF7;
+      --surface:        #F5F2EC;
+      --border:         #E5E0D8;
+      --text:           #2B2F33;
+      --text-secondary: #6B6560;
+      --text-muted:     #9A9189;
+      --accent:         #1B6B7A;
+      --accent-hover:   #14545F;
+      --accent-subtle:  #D5ECE8;
+      --radius:         6px;
+      --transition:     0.3s ease-in-out;
+    }
+
+    body.dark {
+      --bg:             #141618;
+      --surface:        #1C1F22;
+      --border:         #2A2D31;
+      --text:           #E8E4DF;
+      --text-secondary: #B0AAA2;
+      --text-muted:     #7A756E;
+      --accent:         #4DB8A4;
+      --accent-hover:   #6CD4BF;
+      --accent-subtle:  #1A302B;
+    }
+
+    /* --- Reset --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 62.5%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Base --- */
+    body {
+      font-family: "Inter var", "Inter", "SF Pro Text", Helvetica, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+      background-color: var(--bg);
+      transition: color var(--transition), background-color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, h4, h5, h6, p, li, button, input {
+      font-size: 1.7rem;
+      margin-bottom: 1.2em;
+      font-weight: 350;
+      transition: color var(--transition);
+    }
+
+    h1 { font-size: 3.2rem; font-weight: 500; color: var(--text); }
+    h2 { font-size: 2.4rem; font-weight: 500; color: var(--text); }
+    h3 { font-size: 2.1rem; font-weight: 400; color: var(--text); }
+    h4 { font-size: 1.8rem; font-weight: 400; }
+    h5 { font-size: 1.5rem; }
+
+    p, ul, ol, li { line-height: 1.58; }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-subtle);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      transition: color var(--transition), text-decoration-color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    strong, b { font-weight: 500; }
+    em, i { font-style: italic; }
+
+    figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    .font-meta {
+      font-family: "DM Mono", "Recursive", monospace;
+    }
+
+    .underlined {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* --- Flexbox Grid (simplified) --- */
+    .container-fluid {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1.2rem;
+      margin-right: -1.2rem;
+    }
+
+    .row.middle-xs { align-items: center; }
+
+    [class*="col-"] {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      width: 100%;
+    }
+
+    .col-xs-6  { width: 50%; }
+    .col-xs-12 { width: 100%; }
+
+    .start-xs { justify-content: flex-start; display: flex; }
+    .end-xs   { justify-content: flex-end; display: flex; }
+
+    @media only screen and (min-width: 64em) {
+      .col-md-2  { width: 16.6667%; }
+      .col-md-6  { width: 50%; }
+      .col-md-7  { width: 58.3333%; }
+      .col-md-8  { width: 66.6667%; }
+      .col-md-offset-2 { margin-left: 16.6667%; }
+    }
+
+    /* --- Spacing utilities --- */
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: 1.2rem; }
+    .mb-2 { margin-bottom: 1.8rem; }
+    .mb-3 { margin-bottom: 2.5rem; }
+    .mb-4 { margin-bottom: 3.6rem; }
+    .mb-5 { margin-bottom: 4.4rem; }
+    .mb-6 { margin-bottom: 6.4rem; }
+
+    /* --- Icon Button --- */
+    .IconButton {
+      display: block;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color var(--transition);
+      position: relative;
+    }
+
+    .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Theme toggle sun/moon icon via SVG data URI */
+    .IconButton.--theme::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 11px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'/%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'/%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--theme::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Hamburger icon */
+    .IconButton.--menu::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--menu::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* Close icon */
+    .IconButton.--close::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--close::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* --- Side Navigation (desktop) --- */
+    .SideNavigation {
+      display: none;
+      position: sticky;
+      top: 4rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .SideNavigation { display: block; }
+    }
+
+    .SideNavigation a {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2em;
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 1.5rem;
+    }
+
+    .SideNavigation a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .SideNavigation .IconButton {
+      position: relative;
+      left: -11px;
+      margin-bottom: 1.5em;
+    }
+
+    /* --- Mobile Navigation --- */
+    .MobileNavigation {
+      padding: 2.8rem 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .MobileNavigation { display: none; }
+    }
+
+    .MobileNavigation .IconButton.--theme {
+      margin: auto 0 auto auto;
+    }
+
+    /* --- Slide-out Menu --- */
+    .Menu {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70vw;
+      max-width: 32rem;
+      height: 100%;
+      padding: 2.8rem 2.4rem;
+      z-index: 3;
+      background-color: var(--surface);
+      box-shadow: 0 0 8px rgba(0,0,0,.08), 0 0 54px rgba(0,0,0,.15);
+      transform: translateX(-110%);
+      transition: transform var(--transition);
+      overflow-y: auto;
+    }
+
+    .Menu a {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .Menu a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .Menu .IconButton.--close {
+      margin-bottom: 2em;
+      position: relative;
+      left: -10px;
+    }
+
+    .Overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: rgba(0,0,0,0);
+      transition: background-color var(--transition);
+    }
+
+    body.menu-opened {
+      overflow: hidden;
+    }
+
+    body.menu-opened .Menu {
+      transform: translateX(0);
+    }
+
+    body.menu-opened .Overlay {
+      display: block;
+      z-index: 2;
+      background-color: rgba(0,0,0,.5);
+    }
+
+    /* --- Selection color --- */
+    ::selection {
+      background-color: var(--accent-subtle);
+      color: var(--text);
+    }
+
+    /* --- Responsive tweaks --- */
+    @media only screen and (max-width: 64em) {
+      .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    @media only screen and (min-width: 64em) {
+      .container-fluid {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+
+    /* ===========================
+       Project Page Styles
+       =========================== */
+
+    /* --- Project Header --- */
+    .Project__Header {
+      padding: 0 0 2rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .Project__Header {
+        padding: 4rem 0 2rem;
+      }
+    }
+
+    .project-back-link {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 3.2rem;
+      transition: color var(--transition);
+    }
+
+    .project-back-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    .project-meta-label {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .project-title {
+        font-size: 3.2rem;
+      }
+    }
+
+    /* --- Project Content --- */
+    .Project__Content {
+      padding: 4rem 0 6rem;
+    }
+
+    .Project__Content h3 {
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-top: 3.6rem;
+      margin-bottom: 1.2em;
+    }
+
+    .Project__Content h4 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-top: 2.4rem;
+      margin-bottom: 1em;
+    }
+
+    .Project__Content p {
+      font-size: 1.7rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 1.6rem;
+    }
+
+    .Project__Content p a {
+      color: var(--accent);
+      text-decoration-color: var(--accent-subtle);
+    }
+
+    .Project__Content p a:hover {
+      text-decoration-color: var(--accent);
+    }
+
+    .Project__Content p i,
+    .Project__Content p em {
+      color: var(--text-muted);
+    }
+
+    /* --- Horizontal Rules --- */
+    .Project__Content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3.2rem 0;
+      transition: border-color var(--transition);
+    }
+
+    /* --- Lists --- */
+    .Project__Content ol,
+    .Project__Content ul {
+      padding-left: 2.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .Project__Content ol li,
+    .Project__Content ul li {
+      font-size: 1.7rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 0.8em;
+      padding-left: 0.4rem;
+    }
+
+    .Project__Content ol li::marker {
+      color: var(--accent);
+      font-weight: 450;
+    }
+
+    .Project__Content ul li::marker {
+      color: var(--accent);
+    }
+
+    /* --- Figures & Images --- */
+    .Project__Content figure {
+      margin: 3.6rem 0;
+    }
+
+    .Project__Content figure img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      display: block;
+    }
+
+    .Project__Content figure figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* --- Project Footer --- */
+    .Project__Footer {
+      padding: 4rem 0 6rem;
+      border-top: 1px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .Project__Footer a {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .Project__Footer a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+    }
+
+    footer {
+      padding: 4rem 0 3rem;
+    }
+
+    footer p {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile Navigation -->
+  <div class="MobileNavigation">
+    <div class="container-fluid">
+      <div class="row middle-xs">
+        <div class="col-xs-6 start-xs">
+          <button class="IconButton --menu" onclick="toggleMenu();" aria-label="Open menu"></button>
+        </div>
+        <div class="col-xs-6 end-xs">
+          <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Menu (mobile) -->
+  <nav class="Menu">
+    <button class="IconButton --close" onclick="toggleMenu();" aria-label="Close menu"></button>
+    <a href="../index-ocean.html">Home</a>
+    <a href="mailto:bm@enchant.co">Email</a>
+    <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+    <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+  </nav>
+  <div class="Overlay" onclick="toggleMenu();"></div>
+
+
+  <!-- ============================
+       PROJECT HEADER
+       ============================ -->
+  <section class="Project__Header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <nav class="SideNavigation">
+            <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+            <a href="../index-ocean.html">Home</a>
+            <a href="mailto:bm@enchant.co">Email</a>
+            <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+            <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+          </nav>
+        </div>
+        <div class="col-xs-12 col-md-7">
+          <a href="../index-ocean.html" class="project-back-link">&larr; Back to all work</a>
+          <p class="project-meta-label">CFPB &mdash; Case Study</p>
+          <h1 class="project-title">Helping Students make smarter financial decisions about college.</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PROJECT CONTENT
+       ============================ -->
+  <section class="Project__Content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+
+          <hr />
+
+          <h3>The Problem</h3>
+
+          <p>Student debt is on the rise, last year the Consumer Financial Protection Bureau (CFPB) calculated that over one trillion dollars was owed in student debt. Education is a part of the American dream, but it is a great investment. For most students who have to take out a loan, this is the first big investment decision they have to make. It can be overwhelming to not know the cost or the sources of funding.</p>
+
+          <h3>Users &amp; audience</h3>
+          <ol>
+            <li>21 million students enrolling for college every year</li>
+            <li>Guidance councilors that want to help their high school seniors smartly prepare for taking on student loans.</li>
+          </ol>
+
+          <h3>Team &amp; stakeholders</h3>
+          <p>The core team consisted of a product manager, a front end developer, a visual designer and myself. We had a few stakeholders to work with. Inside the CFPB there was a "Students Team" that was leading the project. Externally the CFPB was working with the Department of Education on this same project.</p>
+
+          <figure>
+            <img src="https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-home.png" alt="Paying for College home" />
+          </figure>
+
+          <h3>Design process</h3>
+          <p>The CFPB wants to create consumer experience platforms catered to the financial milestones in most American's lives. The first platform is "Paying for College" focused around a student's journey; applying at colleges, selecting a loan, managing their money at school, and how to pay back their debt after school. This life cycle is captured in the platform as individual steps.</p>
+
+          <h4>Research Schools</h4>
+          <p>The CFPB partnered with the Department of Education to collaborate on this platform. The Department of Education created the College Navigator tool to help students find information about the colleges they want to attend.</p>
+
+          <h4>Fill Out FAFSA</h4>
+          <p>The CFPB linked to an online resource, built by the Department of Education, for electronically submitting a Free Application for Federal Student Aid (FAFSA).</p>
+
+          <h4>Choose a Loan</h4>
+          <p>For many students, searching for college funding will be their first experience shopping for loans. The CFPB wanted to create a list of action items and common loan definitions that help guide students through the selection process.</p>
+
+          <h4>Compare Costs and Financial Aid</h4>
+          <p>Once a student receives their offer letters from their colleges, they must choose which school to attend. The CFPB built the Cost Comparison Calculator to help students compare the costs of attending each college.</p>
+
+          <h4>Manage your Money</h4>
+          <p>When a student is at college, they're faced with unprecedented financial responsibility. The CFPB created an action guide to support student's financial decisions while attending college.</p>
+
+          <h4>Repay Student Debt</h4>
+          <p>After graduation, students are tasked with repaying their debts. The CFPB created an actionable, step-by-step tool to help students answer their payment options questions.</p>
+
+          <figure>
+            <img src="https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-loan.png" alt="Paying for College loan tool" />
+          </figure>
+
+          <h3>What I Worked On</h3>
+          <p>I started on this project during it's beta. The key tool in this platform for the CFPB was the Cost Comparison Tool. There were both functional and visual deficiencies in the "Paying for College" platform that needed much improvement before the tool could be launched from beta.</p>
+
+          <ol>
+            <li>Usability tests uncovered that layout for the comparison tool was ineffective, and needed a redesigned layout to make it easier for students to compare college costs.</li>
+            <li>We received requests from the office of Veteran Affairs to include a GI Bill calculator for all military, and their dependents, to calculate their eligible benefits while attending school.</li>
+            <li>The Department of Education wanted to include the school indicators in the comparison tool so that students could compare schools more accurately; not just based upon the financial burden.</li>
+            <li>The CFPB believes in encouraging consumers to shop around for loans to see the best rates they qualify for. To encourage students to shop around, we included an interest rate picker to indicate that a student could find higher or lower rates elsewhere.</li>
+            <li>The Department of Education and the CFPB made a joint effort to standardize the offer letters sent to students from colleges, in both print and digital format. The tool detects if the student's school is participating in the program, thereby prepopulating the data into the comparison tool to simplify the entry process.</li>
+          </ol>
+
+          <figure>
+            <img src="https://paulmederos.s3.amazonaws.com/enchant/case-studies/britt-cfpb-paying-for-college-tool.png" alt="Paying for College comparison tool" />
+          </figure>
+
+          <p><i>The tool was released on April 10, 2013 just in time for prospective college students to receive their offer letters. <a href="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/">See it in action here</a>.</i></p>
+
+          <h3>Awards</h3>
+          <ul>
+            <li>Winner of a Best of the Web &amp; Digital Government Achievement Award for 2013</li>
+            <li>Runner-up for the 2013 Core77 Design Award in Research and Strategy</li>
+            <li>Finalist for the 2013 IDEA Award in Design Strategy</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PROJECT FOOTER
+       ============================ -->
+  <section class="Project__Footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <a href="../index-ocean.html">&larr; Back to all work</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <footer>
+            <p>Made with care in California.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
