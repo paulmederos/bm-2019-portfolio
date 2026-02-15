@@ -1781,23 +1781,23 @@ figure {
 .stack-container {
   z-index: 1;
   width: 100%;
-  max-width: 680px;
-  margin: 0 auto;
   padding: 0 6.4rem; }
   @media (max-width: 30em) {
     .stack-container {
       padding: 0 1.4rem; } }
 
 .stack-of-work {
-  display: flex;
-  position: relative;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   z-index: 1;
   width: 100%;
   list-style: none;
   margin-top: 6.4rem;
   padding: 0;
   gap: 2.4rem; }
+  @media (max-width: 30em) {
+    .stack-of-work {
+      grid-template-columns: 1fr; } }
 
 .case-study-preview {
   background-color: white;
