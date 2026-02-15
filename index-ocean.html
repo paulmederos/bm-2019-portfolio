@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Brittany Mederos ⤬ designer & alchemist</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Brittany Mederos — designer & alchemist. Principal Design & Research Manager at Microsoft, leading design strategy for generative AI-powered experiences.">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap">
+
+  <!-- Dark Mode -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cookieValue = getCookie('bm_ocean_dark');
+      if (cookieValue === 'true') document.body.classList.add('dark');
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      setCookie('bm_ocean_dark', document.body.classList.contains('dark'), 7);
+    }
+
+    function toggleMenu() {
+      document.body.classList.toggle('menu-opened');
+    }
+
+    function setCookie(name, value, days) {
+      var d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + "; expires=" + d.toUTCString() + "; path=/";
+    }
+
+    function getCookie(name) {
+      var c = document.cookie.split(';');
+      for (var i = 0; i < c.length; i++) {
+        var p = c[i].trim();
+        if (p.indexOf(name + "=") === 0) return p.substring(name.length + 1);
+      }
+      return null;
+    }
+  </script>
+
+  <style>
+    /* ===========================
+       Ocean System — BM portfolio
+       Mirrors pm17 "Forest" structure
+       =========================== */
+
+    /* --- Tokens --- */
+    :root {
+      --bg:             #FAFAF7;
+      --surface:        #F5F2EC;
+      --border:         #E5E0D8;
+      --text:           #2B2F33;
+      --text-secondary: #6B6560;
+      --text-muted:     #9A9189;
+      --accent:         #1B6B7A;
+      --accent-hover:   #14545F;
+      --accent-subtle:  #D5ECE8;
+      --radius:         6px;
+      --transition:     0.3s ease-in-out;
+    }
+
+    body.dark {
+      --bg:             #141618;
+      --surface:        #1C1F22;
+      --border:         #2A2D31;
+      --text:           #E8E4DF;
+      --text-secondary: #B0AAA2;
+      --text-muted:     #7A756E;
+      --accent:         #4DB8A4;
+      --accent-hover:   #6CD4BF;
+      --accent-subtle:  #1A302B;
+    }
+
+    /* --- Reset --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 62.5%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Base --- */
+    body {
+      font-family: "Inter var", "Inter", "SF Pro Text", Helvetica, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+      background-color: var(--bg);
+      transition: color var(--transition), background-color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, h4, h5, h6, p, li, button, input {
+      font-size: 1.7rem;
+      margin-bottom: 1.2em;
+      font-weight: 350;
+      transition: color var(--transition);
+    }
+
+    h1 { font-size: 3.2rem; font-weight: 500; color: var(--text); }
+    h2 { font-size: 2.4rem; font-weight: 500; color: var(--text); }
+    h3 { font-size: 2.1rem; font-weight: 400; color: var(--text); }
+    h4 { font-size: 1.8rem; font-weight: 400; }
+    h5 { font-size: 1.5rem; }
+
+    p, ul, ol, li { line-height: 1.58; }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-subtle);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+      transition: color var(--transition), text-decoration-color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    strong, b { font-weight: 500; }
+    em, i { font-style: italic; }
+
+    figcaption {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      line-height: 1.54;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    .font-meta {
+      font-family: "DM Mono", "Recursive", monospace;
+    }
+
+    .underlined {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* --- Flexbox Grid (simplified) --- */
+    .container-fluid {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1.2rem;
+      margin-right: -1.2rem;
+    }
+
+    .row.middle-xs { align-items: center; }
+
+    [class*="col-"] {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      width: 100%;
+    }
+
+    .col-xs-6  { width: 50%; }
+    .col-xs-12 { width: 100%; }
+
+    .start-xs { justify-content: flex-start; display: flex; }
+    .end-xs   { justify-content: flex-end; display: flex; }
+
+    @media only screen and (min-width: 64em) {
+      .col-md-2  { width: 16.6667%; }
+      .col-md-6  { width: 50%; }
+      .col-md-7  { width: 58.3333%; }
+      .col-md-8  { width: 66.6667%; }
+      .col-md-offset-2 { margin-left: 16.6667%; }
+    }
+
+    /* --- Spacing utilities --- */
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: 1.2rem; }
+    .mb-2 { margin-bottom: 1.8rem; }
+    .mb-3 { margin-bottom: 2.5rem; }
+    .mb-4 { margin-bottom: 3.6rem; }
+    .mb-5 { margin-bottom: 4.4rem; }
+    .mb-6 { margin-bottom: 6.4rem; }
+
+    /* --- Icon Button --- */
+    .IconButton {
+      display: block;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color var(--transition);
+      position: relative;
+    }
+
+    .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Theme toggle sun/moon icon via SVG data URI */
+    .IconButton.--theme::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 11px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'/%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'/%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--theme::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton:hover {
+      background-color: var(--accent-subtle);
+    }
+
+    /* Hamburger icon */
+    .IconButton.--menu::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--menu::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* Close icon */
+    .IconButton.--close::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6560' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    body.dark .IconButton.--close::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0AAA2' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+    }
+
+    /* --- Side Navigation (desktop) --- */
+    .SideNavigation {
+      display: none;
+      position: sticky;
+      top: 4rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .SideNavigation { display: block; }
+    }
+
+    .SideNavigation a {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2em;
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 1.5rem;
+    }
+
+    .SideNavigation a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .SideNavigation .IconButton {
+      position: relative;
+      left: -11px;
+      margin-bottom: 1.5em;
+    }
+
+    /* --- Mobile Navigation --- */
+    .MobileNavigation {
+      padding: 2.8rem 0;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .MobileNavigation { display: none; }
+    }
+
+    .MobileNavigation .IconButton.--theme {
+      margin: auto 0 auto auto;
+    }
+
+    /* --- Slide-out Menu --- */
+    .Menu {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70vw;
+      max-width: 32rem;
+      height: 100%;
+      padding: 2.8rem 2.4rem;
+      z-index: 3;
+      background-color: var(--surface);
+      box-shadow: 0 0 8px rgba(0,0,0,.08), 0 0 54px rgba(0,0,0,.15);
+      transform: translateX(-110%);
+      transition: transform var(--transition);
+      overflow-y: auto;
+    }
+
+    .Menu a {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .Menu a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .Menu .IconButton.--close {
+      margin-bottom: 2em;
+      position: relative;
+      left: -10px;
+    }
+
+    .Overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: rgba(0,0,0,0);
+      transition: background-color var(--transition);
+    }
+
+    body.menu-opened {
+      overflow: hidden;
+    }
+
+    body.menu-opened .Menu {
+      transform: translateX(0);
+    }
+
+    body.menu-opened .Overlay {
+      display: block;
+      z-index: 2;
+      background-color: rgba(0,0,0,.5);
+    }
+
+    /* --- Sections --- */
+    .Home__Intro {
+      padding: 0 0 10rem;
+    }
+
+    @media only screen and (min-width: 64em) {
+      .Home__Intro { padding: 12rem 0; }
+    }
+
+    .Home__Intro img {
+      max-width: 100%;
+      border-radius: var(--radius);
+    }
+
+    /* Ocean hero gradient placeholder */
+    .hero-ocean {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      background: linear-gradient(
+        160deg,
+        #0D4F5C 0%,
+        #1B6B7A 20%,
+        #2A9D8F 40%,
+        #4DB8A4 55%,
+        #8ED4C6 70%,
+        #D5ECE8 85%,
+        #F5F2EC 100%
+      );
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Foam texture overlay */
+    .hero-ocean::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120px 30px at 20% 65%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(ellipse 80px 18px at 55% 72%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(ellipse 140px 25px at 75% 58%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(ellipse 60px 14px at 35% 80%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(ellipse 100px 20px at 85% 45%, rgba(255,255,255,.28) 0%, transparent 100%),
+        radial-gradient(ellipse 90px 22px at 10% 48%, rgba(255,255,255,.22) 0%, transparent 100%);
+    }
+
+    body.dark .hero-ocean {
+      background: linear-gradient(
+        160deg,
+        #0A2E35 0%,
+        #0D4F5C 20%,
+        #145C5A 40%,
+        #1A7A6E 55%,
+        #2A9D8F 70%,
+        #1A302B 100%
+      );
+      opacity: 0.85;
+    }
+
+    /* --- Work & Writing sections --- */
+    .Home__Work,
+    .Home__Writing,
+    .Home__More {
+      padding: 8rem 0;
+    }
+
+    .work-list,
+    .writing-list {
+      list-style: none;
+    }
+
+    .work-list li,
+    .writing-list li {
+      margin-bottom: 4.8rem;
+    }
+
+    .work-list time,
+    .writing-list time {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      position: relative;
+      top: 2px;
+    }
+
+    .entry-tag {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      font-weight: 400;
+      display: block;
+      margin-top: 0.3em;
+    }
+
+    .tag-case-study { color: var(--accent); }
+    .tag-patent     { color: #C07A4B; }
+    .tag-venture    { color: #7A6BC0; }
+    .tag-writing    { color: var(--text-muted); }
+
+    body.dark .tag-case-study { color: var(--accent); }
+    body.dark .tag-patent     { color: #D4A574; }
+    body.dark .tag-venture    { color: #A994E0; }
+
+    .entry-title {
+      margin-bottom: 0.4em;
+    }
+
+    .entry-title a {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .entry-title a:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 3px;
+      color: var(--accent);
+    }
+
+    .entry-description {
+      font-size: 1.7rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      line-height: 1.58;
+    }
+
+    /* --- Contact --- */
+    .Home__Contact {
+      padding: 10rem 0 6rem;
+    }
+
+    .Home__Contact p {
+      line-height: 1.72;
+    }
+
+    .Home__Contact a {
+      color: var(--accent);
+      text-decoration-color: var(--accent-subtle);
+    }
+
+    .Home__Contact a:hover {
+      text-decoration-color: var(--accent);
+    }
+
+    footer {
+      padding: 4rem 0 3rem;
+    }
+
+    footer p {
+      font-family: "DM Mono", "Recursive", monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Section dividers --- */
+    .Home__Work,
+    .Home__Writing,
+    .Home__More {
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- Intro bio --- */
+    .bio p {
+      font-size: 1.8rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+    }
+
+    .bio p a {
+      color: var(--text);
+      font-weight: 450;
+    }
+
+    .bio p a:hover {
+      color: var(--accent);
+    }
+
+    /* --- Selection color --- */
+    ::selection {
+      background-color: var(--accent-subtle);
+      color: var(--text);
+    }
+
+    /* --- Responsive tweaks --- */
+    @media only screen and (max-width: 64em) {
+      .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .work-list .row,
+      .writing-list .row {
+        flex-direction: column;
+      }
+
+      .work-list time,
+      .writing-list time {
+        margin-bottom: 0.4rem;
+      }
+
+      .entry-tag {
+        display: inline;
+        margin-left: 0.8em;
+      }
+
+      .Home__Intro {
+        padding-top: 0;
+      }
+    }
+
+    @media only screen and (min-width: 64em) {
+      .container-fluid {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile Navigation -->
+  <div class="MobileNavigation">
+    <div class="container-fluid">
+      <div class="row middle-xs">
+        <div class="col-xs-6 start-xs">
+          <button class="IconButton --menu" onclick="toggleMenu();" aria-label="Open menu"></button>
+        </div>
+        <div class="col-xs-6 end-xs">
+          <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Menu (mobile) -->
+  <nav class="Menu">
+    <button class="IconButton --close" onclick="toggleMenu();" aria-label="Close menu"></button>
+    <a href="#">Home</a>
+    <a href="mailto:bm@enchant.co">Email</a>
+    <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+    <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+  </nav>
+  <div class="Overlay" onclick="toggleMenu();"></div>
+
+
+  <!-- ============================
+       INTRO
+       ============================ -->
+  <section class="Home__Intro">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <nav class="SideNavigation">
+            <button class="IconButton --theme" onclick="toggleDarkMode();" aria-label="Toggle dark mode"></button>
+            <a href="#">Home</a>
+            <a href="mailto:bm@enchant.co">Email</a>
+            <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>
+            <a href="https://www.threads.net/@brittanymederos" target="_blank">Threads</a>
+          </nav>
+        </div>
+        <div class="col-xs-12 col-md-7">
+          <figure class="mb-6">
+            <div class="hero-ocean" role="img" aria-label="Aerial ocean photograph with teal water and white foam"></div>
+            <figcaption>
+              <em>The cure for anything is salt water: sweat, tears, or the sea.</em> — Isak Dinesen
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <h2 class="underlined">Brittany Mederos</h2>
+          <div class="bio">
+            <p>
+              Hi, I'm Brittany! I'm into design, AI, building strong teams,
+              good food, being a mom, and the ocean.
+            </p>
+            <p>
+              Currently, I'm a Principal Design & Research Manager at
+              <a href="https://www.microsoft.com" target="_blank">Microsoft</a>,
+              leading a 0-to-1 product team building transformative learning
+              experiences powered by AI. I also co-run
+              <a href="https://www.enchant.co" target="_blank">Enchant</a>,
+              a family health product studio making it easier for families
+              to thrive.
+            </p>
+            <p>
+              Previously, I helped ship
+              <a href="https://designer.microsoft.com" target="_blank">Microsoft Designer</a>
+              and its integration into Copilot, pioneered AI features in PowerPoint,
+              and led design for Outlook and StaffHub. Before Microsoft, I designed
+              supply chain tools at
+              <a href="https://www.elementum.com" target="_blank">Elementum</a>
+              and crafted experiences for government at the CFPB.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       WORK
+       ============================ -->
+  <section class="Home__Work">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2 class="underlined mb-6">Work</h2>
+        </div>
+      </div>
+
+      <ul class="work-list">
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2025</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">AI Learning Product</a></p>
+              <p class="entry-description">Leading design and research for a 0-to-1 product team launching a transformative learning experience powered by AI. Building a high-performing, inclusive team within an org shifting from service-oriented to product-driven.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2023</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">Designer in Copilot</a></p>
+              <p class="entry-description">Led the integration of Microsoft Designer's Editor canvas into Copilot chat for AI-driven image generation and editing. Featured in Microsoft's first Super Bowl campaign in years.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2021</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">Microsoft Designer</a></p>
+              <p class="entry-description">Co-led the pitch to Microsoft SLT and Satya Nadella, securing funding for a new M365 app to compete in the Creator Economy. Designed and shipped the core AI-powered Editor experience.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2020</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">PowerPoint + Teams</a></p>
+              <p class="entry-description">Spearheaded the integration of PowerPoint into Microsoft Teams and led development of remote presenting tools during the pandemic, keeping Microsoft relevant in hybrid work.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2019</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">PowerPoint AI</a></p>
+              <p class="entry-description">Pioneered AI solutions within PowerPoint &mdash; auto-magically designing slides, coaching speakers to improve their skills, and creating more inclusive presentation experiences.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2015</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="projects/elementum-transport.html">Elementum: Transport</a></p>
+              <p class="entry-description">Real-time logistics visibility helping logistics managers be more proactive and spend less time tracking down spreadsheets.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2014</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="projects/elementum-situation.html">Elementum: Situation Room</a></p>
+              <p class="entry-description">Designing a control room to inspire collaboration between operational teams across the global supply chain.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2013</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="projects/cfpb-college.html">CFPB: Paying for College</a></p>
+              <p class="entry-description">Helping students make smarter financial decisions about college with transparent, accessible tools.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2012</time>
+              <span class="entry-tag tag-case-study">Case Study</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="projects/cfpb-report.html">CFPB: Strategic Report</a></p>
+              <p class="entry-description">A new type of government report &mdash; a living document, an online interactive experience &mdash; for the CFPB to send to Congress.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       WRITING
+       ============================ -->
+  <section class="Home__Writing">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2 class="underlined mb-6">Writing</h2>
+        </div>
+      </div>
+
+      <ul class="writing-list">
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2018</time>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="http://portfolio.enchant.co" target="_blank">Crafting Your UX Portfolio</a></p>
+              <p class="entry-description">Co-authored a step-by-step guide to finding your next UX job. After reaching our sales goal, we opened it up publicly on Medium.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2017</time>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="https://medium.com/@brim/microsoft-staffhub-customer-centered-design-driven-bad9a4b5a38f" target="_blank">Microsoft StaffHub: Customer-centered design</a></p>
+              <p class="entry-description">A deep dive into the customer-centered design process behind Microsoft StaffHub, an Office 365 product for firstline workers.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2015</time>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="https://medium.com/@brim" target="_blank">Top prototyping tools for interaction designers</a></p>
+              <p class="entry-description">A survey of the best prototyping tools available for interaction designers to bring ideas to life quickly.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       PATENTS & VENTURES
+       ============================ -->
+  <section class="Home__More">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2 class="underlined mb-6">Patents</h2>
+        </div>
+      </div>
+
+      <ul class="work-list">
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2020</time>
+              <span class="entry-tag tag-patent">Patent</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="https://patents.justia.com/inventor/brittany-elizabeth-mederos" target="_blank">Improving Online Presentations Using Machine Learning</a></p>
+              <p class="entry-description">Systems and methods for analyzing presenter content and audience reactions in real-time using ML models, generating feedback to improve online presentations.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2016</time>
+              <span class="entry-tag tag-patent">Patent</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="https://patents.google.com/patent/US20160217399A1/en" target="_blank">Monitoring Shipments in Supply &amp; Logistics Chains</a></p>
+              <p class="entry-description">Graph-based data structures for tracking shipments and detecting delays across supply chain networks for Fortune 500 companies.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 6rem;">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2 class="underlined mb-6">Ventures</h2>
+        </div>
+      </div>
+
+      <ul class="work-list">
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2016 &ndash; Now</time>
+              <span class="entry-tag tag-venture">Studio</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="https://www.enchant.co" target="_blank">Enchant</a></p>
+              <p class="entry-description">A tiny product studio that builds tools and backs purpose-driven teams making great health more accessible for everyone &mdash; starting with families and their communities.</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div class="col-xs-12 col-md-offset-2 col-md-2">
+              <time>2019 &ndash; 2023</time>
+              <span class="entry-tag tag-venture">Venture</span>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <p class="entry-title"><a href="#">Florens</a></p>
+              <p class="entry-description">Co-founded and ran a venture exploring new ideas at the intersection of design, community, and technology.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       CONTACT
+       ============================ -->
+  <section class="Home__Contact">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <h2 class="underlined mb-4">Let's connect</h2>
+          <p>
+            Send me a note via <a href="mailto:bm@enchant.co">email</a> or
+            connect on <a href="https://www.linkedin.com/in/brittanymederos/" target="_blank">LinkedIn</a>.
+            I'd love to chat about design, AI, leadership, or your next big idea.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-2">
+          <footer>
+            <p>Made with care in California.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
