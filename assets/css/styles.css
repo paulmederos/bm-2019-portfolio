@@ -1778,21 +1778,11 @@ figure {
   background-repeat: no-repeat;
   background-size: cover; }
 
-.stack-container {
-  z-index: 1;
-  width: 100%;
-  padding: 0 6.4rem; }
-  @media (max-width: 30em) {
-    .stack-container {
-      padding: 0 1.4rem; } }
-
 .stack-of-work {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  z-index: 1;
-  width: 100%;
   list-style: none;
-  margin-top: 6.4rem;
+  margin-top: 2.4rem;
   padding: 0;
   gap: 2.4rem; }
   @media (max-width: 30em) {
