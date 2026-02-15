@@ -447,10 +447,11 @@ figure {
   }
 
 
-  li:nth-child(2) { color: transparentize($primary_font_color, .35) }
-  li:nth-child(3) { color: transparentize($primary_font_color, .45) }
-  li:nth-child(4) { color: transparentize($primary_font_color, .6) }
-  li:nth-child(5) { color: transparentize($primary_font_color, .6) }
+  li:nth-child(2) { color: transparentize($primary_font_color, .25) }
+  li:nth-child(3) { color: transparentize($primary_font_color, .35) }
+  li:nth-child(4) { color: transparentize($primary_font_color, .45) }
+  li:nth-child(5) { color: transparentize($primary_font_color, .55) }
+  li:nth-child(6) { color: transparentize($primary_font_color, .6) }
 
   li a { color: inherit; }
   li a:hover { color: $color_enchant; }
@@ -607,6 +608,60 @@ figure {
   }
 }
 
+// ---- Highlights Grid (Microsoft work) ----
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  margin-top: 4rem;
+
+  @include mq-personal {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}
+
+.highlight-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2.4rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.06);
+  @include transition;
+
+  &:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    @include transition;
+  }
+}
+
+.highlight-year {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color_enchant;
+  letter-spacing: 0.05em;
+}
+
+.highlight-title {
+  font-size: 2rem;
+  margin: 0.4em 0 0.5em;
+
+  @include mq-personal {
+    font-size: 1.7rem;
+  }
+}
+
+.highlight-description {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: $color_warm_slate;
+}
+
+// ---- Adventures / Writing / Patents / Ventures ----
+
 .adventures {
   background-color: #fafafa;
   padding: 12rem 0;
@@ -616,6 +671,107 @@ figure {
   h2, p {
     z-index: 1;
     max-width: 455px;
+  }
+}
+
+// Publications
+.publications-list {
+  margin-top: 2rem;
+}
+
+.publication-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8;
+
+  &:first-child { padding-top: 0; }
+  &:last-child { border-bottom: none; }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: $color_warm_slate;
+    margin-bottom: 0.8em;
+    max-width: 100%;
+  }
+
+  a {
+    font-size: 1.4rem;
+    color: $color_enchant;
+    font-weight: 500;
+  }
+}
+
+// Patents
+.patents-list {
+  margin-top: 2rem;
+}
+
+.patent-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8;
+
+  &:first-child { padding-top: 0; }
+  &:last-child { border-bottom: none; }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3em;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: $color_warm_slate;
+    margin-bottom: 0.5em;
+    max-width: 100%;
+  }
+}
+
+.patent-assignee {
+  font-weight: 600;
+  color: $primary_font_color !important;
+  font-size: 1.3rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.patent-coinventors {
+  font-size: 1.2rem !important;
+  color: rgba(0,0,0,.4) !important;
+  font-style: italic;
+}
+
+// Ventures
+.ventures-list {
+  margin-top: 2rem;
+}
+
+.venture-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8;
+
+  &:first-child { padding-top: 0; }
+  &:last-child { border-bottom: none; }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: $color_warm_slate;
+    margin-bottom: 0.8em;
+    max-width: 100%;
+  }
+
+  a {
+    font-size: 1.4rem;
+    color: $color_enchant;
+    font-weight: 500;
   }
 }
 

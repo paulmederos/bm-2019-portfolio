@@ -1731,12 +1731,14 @@ figure {
       .brief-resume li {
         margin-bottom: 2.5em; } }
   .brief-resume li:nth-child(2) {
-    color: rgba(45, 35, 51, 0.65); }
+    color: rgba(45, 35, 51, 0.75); }
   .brief-resume li:nth-child(3) {
-    color: rgba(45, 35, 51, 0.55); }
+    color: rgba(45, 35, 51, 0.65); }
   .brief-resume li:nth-child(4) {
-    color: rgba(45, 35, 51, 0.4); }
+    color: rgba(45, 35, 51, 0.55); }
   .brief-resume li:nth-child(5) {
+    color: rgba(45, 35, 51, 0.45); }
+  .brief-resume li:nth-child(6) {
     color: rgba(45, 35, 51, 0.4); }
   .brief-resume li a {
     color: inherit; }
@@ -1776,46 +1778,29 @@ figure {
   background-repeat: no-repeat;
   background-size: cover; }
 
-.stack-container {
-  z-index: 1;
-  overflow: scroll;
-  width: 100%;
-  -ms-overflow-style: none; }
-  .stack-container::-webkit-scrollbar {
-    display: none; }
-
 .stack-of-work {
-  display: flex;
-  position: relative;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  z-index: 1;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   list-style: none;
-  margin-top: 6.4rem;
-  padding: 0 6.4rem; }
+  margin-top: 2.4rem;
+  padding: 0;
+  gap: 2.4rem; }
   @media (max-width: 30em) {
     .stack-of-work {
-      padding: 0 1.4rem; } }
+      grid-template-columns: 1fr; } }
 
 .case-study-preview {
-  flex: 0 0 auto;
   background-color: white;
   border-radius: 8px;
-  width: 360px;
-  margin-right: 3.6rem;
+  width: 100%;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   cursor: pointer;
   transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
   .case-study-preview:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 0px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
-  @media (max-width: 30em) {
-    .case-study-preview {
-      max-width: 280px;
-      margin-right: 2.1rem; } }
 
 .case-study-image {
   height: 20.5rem;
@@ -1861,6 +1846,43 @@ figure {
     .case-study-content button {
       font-size: 1.3rem; } }
 
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+  margin-top: 4rem; }
+
+.highlight-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2.4rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.06);
+  transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
+  .highlight-card:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
+
+.highlight-year {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #E91F64;
+  letter-spacing: 0.05em; }
+
+.highlight-title {
+  font-size: 2rem;
+  margin: 0.4em 0 0.5em; }
+  @media (max-width: 30em) {
+    .highlight-title {
+      font-size: 1.7rem; } }
+
+.highlight-description {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: #595050; }
+
 .adventures {
   background-color: #fafafa;
   padding: 12rem 0;
@@ -1869,6 +1891,83 @@ figure {
   .adventures h2, .adventures p {
     z-index: 1;
     max-width: 455px; }
+
+.publications-list {
+  margin-top: 2rem; }
+
+.publication-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8; }
+  .publication-item:first-child {
+    padding-top: 0; }
+  .publication-item:last-child {
+    border-bottom: none; }
+  .publication-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5em; }
+  .publication-item p {
+    font-size: 1.4rem;
+    color: #595050;
+    margin-bottom: 0.8em;
+    max-width: 100%; }
+  .publication-item a {
+    font-size: 1.4rem;
+    color: #E91F64;
+    font-weight: 500; }
+
+.patents-list {
+  margin-top: 2rem; }
+
+.patent-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8; }
+  .patent-item:first-child {
+    padding-top: 0; }
+  .patent-item:last-child {
+    border-bottom: none; }
+  .patent-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3em; }
+  .patent-item p {
+    font-size: 1.4rem;
+    color: #595050;
+    margin-bottom: 0.5em;
+    max-width: 100%; }
+
+.patent-assignee {
+  font-weight: 600;
+  color: #2D2333 !important;
+  font-size: 1.3rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em; }
+
+.patent-coinventors {
+  font-size: 1.2rem !important;
+  color: rgba(0, 0, 0, 0.4) !important;
+  font-style: italic; }
+
+.ventures-list {
+  margin-top: 2rem; }
+
+.venture-item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #E8E8E8; }
+  .venture-item:first-child {
+    padding-top: 0; }
+  .venture-item:last-child {
+    border-bottom: none; }
+  .venture-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5em; }
+  .venture-item p {
+    font-size: 1.4rem;
+    color: #595050;
+    margin-bottom: 0.8em;
+    max-width: 100%; }
+  .venture-item a {
+    font-size: 1.4rem;
+    color: #E91F64;
+    font-weight: 500; }
 
 .stack-of-adventures {
   z-index: 1;
@@ -2002,13 +2101,17 @@ figure {
     color: rgba(45, 35, 51, 0.8); }
 
 .fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 56px;
   height: 56px;
   border: none;
   border-radius: 50%;
   background-color: #E91F64;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99); }
+  transition: all 0.32s cubic-bezier(0.62, 0.28, 0.23, 0.99);
+  text-decoration: none; }
   .fab:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
     background-color: #ec3b77;
@@ -2038,7 +2141,6 @@ figure {
   background-position: center center;
   background-repeat: no-repeat; }
   .icon.icon-back {
-    left: 7px;
     background-size: 15px 24px;
     background-image: url("../images/icon-back.png"); }
 
