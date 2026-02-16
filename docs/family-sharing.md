@@ -358,26 +358,124 @@ her perspective, and would only include people she's connected to.
 
 ---
 
+## Resolved questions
+
+1. **Invite format:** Short code (like Life360). Codes are simple and
+   unambiguous. Codes should be single-use: once accepted, the code is
+   consumed. If the invite expires or is revoked, the inviter generates a
+   new code. No need for rotation — each code is a one-shot token.
+
+2. **Connection removal — mutual or unilateral?** Either party can remove.
+   No notification sent — the disconnected person simply disappears from the
+   other's board. Clean and low-drama.
+
+3. **Account deletion:** All connections removed. Connected parties see the
+   person disappear from their board. Data associated with the deleted account
+   is purged per our data retention policy.
+
+4. **Maximum connections:** Capped at 10 for v1. Covers a large family or a
+   moderate mix of family + trusted others. Can revisit later.
+
 ## Open questions
 
-1. **Invite format:** Link (URL with token) vs. short code (like Life360)?
-   Links are easier to share via iMessage; codes are easier to read aloud.
-   Could support both. Leaning toward link-first since the primary sharing
-   mechanism is digital (text/email).
+5. **Minor accounts and COPPA compliance:** With the 1:1 model, kids own
+   their own accounts and data. This means COPPA likely applies for children
+   under 13. See "COPPA considerations" section below for details and
+   recommended approach. Needs legal review before launch.
 
-2. **Connection removal — mutual or unilateral?** Currently either party can
-   remove. Should the other party be notified? Leaning yes — a simple
-   "[Name] has disconnected" notification, no details.
+---
 
-3. **Account deletion:** What happens to connections when an account is deleted?
-   All connections should be removed. Connected parties see the person disappear
-   from their board. Data associated with the deleted account is purged per
-   our data retention policy.
+## COPPA considerations
 
-4. **Maximum connections:** Do we cap it? Life360 caps circles at 99. For v1,
-   a reasonable cap (e.g. 20 connections) prevents abuse without limiting
-   real use cases.
+With the shift to "every person has their own account" (including kids), we
+move squarely into COPPA territory for children under 13. This is a meaningful
+compliance obligation — fines can reach $42,530 per violation — but it's
+tractable if we design for it from the start.
 
-5. **Minor accounts:** Do we need a formal "this account belongs to a minor"
-   flag? May be needed for COPPA compliance if we're handling data for
-   children under 13. Worth a legal review before launch.
+### When does COPPA apply?
+
+COPPA applies when an operator (us) has **actual knowledge** that a user is
+under 13, or when the service is **directed at children**. Our app isn't
+specifically directed at children — it's a family habits app — but the moment
+a parent creates an account for their 8-year-old, we have actual knowledge.
+
+### What COPPA requires
+
+1. **Age gate at account creation.** Collect date of birth (or age range).
+   If under 13, route to the parental consent flow before collecting any
+   personal information beyond what's needed to request consent.
+
+2. **Verifiable Parental Consent (VPC).** Before collecting a child's data,
+   we need to verify that a parent has actually consented. Approved methods
+   include:
+   - Credit/debit card verification (charge a small amount, refundable)
+   - Knowledge-based authentication (dynamic questions only a parent would know)
+   - Government-issued ID check (must delete ID after verification)
+   - Text-plus verification (text to parent's phone + additional step)
+   - Signed consent form (email/scan/fax — clunky but valid)
+   - Video conference with trained personnel (overkill for us)
+
+   **Note:** A parent's App Store password alone is NOT sufficient for VPC,
+   though it can be part of a combined method.
+
+3. **Direct notice to parent.** Before collecting data, we must tell the
+   parent: what data we collect, why, and who we share it with. The parent
+   must be able to consent to collection/use without consenting to
+   third-party disclosure.
+
+4. **Parental access and deletion rights.** Parents must be able to:
+   - Review what data we've collected about their child
+   - Request deletion of their child's data
+   - Revoke consent (which means we stop collecting and delete)
+
+5. **Data minimization and retention limits.** Only collect what's necessary.
+   Don't retain children's data longer than reasonably needed for the
+   purpose it was collected.
+
+6. **No behavioral advertising or profiling** using children's data without
+   separate, specific parental consent (2025 rule amendment).
+
+### Recommended approach for v1
+
+**Lean into the family context.** Our strongest position: the parent is the
+one creating the child's account, on the child's device, in their presence.
+The parent is already involved by design.
+
+Suggested flow for under-13 accounts:
+
+```
+1. Parent taps "Invite Someone" on their device → gets an invite code
+2. On kid's device: download app → "Create Account"
+3. Age gate: "What's your date of birth?" → under 13 detected
+4. App says: "A parent or guardian needs to set this up. Hand this to
+   your parent."
+5. Parent enters their own email address for VPC
+6. Parent receives verification email/text with a confirmation code
+   (email-plus or text-plus method)
+7. Parent confirms → child's account is created
+8. Parent enters the invite code on kid's device → connection established
+```
+
+This keeps the consent flow inside the natural setup ceremony the parent
+is already doing. It adds ~2 extra steps, not a whole separate process.
+
+**What we'd need to build:**
+- Age gate screen at registration
+- Parent email/phone collection step for under-13 accounts
+- VPC verification flow (email-plus or text-plus)
+- Parental dashboard: view/delete child's data, revoke consent
+- Data retention policy scoped to COPPA requirements
+- COPPA-specific privacy policy disclosures
+
+**What we can punt:**
+- Government ID verification (overkill for v1, email-plus or text-plus
+  is sufficient for our data types)
+- Safe harbor certification (nice-to-have, not required)
+- In-app parental controls beyond what connections already provide
+
+### Key compliance deadline
+
+The FTC's 2025 COPPA rule amendments take full effect **April 22, 2026**.
+Any launch after that date must comply with the updated requirements,
+including the expanded definition of personal information (biometrics,
+precise geolocation) and stricter data retention rules.
