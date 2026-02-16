@@ -354,9 +354,9 @@ her perspective, and would only include people she's connected to.
 
 ### Phase 5: Permission tiers (if needed)
 - View-only connections (e.g. grandpa can see but not edit the kids' habits)
-- Health data visibility toggle per-connection
-- "Caregiver" connection type (view + limited edit, no health data)
-- Per-child-profile sharing controls (share Milo with grandpa but not Lily)
+- "Caregiver" connection type (view + limited edit)
+- Edit vs. view-only toggle per shared child profile
+- Connection labels / types as UI sugar (not permission primitives)
 
 ### Phase 6: Beyond family
 - Connection types / labels (family, coach, doctor, friend)
@@ -382,7 +382,10 @@ where we did:
 **Accounts and connections (Model C for adults):**
 - Account creation via Sign in with Apple (13+ only)
 - Invite via short code (single-use, 7-day expiry)
-- Accept invite → connection created → mutual read/write
+- Accept invite → connection created → sharing sheet appears
+- Per-connection toggle sheet: habits (always on), health data (off
+  by default), each child profile (off by default)
+- Toggle sheet accessible anytime via People tab → connection settings
 - Remove connection (either party, no notification)
 - 10-connection cap
 
@@ -392,7 +395,8 @@ where we did:
 - No Apple Health sync for child profiles (v1)
 - No email/Apple ID needed for the child
 - Parent controls which connections can see which child profiles
-  (default: share all child profiles with new connections)
+  via per-connection toggle sheet (default: kids not shared until
+  parent explicitly toggles them on)
 
 **Kid's device experience:**
 - Parent signs into kid's device with their own account
@@ -472,26 +476,41 @@ Paul's phone:
 Sarah's phone:
   5. Download app → Create Account (SiwA) → Sarah's profile created
   6. Enter code FMLY-7X2K → "Paul wants to connect" → Accept
-  7. Sarah now sees: her profile, Paul's profile, Milo, Lily
+  7. Sharing sheet: "What to share with Paul?"
+     → Toggles on: health data, Milo, Lily  (she'd toggle all on)
+  8. Paul gets same sheet: "What to share with Sarah?"
+     → Toggles on: health data, Milo, Lily
+  9. Sarah now sees: her profile, Paul's habits + health, Milo, Lily
 
 Milo's iPad:
-  8. Download app → "Setting up for my child"
-  9. Paul signs in with his account (SiwA)
-  10. Selects "Milo" → sets PIN: 1234
-  11. Milo opens app with PIN → sees only his habits and decks
+  10. Download app → "Setting up for my child"
+  11. Paul signs in with his account (SiwA)
+  12. Selects "Milo" → sets PIN: 1234
+  13. Milo opens app with PIN → sees only his habits and decks
 
 Lily's iPad:
-  12. Same as Milo's setup, selects "Lily" → PIN: 5678
+  14. Same as Milo's setup, selects "Lily" → PIN: 5678
 
-Sarah also wants to manage kids from her phone:
-  13. Paul shares Milo + Lily profiles with Sarah's connection
-      (this happened automatically at step 6 with default settings)
-  14. Sarah sees Milo and Lily on her board, can edit their habits
+DAY 2: Paul invites his dad
 
-Total time: ~15 minutes for the whole family.
-Total accounts created: 2 (Paul, Sarah)
-Total connections: 1 (Paul ↔ Sarah)
+Paul's phone:
+  15. Tap "Invite Someone" → gets code: FMLY-9R3M
+
+Dad's phone:
+  16. Download app → Create Account (SiwA) → Dad's profile created
+  17. Enter code FMLY-9R3M → Accept
+  18. Sharing sheet: "What to share with Paul?"
+      → Toggles on: nothing extra (just habits, default)
+  19. Paul gets sheet: "What to share with Dad?"
+      → Toggles on: Milo, Lily. Leaves health off.
+  20. Dad sees: his profile, Paul's habits, Milo, Lily
+      Dad does NOT see: Paul's health data
+
+Total time: ~20 minutes for the whole family + grandpa.
+Total accounts created: 3 (Paul, Sarah, Dad)
+Total connections: 2 (Paul ↔ Sarah, Paul ↔ Dad)
 Total child profiles: 2 (Milo, Lily — under Paul's account)
+Sharing: Sarah sees everything. Dad sees habits + kids, no health.
 ```
 
 ### Data model (final, v1)
@@ -519,6 +538,8 @@ Connection
   - inviter_account_id (FK → Account)
   - invitee_account_id (FK → Account)
   - status: pending | accepted | removed
+  - inviter_shares_health (boolean, default false)
+  - invitee_shares_health (boolean, default false)
   - created_at
   - accepted_at
 
@@ -566,6 +587,80 @@ DeviceSession
 
 4. **Maximum connections:** Capped at 10 for v1. Covers a large family or a
    moderate mix of family + trusted others. Can revisit later.
+
+5. **Per-connection sharing controls.** Not everyone sees everything. Three
+   approaches considered:
+
+   **Option A: Connection types with preset permissions.**
+   Pick a type when you invite someone: "Partner", "Family", "Friend",
+   "Professional." Each type has preset visibility rules.
+   - Pro: Simple mental model, fast to set up
+   - Con: Presets won't match everyone's expectations. Does grandpa get
+     "Family (full)" or "Family (limited)"? What if you want your friend
+     to see one kid but not the other? You end up needing overrides, which
+     makes the types feel like a lie.
+
+   **Option B: Per-connection toggle sheet.**
+   After connecting, you see a simple settings sheet for that connection
+   with boolean toggles:
+   ```
+   ┌─────────────────────────────────────┐
+   │ Sharing with: Dad                   │
+   │                                     │
+   │ My habits          [on]             │
+   │ My health data     [off]            │
+   │ Milo's profile     [on]             │
+   │ Lily's profile     [on]             │
+   └─────────────────────────────────────┘
+   ```
+   - Pro: Explicit, understandable, per-child granularity
+   - Con: Slightly more work to set up. Need a good moment to surface it.
+
+   **Option C: Invite-time presets + post-connect toggles (hybrid).**
+   When creating an invite, pick a quick preset ("Share everything",
+   "Just my habits", "My habits + kids"). After connection, fine-tune
+   with the toggle sheet from Option B.
+   - Pro: Fast setup for the common cases, full control when you need it
+   - Con: Two mental models (preset vs. toggles). Presets that don't
+     exactly match become confusing.
+
+   **Decision: Option B — per-connection toggle sheet.**
+
+   Reasoning:
+   - It's the most honest UI. You see exactly what's shared, toggle by
+     toggle. No hidden presets, no "what does Family mean again?"
+   - The number of toggles is small: 1 (my habits, always on) +
+     1 (health data) + N (child profiles). For a family with 2 kids,
+     that's 4 toggles. Totally manageable.
+   - The toggle sheet surfaces at two moments:
+     1. **Right after accepting a connection** — "What would you like to
+        share with [name]?" with sensible defaults (habits on, health
+        off, kids off).
+     2. **Anytime later** — via the connection's settings in People tab.
+   - This avoids the preset problem entirely. No need for "Partner" vs.
+     "Family" vs. "Friend" labels. The toggles *are* the configuration.
+   - It also means the `ProfileShare` table already in our data model is
+     the right primitive — one row per child profile per connection.
+     Health data visibility is a flag on the Connection itself.
+
+   Default for new connections:
+   - My habits: **always visible** (that's the point of connecting)
+   - My health data: **off**
+   - Each child profile: **off**
+   - The "share with" sheet appears immediately after accepting, so the
+     user makes an active choice before anything beyond habits is visible.
+
+   Exception: if you create a child profile *after* an existing
+   connection, you're prompted: "Share [child name] with [connection]?"
+   — not auto-shared.
+
+   Real-world scenarios with this model:
+   | Connection | Habits | Health | Milo | Lily |
+   |---|---|---|---|---|
+   | Sarah (spouse) | on | on | on | on |
+   | Dad (grandpa) | on | off | on | on |
+   | Jake (friend) | on | off | off | off |
+   | PT | on | on | off | off |
 
 ## Open questions
 
