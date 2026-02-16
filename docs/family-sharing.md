@@ -435,43 +435,237 @@ a parent creates an account for their 8-year-old, we have actual knowledge.
 6. **No behavioral advertising or profiling** using children's data without
    separate, specific parental consent (2025 rule amendment).
 
-### Recommended approach for v1
+### Account creation flows
 
-**Lean into the family context.** Our strongest position: the parent is the
-one creating the child's account, on the child's device, in their presence.
-The parent is already involved by design.
+There are three flows depending on who's creating the account. The age gate
+is the fork point — it routes people into the right path.
 
-Suggested flow for under-13 accounts:
+#### Flow 1: Adult creates their own account (13+)
+
+Standard registration. No COPPA involvement.
 
 ```
-1. Parent taps "Invite Someone" on their device → gets an invite code
-2. On kid's device: download app → "Create Account"
-3. Age gate: "What's your date of birth?" → under 13 detected
-4. App says: "A parent or guardian needs to set this up. Hand this to
-   your parent."
-5. Parent enters their own email address for VPC
-6. Parent receives verification email/text with a confirmation code
-   (email-plus or text-plus method)
-7. Parent confirms → child's account is created
-8. Parent enters the invite code on kid's device → connection established
+┌─────────────────────────────────────────────────┐
+│ 1. "Create Account"                             │
+│ 2. "What's your date of birth?" → 13 or older   │
+│ 3. Sign in with Apple (or email/password)        │
+│ 4. Set display name, avatar                      │
+│ 5. Account created → lands on empty board        │
+│ 6. "Invite Someone" to start connecting          │
+└─────────────────────────────────────────────────┘
 ```
 
-This keeps the consent flow inside the natural setup ceremony the parent
-is already doing. It adds ~2 extra steps, not a whole separate process.
+Data model:
+```
+Account
+  - email: their own
+  - date_of_birth: stored (used for age verification)
+  - is_minor: false
+  - parent_account_id: null
+```
 
-**What we'd need to build:**
-- Age gate screen at registration
-- Parent email/phone collection step for under-13 accounts
-- VPC verification flow (email-plus or text-plus)
-- Parental dashboard: view/delete child's data, revoke consent
-- Data retention policy scoped to COPPA requirements
-- COPPA-specific privacy policy disclosures
+Nothing special here. Standard onboarding.
 
-**What we can punt:**
-- Government ID verification (overkill for v1, email-plus or text-plus
-  is sufficient for our data types)
+#### Flow 2: Teen creates their own account (13-17)
+
+Functionally identical to the adult flow. COPPA doesn't apply to 13+.
+We may want to flag them as a minor for future feature gating (e.g. if
+we add social features later), but no legal consent requirements.
+
+```
+┌─────────────────────────────────────────────────┐
+│ Same as Flow 1, but:                            │
+│ - is_minor: true (informational flag)           │
+│ - No parental consent required                  │
+│ - No restrictions on account features           │
+└─────────────────────────────────────────────────┘
+```
+
+#### Flow 3: Child account (under 13) — requires parental consent
+
+This is the COPPA flow. The key insight: **the parent is physically present**
+setting up the kid's device. We use that natural context.
+
+```
+ON THE KID'S DEVICE (parent is holding it):
+
+┌──────────────────────────────────────────────────────────────────┐
+│ 1. "Create Account"                                             │
+│                                                                  │
+│ 2. "What's your date of birth?" → under 13 detected             │
+│                                                                  │
+│ 3. COPPA notice screen:                                          │
+│    "This account is for someone under 13.                        │
+│     A parent or guardian needs to set this up."                   │
+│                                                                  │
+│    [I'm the parent — continue]                                   │
+│                                                                  │
+│ 4. Direct notice to parent:                                      │
+│    "Before creating this account, here's what we collect         │
+│     and why:"                                                    │
+│    • Display name and avatar (to identify them in the app)       │
+│    • Habit data (the core feature — tracking habits)             │
+│    • Health data (only if Apple Health sync is enabled)           │
+│    • We don't share data with third parties for advertising      │
+│    • We don't use data for profiling or behavioral targeting     │
+│                                                                  │
+│    [I understand — continue]                                     │
+│                                                                  │
+│ 5. Parent enters THEIR OWN email or phone number                 │
+│    "Enter your email so we can verify your consent."             │
+│                                                                  │
+│ 6. We send a verification code to parent's email/phone           │
+│    (this is the "email-plus" or "text-plus" VPC method)          │
+│                                                                  │
+│ 7. Parent enters the code on kid's device                        │
+│    → Consent verified                                            │
+│                                                                  │
+│ 8. Set up kid's profile:                                         │
+│    - Display name ("What should we call them?")                  │
+│    - Avatar                                                      │
+│    - No email needed for the kid — parent's email is on file     │
+│                                                                  │
+│ 9. Account created → lands on empty board                        │
+│                                                                  │
+│ 10. Parent enters their invite code → connection established     │
+│     Kid now appears on parent's board, and vice versa            │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+Data model for a child account:
+```
+Account
+  - email: null (kid doesn't need one)
+  - date_of_birth: stored
+  - is_minor: true
+  - parent_account_id: → links to the parent's Account.id
+  - coppa_consent_at: timestamp
+  - coppa_consent_method: "email_plus" | "text_plus"
+  - parent_contact: parent's email or phone (used for VPC)
+
+ParentalConsent (separate record for audit trail)
+  - id
+  - child_account_id
+  - parent_account_id (nullable — set when parent also has an account)
+  - parent_contact: email or phone used for verification
+  - consent_method: "email_plus" | "text_plus"
+  - consented_at: timestamp
+  - revoked_at: nullable timestamp
+  - data_notice_version: "v1" (tracks which notice they agreed to)
+```
+
+**How we know the kid "belongs to" the parent:**
+
+The `parent_account_id` link is established during account creation. The
+parent's email/phone is captured and verified via the VPC flow. This gives
+us two linkage mechanisms:
+
+1. **`parent_account_id`** — direct FK to the parent's Account, set when the
+   parent already has an account (most common: they created their own account
+   first, then set up the kid's). This powers the in-app parental dashboard.
+
+2. **`parent_contact`** on the ParentalConsent record — the verified email or
+   phone. This is the fallback if the parent doesn't have an account yet
+   (unlikely but possible), and it's the audit trail for "who consented."
+
+If the parent later creates their own account with that same email, we can
+auto-link the `parent_account_id` at that point.
+
+### How the parent exercises COPPA rights
+
+The FTC says parental access must not be ["unduly burdensome"](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions).
+They don't explicitly require self-serve, but they strongly imply it. A
+manual email process is technically compliant but feels like a bad look for
+an app that's supposed to be parent-friendly.
+
+**Recommendation: self-serve in-app, with email as fallback.**
+
+It's not much extra work because the parent is already connected to the kid
+and can already see the kid's data via the connection. We're mostly adding
+a "manage" layer on top of what they can already see.
+
+#### Parental data dashboard (in-app, self-serve)
+
+Accessible from the parent's own app, scoped to linked child accounts:
+
+```
+Settings → Child Accounts
+├── Milo (age 8)
+│   ├── View collected data
+│   │   └── Shows: display name, avatar, habits, decks,
+│   │       health data (if enabled), account creation date
+│   ├── Download data (export as JSON/PDF)
+│   ├── Delete all data
+│   │   └── Confirmation: "This will permanently delete Milo's
+│   │       account and all associated data. This cannot be undone."
+│   │   └── Triggers: account deletion, connection removal,
+│   │       data purge per retention policy
+│   └── Revoke consent
+│       └── "This will disable Milo's account. No new data will
+│           be collected. You can delete the account entirely or
+│           re-consent later."
+│       └── Triggers: account deactivation, consent revoked flag
+├── Lily (age 5)
+│   └── (same options)
+```
+
+**What "revoke consent" does vs "delete data":**
+- **Revoke consent**: Account is frozen. No new data collected. Existing
+  data is retained (parent might want to re-consent later). Kid sees
+  "Your account is paused — ask your parent."
+- **Delete data**: Full account deletion. Everything gone. Irreversible.
+  This is the nuclear option.
+
+Parents can do either. The FTC requires both options.
+
+#### Email fallback (for parents without the app)
+
+If a parent loses access to the app, they can email us (address in privacy
+policy). We verify their identity against the `parent_contact` on file,
+then process their request manually. This covers edge cases but shouldn't
+be the primary path.
+
+### What we'd need to build (detailed)
+
+**Registration changes:**
+- Age gate screen (date of birth picker)
+- Under-13 detection → route to COPPA flow
+- COPPA notice screen (what we collect and why)
+- Parent email/phone input screen
+- Verification code send + entry (email-plus or text-plus)
+- Child profile setup (name, avatar — no email needed)
+
+**Data model additions:**
+- `is_minor` flag on Account
+- `parent_account_id` FK on Account
+- `ParentalConsent` table (audit trail)
+- `coppa_consent_at` / `coppa_consent_method` on Account
+
+**Parent-facing features:**
+- "Child Accounts" section in Settings (only visible if parent has
+  linked child accounts)
+- View collected data screen
+- Data export (JSON or PDF)
+- Delete child account flow
+- Revoke consent flow
+- Re-consent flow (reactivate a frozen account)
+
+**Backend/policy:**
+- Data retention policy scoped to COPPA (don't keep child data
+  indefinitely)
+- COPPA-specific privacy policy section
+- Email fallback process for parental requests
+- Audit log for consent events (granted, revoked, data deleted)
+
+### What we can punt
+
+- Government ID verification (overkill for v1 — email-plus is sufficient
+  when we're not disclosing data to third parties)
 - Safe harbor certification (nice-to-have, not required)
 - In-app parental controls beyond what connections already provide
+  (the connection model already gives parents visibility + edit access)
+- Separate consent for third-party disclosure (we're not disclosing to
+  third parties, so this doesn't apply yet)
 
 ### Key compliance deadline
 
@@ -479,3 +673,15 @@ The FTC's 2025 COPPA rule amendments take full effect **April 22, 2026**.
 Any launch after that date must comply with the updated requirements,
 including the expanded definition of personal information (biometrics,
 precise geolocation) and stricter data retention rules.
+
+### Key question for legal review
+
+The "email-plus" VPC method is only valid when children's data is used
+**internally and not disclosed to third parties**. If we use any
+third-party analytics, crash reporting, or cloud services that process
+children's data, we may need to either:
+- Ensure those services are COPPA-compliant (most major ones are)
+- Use a stronger VPC method (credit card, KBA)
+- Exclude child accounts from third-party SDKs entirely
+
+This is worth confirming with counsel before locking in email-plus.
