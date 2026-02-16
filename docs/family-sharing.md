@@ -2,7 +2,7 @@
 
 > **Status:** Draft
 > **Last updated:** 2026-02-16
-> **Decision:** 1:1 Connections model (Model C)
+> **Decision:** Hybrid — 1:1 Connections (adults) + Child Profiles (under 13)
 
 ---
 
@@ -333,28 +333,219 @@ her perspective, and would only include people she's connected to.
 
 ## Future phases
 
-### Phase 2: Connection management polish
+### Phase 2: Child profile polish + graduation
+- Apple Health sync for child profiles (with parent toggle)
+- LLM features for child profiles (after legal review — either service
+  provider exception confirmed or separate parental consent flow built)
+- Child profile co-ownership (both parents can manage)
+- Graduation flow: child turns 13 → profile migrates to their own account
+- Push notification when someone accepts your invite
+
+### Phase 3: Connection management polish
 - "Remove connection" confirmation flow with clear explanation of what happens
 - Invite expiry and revocation UI
 - "Pending invites" list (sent and received)
-- Push notification when someone accepts your invite
 - Re-invite flow after a connection is removed
 
-### Phase 3: Suggested connections
+### Phase 4: Suggested connections
 - "People you may know" based on mutual connections
 - "Sarah is also connected to Milo" visibility
 - Batch invite flow (reduce setup friction for large families)
 
-### Phase 4: Permission tiers (if needed)
+### Phase 5: Permission tiers (if needed)
 - View-only connections (e.g. grandpa can see but not edit the kids' habits)
 - Health data visibility toggle per-connection
 - "Caregiver" connection type (view + limited edit, no health data)
+- Per-child-profile sharing controls (share Milo with grandpa but not Lily)
 
-### Phase 5: Beyond family
+### Phase 6: Beyond family
 - Connection types / labels (family, coach, doctor, friend)
 - Professional accounts with different UX (dashboard view for coaches)
 - Data export / sharing for medical providers
 - Time-limited connections (e.g. share with PT for 3 months)
+
+---
+
+## v1 recommendation: what to ship
+
+Three paths were considered for how kids participate. Here's why we landed
+where we did:
+
+| Approach | Summary | Why not for v1? |
+|---|---|---|
+| **Adults-only** | Ship without kids. Couples and solo adults only. | Too limiting — the whole pitch is family habits. A family app that doesn't support kids isn't a family app. |
+| **Full child accounts + COPPA** | Kids get their own 1:1 accounts. Full VPC consent flow, parental dashboard, age gate. | Correct but heavy. Adds 6+ screens, a new data model (ParentalConsent), audit logging, a VPC integration, and a legal review blocker. Overkill when the parent is doing everything anyway. |
+| **Hybrid (recommended)** | Adults get 1:1 accounts. Kids under 13 are profiles under the parent's account. Profiles are shared via connections. | Best balance of UX, scope, and legal risk for v1. The parent is already the one setting up the kid's device. The model reflects reality. |
+
+### What v1 includes
+
+**Accounts and connections (Model C for adults):**
+- Account creation via Sign in with Apple (13+ only)
+- Invite via short code (single-use, 7-day expiry)
+- Accept invite → connection created → mutual read/write
+- Remove connection (either party, no notification)
+- 10-connection cap
+
+**Child profiles (hybrid model for under 13):**
+- Parent creates child profiles under their own account
+- Child profile: display name, avatar, date of birth
+- No Apple Health sync for child profiles (v1)
+- No email/Apple ID needed for the child
+- Parent controls which connections can see which child profiles
+  (default: share all child profiles with new connections)
+
+**Kid's device experience:**
+- Parent signs into kid's device with their own account
+- Selects which child profile this device is for
+- Sets a 4-digit PIN so the kid can open the app independently
+- Kid sees only their own profile: their habits, their decks
+- Kid can check off habits, interact with decks
+- Kid cannot see parent's data, other profiles, or settings
+- Parent switches to "parent view" via FaceID/PIN to manage
+
+**What the kid sees vs. doesn't see:**
+
+| Feature | Kid's device | Parent's device |
+|---|---|---|
+| Kid's habits | View + check off | View + edit + create |
+| Kid's decks | View + interact | View + edit + create |
+| Kid's health data | N/A (no sync in v1) | N/A |
+| Other profiles | Hidden | Visible (all connections) |
+| Settings | Hidden | Full access |
+| LLM features | Hidden | Available (for parent's own data) |
+| Invite someone | Hidden | Available |
+
+**LLM features:**
+- Available for adult accounts only (parent's own profile data)
+- Not available for child profiles at launch
+- Revisit post-launch after legal review of service provider exception
+  or with separate parental consent flow
+
+### What v1 does NOT include
+
+- Age gate at registration (not needed — only adults register)
+- COPPA VPC flow (not needed — parent owns the data)
+- Parental consent dashboard (not needed — parent manages their own account)
+- Child-to-child connections (kids don't have accounts)
+- Graduation flow (designed but not built; triggered when kid turns 13)
+- Apple Health for child profiles
+- LLM features for child profiles
+- Co-ownership of child profiles (one parent owns, other sees via share)
+- Push notifications
+
+### Before launch: legal review checklist
+
+The hybrid model reduces COPPA exposure but doesn't eliminate it entirely.
+Before public launch, confirm with counsel:
+
+- [ ] **Proxy model validity.** Does the "parent owns the data, kid uses a
+      PIN-protected device session" framing hold under current FTC guidance?
+      Most family apps (Screen Time, Family Link) operate this way, but get
+      an explicit opinion.
+- [ ] **Privacy policy language.** Need COPPA-aware disclosures even with the
+      proxy model. "We do not knowingly collect personal information from
+      children under 13. Children participate through parent-managed profiles."
+- [ ] **Third-party SDKs.** Audit analytics, crash reporting, and cloud
+      services. Ensure they're either COPPA-compliant or excluded from
+      child profile device sessions.
+- [ ] **LLM service provider status.** If we want to enable LLM features for
+      child profiles later, confirm whether a no-training API tier qualifies
+      under the service provider exception.
+- [ ] **State laws.** COPPA is federal. Some states (CA/CPRA, NY, etc.) have
+      additional child privacy requirements. Quick scan for anything that
+      changes the calculus.
+
+### Setup ceremony: the full flow
+
+This is what it looks like end-to-end for a family of four (two parents,
+two kids):
+
+```
+DAY 1: Paul sets up the family
+
+Paul's phone:
+  1. Download app → Create Account (SiwA) → Paul's profile created
+  2. Add child profile: "Milo" (age 8) → set habits, build deck
+  3. Add child profile: "Lily" (age 5) → set habits, build deck
+  4. Tap "Invite Someone" → gets code: FMLY-7X2K
+
+Sarah's phone:
+  5. Download app → Create Account (SiwA) → Sarah's profile created
+  6. Enter code FMLY-7X2K → "Paul wants to connect" → Accept
+  7. Sarah now sees: her profile, Paul's profile, Milo, Lily
+
+Milo's iPad:
+  8. Download app → "Setting up for my child"
+  9. Paul signs in with his account (SiwA)
+  10. Selects "Milo" → sets PIN: 1234
+  11. Milo opens app with PIN → sees only his habits and decks
+
+Lily's iPad:
+  12. Same as Milo's setup, selects "Lily" → PIN: 5678
+
+Sarah also wants to manage kids from her phone:
+  13. Paul shares Milo + Lily profiles with Sarah's connection
+      (this happened automatically at step 6 with default settings)
+  14. Sarah sees Milo and Lily on her board, can edit their habits
+
+Total time: ~15 minutes for the whole family.
+Total accounts created: 2 (Paul, Sarah)
+Total connections: 1 (Paul ↔ Sarah)
+Total child profiles: 2 (Milo, Lily — under Paul's account)
+```
+
+### Data model (final, v1)
+
+```
+Account
+  - id
+  - email (from SiwA or manual)
+  - apple_id
+  - date_of_birth
+  - created_at
+
+Profile
+  - id
+  - account_id (FK → Account)
+  - type: "self" | "child"
+  - display_name
+  - avatar
+  - date_of_birth (nullable — used for child profiles, graduation)
+  - apple_health_enabled (boolean, always false for type: "child")
+  - created_at
+
+Connection
+  - id
+  - inviter_account_id (FK → Account)
+  - invitee_account_id (FK → Account)
+  - status: pending | accepted | removed
+  - created_at
+  - accepted_at
+
+Invite
+  - id
+  - from_account_id (FK → Account)
+  - code (unique, 8-char alphanumeric, case-insensitive)
+  - status: pending | accepted | expired | revoked
+  - expires_at (7 days from creation)
+  - created_at
+
+ProfileShare
+  - id
+  - profile_id (FK → Profile, type: "child")
+  - connection_id (FK → Connection)
+  - shared_by_account_id (FK → Account)
+  - created_at
+
+DeviceSession
+  - id
+  - account_id (FK → Account)
+  - profile_id (FK → Profile)
+  - device_id (unique device identifier)
+  - pin_hash
+  - created_at
+  - last_active_at
+```
 
 ---
 
