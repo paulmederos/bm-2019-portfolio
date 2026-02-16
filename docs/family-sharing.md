@@ -435,6 +435,273 @@ a parent creates an account for their 8-year-old, we have actual knowledge.
 6. **No behavioral advertising or profiling** using children's data without
    separate, specific parental consent (2025 rule amendment).
 
+### Sign in with Apple and the COPPA flow
+
+A wrinkle: if the parent used "Hide My Email" during Sign in with Apple for
+their own account, we have a relay address (e.g. `abc123@privaterelay.appleid.com`),
+not their real email. During the child's COPPA flow, we ask for the parent's
+email for VPC — they'd likely enter their real email, which won't match.
+
+This means **email matching alone can't link parent to child account.** The
+`parent_account_id` FK must be set explicitly during the child setup flow,
+not inferred from email.
+
+Best approach: during the under-13 flow, require the parent to **authenticate
+with their existing account** (Sign in with Apple again, or app PIN) rather
+than just typing an email. This:
+- Proves they're the parent (they can sign in)
+- Sets the `parent_account_id` FK directly
+- Sidesteps the relay email mismatch entirely
+- The VPC email/text is still sent separately for COPPA compliance
+
+If the parent doesn't have an account yet (creates kid's first), we capture
+their email for VPC and set `parent_account_id` later when they create their
+own account and authenticate.
+
+### LLM vendors and third-party disclosure
+
+**Yes, sending a child's data to an LLM API counts as third-party disclosure
+under COPPA.** The 2025 rule amendments are explicit: disclosing children's
+data to train or develop AI is **not integral** to a service and requires
+separate verifiable parental consent.
+
+But there's a nuance. There are two scenarios:
+
+**Scenario A: LLM vendor uses data for training.**
+This is unambiguously a third-party disclosure. Requires separate, specific
+parental consent. Most consumer-tier LLM APIs (OpenAI free tier, etc.) may
+train on input data.
+
+**Scenario B: LLM vendor processes data but doesn't retain/train on it.**
+Enterprise/API tiers (Anthropic API, OpenAI API with data usage off) process
+the request and discard it. This *might* qualify under the "service provider
+for internal operations" exception — similar to how sending data to a cloud
+database provider isn't a "disclosure." But the FTC hasn't explicitly ruled
+on this for LLMs, and it's legally gray.
+
+**It doesn't matter who presses the button.** Whether the kid taps "Generate
+Focus Plan" or the parent does it on the kid's behalf — if the app sends a
+child's habit data to an external LLM, that's the operator (us) disclosing
+a child's data to a third party. The actor is irrelevant; the data flow is
+what matters.
+
+**Practical options for v1:**
+1. **Don't send child data to LLMs at all.** Simplest. LLM features are
+   adults-only. Kid profiles get a simpler, non-AI experience.
+2. **Use a no-training API tier + treat LLM as service provider.** Legally
+   defensible but untested. Would need counsel to confirm.
+3. **Get separate parental consent for LLM features.** Adds another consent
+   screen during setup. Parent explicitly opts in to "AI-powered features
+   that send your child's data to [vendor name] for processing."
+
+Option 1 is the safest for launch. Option 3 is the right long-term answer if
+AI features are core to the kid experience.
+
+### The case for a hybrid model
+
+Given the above — COPPA consent flows, the LLM disclosure question, the SiwA
+email mismatch, the VPC requirement, the parental dashboard obligation — it's
+worth asking: **do kids under 13 actually need their own accounts?**
+
+The sovereignty philosophy is right for teens and adults. But for an 8-year-old
+whose parent is setting up their device, managing their habits, and physically
+present during setup... the kid isn't really exercising sovereignty. The parent
+is doing everything.
+
+**A hybrid model might be simpler and more honest:**
+
+```
+Adults/teens (13+):  Full 1:1 accounts (Model C, unchanged)
+Kids (under 13):     Child profiles under parent's account
+```
+
+#### How the hybrid works
+
+**Parent's account contains child profiles:**
+```
+Paul's Account (full account, Model C)
+├── Paul's Profile (his own habits, health data, decks)
+├── Milo's Profile (child, age 8)
+│   └── Milo's habits, Milo's decks (no health data)
+└── Lily's Profile (child, age 5)
+    └── Lily's habits, Lily's decks
+```
+
+**Connections share profiles, not just accounts:**
+When Paul connects with Sarah (spouse), Sarah can see all profiles Paul has
+shared with her — including the kid profiles. Paul controls which child
+profiles are visible to which connections.
+
+```
+Paul's Board                        Sarah's Board
+├── Paul's Profile                  ├── Sarah's Profile
+├── Milo (Paul's child profile)     ├── Milo (shared by Paul)
+├── Lily (Paul's child profile)     ├── Lily (shared by Paul)
+└── Sarah (connection)              └── Paul (connection)
+```
+
+**Kid uses the app on their own device:**
+The kid doesn't sign in with their own account. Instead:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ 1. Download app on kid's device                              │
+│                                                              │
+│ 2. "Who's using this device?"                                │
+│    → "I'm setting up this device for my child"               │
+│                                                              │
+│ 3. Parent signs in with THEIR account (SiwA / email+pw)      │
+│                                                              │
+│ 4. "Which profile is this device for?"                       │
+│    → Select "Milo" from their child profiles                 │
+│    → Or create a new child profile now                       │
+│                                                              │
+│ 5. Set a device PIN (so Milo can open the app without        │
+│    parent's password)                                        │
+│                                                              │
+│ 6. Milo's device shows Milo's profile as the primary view    │
+│    → Milo sees his habits, his decks                         │
+│    → Milo can check off habits, interact with decks          │
+│    → Milo does NOT see parent's data or other profiles       │
+│                                                              │
+│ 7. Parent can switch to "parent view" via PIN/FaceID         │
+│    to manage Milo's profile from Milo's device               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+#### Data model (hybrid)
+
+```
+Account
+  - id
+  - email
+  - apple_id
+  - date_of_birth
+  - created_at
+
+Profile
+  - id
+  - account_id (FK → Account, the owner)
+  - type: "self" | "child"
+  - display_name
+  - avatar
+  - date_of_birth (for child profiles — to track when they age out)
+  - apple_health_enabled (boolean, false for child profiles)
+  - created_at
+
+Connection (unchanged from Model C)
+  - id
+  - inviter_account_id
+  - invitee_account_id
+  - status: pending | accepted | removed
+  - created_at
+  - accepted_at
+
+ProfileShare (NEW — controls which child profiles a connection can see)
+  - id
+  - profile_id (FK → Profile, must be type: "child")
+  - connection_id (FK → Connection)
+  - shared_by_account_id (the parent who shared it)
+  - created_at
+
+DeviceSession (NEW — ties a device to a specific profile)
+  - id
+  - account_id (the parent's account)
+  - profile_id (which profile this device shows)
+  - device_id
+  - pin_hash (for kid to unlock without parent password)
+  - created_at
+```
+
+Key relationship: `Account 1 → many Profiles`. One "self" profile (always),
+zero or more "child" profiles. The Account holder owns all the data.
+
+#### Why this simplifies COPPA
+
+1. **The parent is the account holder.** All data is collected from and
+   owned by the parent. The kid doesn't have an account — they have a
+   profile that the parent created and manages.
+
+2. **No VPC flow needed.** The parent isn't "consenting to us collecting
+   their child's data" — they're entering their child's data into their
+   own account. It's like a parent tracking their kid's chores in a
+   notes app. The parent is the user.
+
+3. **Kid's device interaction is under the parent's account.** When Milo
+   checks off a habit on his device, he's interacting with the parent's
+   account via a PIN-protected device session. Legally, the parent
+   authorized this by setting up the device.
+
+4. **No separate parental dashboard needed.** The parent already owns the
+   data. They can view, edit, export, or delete any child profile from
+   their own account. The COPPA "parental access" right is satisfied by
+   default.
+
+5. **LLM features are cleaner.** If the parent sends Milo's data to
+   generate a focus plan, it's the parent (an adult account holder)
+   choosing to send their own account data to an LLM. The data belongs
+   to the parent. This is a much more defensible position than sending
+   a child's account data.
+
+6. **No age gate at registration.** Only adults create accounts. The
+   "age" question only comes up when creating a child profile, and it's
+   informational (for the age-out graduation flow), not a COPPA trigger.
+
+#### What this doesn't solve
+
+**COPPA gray area: kid actively using the device.**
+If Milo is actively using the app — checking off habits, browsing decks —
+the FTC *could* argue that we're collecting behavioral data from a child,
+even if the account is the parent's. This is a gray area. Most family apps
+(Apple Screen Time, Google Family Link, Life360) operate in this space and
+treat it as parent-authorized use. But it's not a slam dunk.
+
+**Mitigation:** The parent explicitly set up the device for the child and
+authorized it with their own credentials. The app collects only what the
+parent configured (habits the parent created, decks the parent built). The
+kid is interacting with content the parent chose. This is closer to "parent
+gave kid a configured tool" than "service collecting data from a child."
+
+**Two parents, one kid profile.**
+If both Paul and Sarah want to manage Milo, the profile lives under one
+account. The other parent sees it via `ProfileShare`. Only the profile owner
+can delete it. This creates a slight asymmetry — but it mirrors real life
+(one parent usually does the initial setup).
+
+Alternatively: allow a child profile to be "co-owned" by linked accounts.
+Both parents with the profile shared between them get full management rights.
+Worth considering but adds complexity.
+
+**Graduation at 13.**
+When a child turns 13, we should offer to "graduate" their profile into a
+full account. The kid creates their own account, data migrates from the
+parent's child profile to the kid's new account, and the old profile is
+archived. This transition honors the sovereignty philosophy — ownership
+transfers when the kid is old enough for it to matter.
+
+```
+Child turns 13 → "Milo is old enough for their own account!"
+  → Parent initiates graduation from their app
+  → Milo creates account on their device (Flow 1: standard 13+ signup)
+  → Data migrates: habits, decks, history move to Milo's new account
+  → Old child profile archived under parent's account
+  → Connection auto-created between parent and Milo's new account
+```
+
+#### Hybrid model: comparison summary
+
+| Concern | Full child accounts (current) | Hybrid (child profiles) |
+|---|---|---|
+| COPPA VPC required? | Yes — full flow | Likely no (gray area) |
+| Age gate at registration? | Yes | No (only adults register) |
+| Parental dashboard? | Must build separately | Free — parent owns data |
+| LLM for kids? | Requires separate consent | Parent sends their own data |
+| SiwA email mismatch? | Must handle explicitly | Non-issue (one account) |
+| Kid device experience? | Own account, own sign-in | PIN-protected profile view |
+| Data sovereignty? | Kid owns data from day 1 | Parent owns → graduates at 13 |
+| Setup complexity? | Age gate + VPC + invite | Sign in + pick profile |
+| Legal risk? | Lower (explicit compliance) | Moderate (gray area on kid usage) |
+
 ### Account creation flows
 
 There are three flows depending on who's creating the account. The age gate
