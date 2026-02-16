@@ -261,17 +261,17 @@ The board shows all your connections and their data:
 ```
 My Board
 ├── My habits          (my own profile)
-├── Sarah (spouse)     (connected)
+├── Brittany (spouse)     (connected)
 │   └── her habits, her deck, her health data
-├── Milo (kid)         (connected)
+├── Leo (kid)         (connected)
 │   └── his habits, his deck
-├── Lily (kid)         (connected)
+├── Lulu (kid)         (connected)
 │   └── her habits, her deck
 └── Dad                (connected)
     └── his habits, his deck, his health data
 ```
 
-Each person's board is their own view. Sarah's board would look similar but from
+Each person's board is their own view. Brittany's board would look similar but from
 her perspective, and would only include people she's connected to.
 
 ### Apple Health sync
@@ -349,7 +349,7 @@ her perspective, and would only include people she's connected to.
 
 ### Phase 4: Suggested connections
 - "People you may know" based on mutual connections
-- "Sarah is also connected to Milo" visibility
+- "Brittany is also connected to Leo" visibility
 - Batch invite flow (reduce setup friction for large families)
 
 ### Phase 5: Permission tiers (if needed)
@@ -469,27 +469,27 @@ DAY 1: Paul sets up the family
 
 Paul's phone:
   1. Download app → Create Account (SiwA) → Paul's profile created
-  2. Add child profile: "Milo" (age 8) → set habits, build deck
-  3. Add child profile: "Lily" (age 5) → set habits, build deck
+  2. Add child profile: "Leo" (age 8) → set habits, build deck
+  3. Add child profile: "Lulu" (age 5) → set habits, build deck
   4. Tap "Invite Someone" → gets code: FMLY-7X2K
 
-Sarah's phone:
-  5. Download app → Create Account (SiwA) → Sarah's profile created
+Brittany's phone:
+  5. Download app → Create Account (SiwA) → Brittany's profile created
   6. Enter code FMLY-7X2K → "Paul wants to connect" → Accept
   7. Sharing sheet: "What to share with Paul?"
-     → Toggles on: health data, Milo, Lily  (she'd toggle all on)
-  8. Paul gets same sheet: "What to share with Sarah?"
-     → Toggles on: health data, Milo, Lily
-  9. Sarah now sees: her profile, Paul's habits + health, Milo, Lily
+     → Toggles on: health data, Leo, Lulu  (she'd toggle all on)
+  8. Paul gets same sheet: "What to share with Brittany?"
+     → Toggles on: health data, Leo, Lulu
+  9. Brittany now sees: her profile, Paul's habits + health, Leo, Lulu
 
-Milo's iPad:
+Leo's iPad:
   10. Download app → "Setting up for my child"
   11. Paul signs in with his account (SiwA)
-  12. Selects "Milo" → sets PIN: 1234
-  13. Milo opens app with PIN → sees only his habits and decks
+  12. Selects "Leo" → sets PIN: 1234
+  13. Leo opens app with PIN → sees only his habits and decks
 
-Lily's iPad:
-  14. Same as Milo's setup, selects "Lily" → PIN: 5678
+Lulu's iPad:
+  14. Same as Leo's setup, selects "Lulu" → PIN: 5678
 
 DAY 2: Paul invites his dad
 
@@ -502,15 +502,15 @@ Dad's phone:
   18. Sharing sheet: "What to share with Paul?"
       → Toggles on: nothing extra (just habits, default)
   19. Paul gets sheet: "What to share with Dad?"
-      → Toggles on: Milo, Lily. Leaves health off.
-  20. Dad sees: his profile, Paul's habits, Milo, Lily
+      → Toggles on: Leo, Lulu. Leaves health off.
+  20. Dad sees: his profile, Paul's habits, Leo, Lulu
       Dad does NOT see: Paul's health data
 
 Total time: ~20 minutes for the whole family + grandpa.
-Total accounts created: 3 (Paul, Sarah, Dad)
-Total connections: 2 (Paul ↔ Sarah, Paul ↔ Dad)
-Total child profiles: 2 (Milo, Lily — under Paul's account)
-Sharing: Sarah sees everything. Dad sees habits + kids, no health.
+Total accounts created: 3 (Paul, Brittany, Dad)
+Total connections: 2 (Paul ↔ Brittany, Paul ↔ Dad)
+Total child profiles: 2 (Leo, Lulu — under Paul's account)
+Sharing: Brittany sees everything. Dad sees habits + kids, no health.
 ```
 
 ### Data model (final, v1)
@@ -609,8 +609,8 @@ DeviceSession
    │                                     │
    │ My habits          [on]             │
    │ My health data     [off]            │
-   │ Milo's profile     [on]             │
-   │ Lily's profile     [on]             │
+   │ Leo's profile     [on]             │
+   │ Lulu's profile     [on]             │
    └─────────────────────────────────────┘
    ```
    - Pro: Explicit, understandable, per-child granularity
@@ -655,9 +655,9 @@ DeviceSession
    — not auto-shared.
 
    Real-world scenarios with this model:
-   | Connection | Habits | Health | Milo | Lily |
+   | Connection | Habits | Health | Leo | Lulu |
    |---|---|---|---|---|
-   | Sarah (spouse) | on | on | on | on |
+   | Brittany (spouse) | on | on | on | on |
    | Dad (grandpa) | on | off | on | on |
    | Jake (friend) | on | off | off | off |
    | PT | on | on | off | off |
@@ -807,23 +807,23 @@ Kids (under 13):     Child profiles under parent's account
 ```
 Paul's Account (full account, Model C)
 ├── Paul's Profile (his own habits, health data, decks)
-├── Milo's Profile (child, age 8)
-│   └── Milo's habits, Milo's decks (no health data)
-└── Lily's Profile (child, age 5)
-    └── Lily's habits, Lily's decks
+├── Leo's Profile (child, age 8)
+│   └── Leo's habits, Leo's decks (no health data)
+└── Lulu's Profile (child, age 5)
+    └── Lulu's habits, Lulu's decks
 ```
 
 **Connections share profiles, not just accounts:**
-When Paul connects with Sarah (spouse), Sarah can see all profiles Paul has
+When Paul connects with Brittany (spouse), Brittany can see all profiles Paul has
 shared with her — including the kid profiles. Paul controls which child
 profiles are visible to which connections.
 
 ```
-Paul's Board                        Sarah's Board
-├── Paul's Profile                  ├── Sarah's Profile
-├── Milo (Paul's child profile)     ├── Milo (shared by Paul)
-├── Lily (Paul's child profile)     ├── Lily (shared by Paul)
-└── Sarah (connection)              └── Paul (connection)
+Paul's Board                        Brittany's Board
+├── Paul's Profile                  ├── Brittany's Profile
+├── Leo (Paul's child profile)     ├── Leo (shared by Paul)
+├── Lulu (Paul's child profile)     ├── Lulu (shared by Paul)
+└── Brittany (connection)              └── Paul (connection)
 ```
 
 **Kid uses the app on their own device:**
@@ -839,19 +839,19 @@ The kid doesn't sign in with their own account. Instead:
 │ 3. Parent signs in with THEIR account (SiwA / email+pw)      │
 │                                                              │
 │ 4. "Which profile is this device for?"                       │
-│    → Select "Milo" from their child profiles                 │
+│    → Select "Leo" from their child profiles                 │
 │    → Or create a new child profile now                       │
 │                                                              │
-│ 5. Set a device PIN (so Milo can open the app without        │
+│ 5. Set a device PIN (so Leo can open the app without        │
 │    parent's password)                                        │
 │                                                              │
-│ 6. Milo's device shows Milo's profile as the primary view    │
-│    → Milo sees his habits, his decks                         │
-│    → Milo can check off habits, interact with decks          │
-│    → Milo does NOT see parent's data or other profiles       │
+│ 6. Leo's device shows Leo's profile as the primary view    │
+│    → Leo sees his habits, his decks                         │
+│    → Leo can check off habits, interact with decks          │
+│    → Leo does NOT see parent's data or other profiles       │
 │                                                              │
 │ 7. Parent can switch to "parent view" via PIN/FaceID         │
-│    to manage Milo's profile from Milo's device               │
+│    to manage Leo's profile from Leo's device               │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -913,7 +913,7 @@ zero or more "child" profiles. The Account holder owns all the data.
    own account. It's like a parent tracking their kid's chores in a
    notes app. The parent is the user.
 
-3. **Kid's device interaction is under the parent's account.** When Milo
+3. **Kid's device interaction is under the parent's account.** When Leo
    checks off a habit on his device, he's interacting with the parent's
    account via a PIN-protected device session. Legally, the parent
    authorized this by setting up the device.
@@ -923,7 +923,7 @@ zero or more "child" profiles. The Account holder owns all the data.
    their own account. The COPPA "parental access" right is satisfied by
    default.
 
-5. **LLM features are cleaner.** If the parent sends Milo's data to
+5. **LLM features are cleaner.** If the parent sends Leo's data to
    generate a focus plan, it's the parent (an adult account holder)
    choosing to send their own account data to an LLM. The data belongs
    to the parent. This is a much more defensible position than sending
@@ -936,7 +936,7 @@ zero or more "child" profiles. The Account holder owns all the data.
 #### What this doesn't solve
 
 **COPPA gray area: kid actively using the device.**
-If Milo is actively using the app — checking off habits, browsing decks —
+If Leo is actively using the app — checking off habits, browsing decks —
 the FTC *could* argue that we're collecting behavioral data from a child,
 even if the account is the parent's. This is a gray area. Most family apps
 (Apple Screen Time, Google Family Link, Life360) operate in this space and
@@ -949,7 +949,7 @@ kid is interacting with content the parent chose. This is closer to "parent
 gave kid a configured tool" than "service collecting data from a child."
 
 **Two parents, one kid profile.**
-If both Paul and Sarah want to manage Milo, the profile lives under one
+If both Paul and Brittany want to manage Leo, the profile lives under one
 account. The other parent sees it via `ProfileShare`. Only the profile owner
 can delete it. This creates a slight asymmetry — but it mirrors real life
 (one parent usually does the initial setup).
@@ -966,12 +966,12 @@ archived. This transition honors the sovereignty philosophy — ownership
 transfers when the kid is old enough for it to matter.
 
 ```
-Child turns 13 → "Milo is old enough for their own account!"
+Child turns 13 → "Leo is old enough for their own account!"
   → Parent initiates graduation from their app
-  → Milo creates account on their device (Flow 1: standard 13+ signup)
-  → Data migrates: habits, decks, history move to Milo's new account
+  → Leo creates account on their device (Flow 1: standard 13+ signup)
+  → Data migrates: habits, decks, history move to Leo's new account
   → Old child profile archived under parent's account
-  → Connection auto-created between parent and Milo's new account
+  → Connection auto-created between parent and Leo's new account
 ```
 
 #### Hybrid model: comparison summary
@@ -1143,22 +1143,22 @@ Accessible from the parent's own app, scoped to linked child accounts:
 
 ```
 Settings → Child Accounts
-├── Milo (age 8)
+├── Leo (age 8)
 │   ├── View collected data
 │   │   └── Shows: display name, avatar, habits, decks,
 │   │       health data (if enabled), account creation date
 │   ├── Download data (export as JSON/PDF)
 │   ├── Delete all data
-│   │   └── Confirmation: "This will permanently delete Milo's
+│   │   └── Confirmation: "This will permanently delete Leo's
 │   │       account and all associated data. This cannot be undone."
 │   │   └── Triggers: account deletion, connection removal,
 │   │       data purge per retention policy
 │   └── Revoke consent
-│       └── "This will disable Milo's account. No new data will
+│       └── "This will disable Leo's account. No new data will
 │           be collected. You can delete the account entirely or
 │           re-consent later."
 │       └── Triggers: account deactivation, consent revoked flag
-├── Lily (age 5)
+├── Lulu (age 5)
 │   └── (same options)
 ```
 
